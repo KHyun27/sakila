@@ -9,10 +9,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Sakila Main</title>
 </head>
 
-<body>
-	hello!
+<body class="container">
+	<h1>Sakila Main</h1>
+	<div>${loginStaff.username}님 반갑습니다.</div>
+	
 </body>
 </html>
