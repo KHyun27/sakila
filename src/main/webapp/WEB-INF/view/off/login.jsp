@@ -11,7 +11,7 @@
 
 <style>
 	.custom-bg-light {
-	    background-color: #8BBDFF !important; /* !important를 사용해 기존 Bootstrap 클래스를 덮어씁니다 */
+	    background-color: #8BBDFF !important;
 	}
 </style>
 <meta charset="UTF-8">
