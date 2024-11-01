@@ -9,8 +9,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class SakilaApplication implements WebMvcConfigurer {
 
-	@Autowired private OnInterceptor onInterceptor;
-	@Autowired private OffInterceptor offInterceptor;
+	@Autowired OnInterceptor onInterceptor;
+	@Autowired OffInterceptor offInterceptor;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaApplication.class, args);

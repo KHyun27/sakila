@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.sakila.mapper.staffMapper;
+import com.example.sakila.mapper.StaffMapper;
 import com.example.sakila.vo.Staff;
 
 import jakarta.servlet.http.HttpSession;
@@ -17,16 +17,16 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class LoginController {
 	
-	@Autowired private staffMapper staffMapper;
+	@Autowired StaffMapper staffMapper;
 	
-	// Login Form
+	// Login Staff Form
 	@GetMapping("/off/login")
 	public String login() {
 		log.debug("RUN : /off/login");
 		return "off/login";
 	}
 	
-	// Login Action
+	// Login Staff Action
 	@PostMapping("/off/login")
 	public String login(Model model, HttpSession session,
 						@RequestParam(name ="staffId") int staffId,
@@ -50,6 +50,15 @@ public class LoginController {
 		
 		return "redirect:/on/sakilaMain";
 	}
+	
+	// Logout Staff Action
+	@GetMapping("/on/logoutStaff")
+	public String logoutStaff(HttpSession session) {
+		session.invalidate();
+		log.debug("Success Logout!");
+		return "redirect:/off/login";
+	}
+	
 	
 
 }

@@ -12,9 +12,16 @@
 	<title>Sakila Main</title>
 </head>
 
-<body class="container">
-	<h1>Sakila Main</h1>
-	<div>${loginStaff.username}님 반갑습니다.</div>
-	
+<body class="container-fluid bg-light p-3">
+	<div class="row">
+		<div class="col-sm-2 bg-light">
+			<!-- leftMenu.jsp include -->
+			<c:import url="/WEB-INF/view/on/inc/leftMenu.jsp"></c:import>
+		</div>
+		<div class="col-sm-10 bg-light">
+			<!-- main -->
+			<h1>Sakila Main</h1>
+		</div>
+	</div>
 </body>
 </html>
