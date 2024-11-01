@@ -8,7 +8,7 @@ public class Staff {
 	private int staffId;	// PK
 	private String firstName;
 	private String lastName;
-	private int adressId;	// FK
+	private int addressId;	// FK
 	private String email;
 	private int storeId;	// FK
 	private int active;

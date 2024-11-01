@@ -1,5 +1,7 @@
 package com.example.sakila.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +23,10 @@ public class StaffController {
 	public String staffOne(Model model, HttpSession session) {
 		
 		int staffId = ((Staff)(session.getAttribute("loginStaff"))).getStaffId();
-		Staff staff = staffMapper.selectStaffOne(staffId);
+		Map<String, Object> staff = staffMapper.selectStaffOne(staffId);
 		model.addAttribute("staff", staff);
 		log.debug(staff.toString());
+		
 		return "on/staffOne";
 	}
 	

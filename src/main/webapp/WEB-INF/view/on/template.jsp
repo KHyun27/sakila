@@ -13,6 +13,11 @@
 </head>
 
 <body class="container-fluid bg-light p-3">
+
+	<div class="bg-light"><!-- header.jsp -->
+		<c:import url="/WEB-INF/view/on/inc/headMenu.jsp"></c:import>
+	</div>
+
 	<div class="row">
 		<div class="col-sm-2 bg-light">
 			<!-- leftMenu.jsp include -->

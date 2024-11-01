@@ -1,55 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<ul class="list-group text-center">
-	<li class="list-group-item">
-		<a href="${pageContext.request.contextPath}/on/sakilaMain">Home</a>
+<style>
+	a:link {
+	  color: DodgerBlue;
+	  text-decoration: none;
+	}
+	a:visited {
+	  color: DodgerBlue;
+	  text-decoration: none;
+	}
+	a:hover {
+	  color: DodgerBlue;
+	  text-decoration: none;
+	}
+	a:active {
+	  color: DodgerBlue;
+	  text-decoration: none;
+	}
+</style>
+
+
+<ul class="list-group text-center" style="margin-top: 50px">
+	<li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
+		:: Store Management ::
 	</li>
 	
 	<li class="list-group-item">
-		<a href="${pageContext.request.contextPath}/on/staffOne">${loginStaff.username}님</a>
+		<a href="">Store List</a>
 	</li>
 	
 	<li class="list-group-item">
-		<a href="${pageContext.request.contextPath}/on/logoutStaff">Logout</a>
+		<a href="">Store Add</a>
 	</li>
 </ul>
 
 <hr>
 
 <ul class="list-group text-center">
-	<li class="list-group-item" style="font-weight:bold;">
-		:: 지점 관리 ::
+	<li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
+		:: Customer Management ::
 	</li>
 	
 	<li class="list-group-item">
-		<a href="">지점 추가</a>
+		<a href="">Customer List</a>
 	</li>
 	
 	<li class="list-group-item">
-		<a href="">지점 수정</a>
+		<a href="">Customer Add</a>
 	</li>
 </ul>
 
 <hr>
 
 <ul class="list-group text-center">
-	<li class="list-group-item" style="font-weight:bold;">
-		:: 고객 관리 ::
-	</li>
-	
-	<li class="list-group-item">
-		<a href="">고객 추가</a>
-	</li>
-	
-	<li class="list-group-item">
-		<a href="">고객 수정</a>
-	</li>
-</ul>
-
-<hr>
-
-<ul class="list-group text-center">
-	<li class="list-group-item" style="font-weight:bold;">
+	<li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
 		:: Staff Management ::
 	</li>
 	
