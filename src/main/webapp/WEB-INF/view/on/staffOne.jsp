@@ -78,8 +78,8 @@
 					</tr>
 				</table>
 				
-				<div style="width: 800px; display: flex; justify-content: flex-end; margin-right: 50px;">
-				    <a href="">Password 수정</a>
+				<div style="width: 800px; display: flex; justify-content: flex-end;">
+				    <a href="" style="margin-right: 20px;">Password 수정</a>
 				</div>
 				<hr style="width: 800px;">
 				
