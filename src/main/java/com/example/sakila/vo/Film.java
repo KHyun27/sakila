@@ -6,11 +6,11 @@ import lombok.Data;
 public class Film {
 	
 	private int filmId; // PK
-	private String title; // FK
+	private String title; 
 	private String description;
 	private String releaseYear;
-	private int languageId; // FK
-	private int originalLanguageId; // FK
+	private int languageId; // FK → language.language_id
+	private int originalLanguageId; // FK → language.language_id
 	private int rentalDuration;
 	private int rentalRate;
 	private int length;

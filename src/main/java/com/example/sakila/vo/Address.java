@@ -9,7 +9,7 @@ public class Address {
 	private String address;
 	private String address2;
 	private String district;
-	private int cityId; // FK
+	private int cityId; // FK → city.city_id
 	private String postalCode;
 	private String phone;
 	private String lastUpdate;

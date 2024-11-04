@@ -7,7 +7,7 @@ public class City {
 	
 	private int cityId; // PK
 	private String city;
-	private int countryId; // FK
+	private int countryId; // FK → country.country_id
 	private String lastUpdate;
 
 }

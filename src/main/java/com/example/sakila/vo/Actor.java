@@ -7,7 +7,7 @@ public class Actor {
 	
 	private int actorId; // PK
 	private String firstName;
-	private String lastName; // FK
+	private String lastName; 
 	private String lastUpdate;
 
 }
