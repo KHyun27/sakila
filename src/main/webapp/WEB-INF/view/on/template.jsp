@@ -25,7 +25,6 @@
 		</div>
 		<div class="col-sm-10 bg-light">
 			<!-- main -->
-			<h1>Sakila Main</h1>
 		</div>
 	</div>
 </body>

@@ -110,4 +110,33 @@
 		) t5 ON t4.address_id = t5.address_id
 		WHERE t4.staff_id = #{staffId};
 	</select>
+	
+	<!-- insertStaff Query -->
+	<insert id="insertStaff" parameterType="com.example.sakila.vo.Staff">
+		INSERT INTO staff(first_name, last_name, address_id, email, store_id, username) values(#{firstName}, #{lastName}, #{addressId}, #{email}, #{storeId}, #{username})
+	</insert>
+	
+	<!-- selectStaffList Query -->
+	<select id="selectStaffList" parameterType="Map" resultType="com.example.sakila.vo.Staff">
+		SELECT staff_id staffId, first_name firstName, last_name lastName, address_id addressId, email, store_id storeId, active, username, last_update lastUpdate FROM staff ORDER BY staff_id LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+	
+	<!-- selectStaffCount Query -->
+	<select id="selectStaffCount" resultType="int">
+		SELECT COUNT(*) FROM staff
+	</select>
+	
+	<!-- updateActive Query -->
+	<update id="updateStaff" parameterType="com.example.sakila.vo.Staff">
+		UPDATE staff 
+		<set>
+			<if test="addressId != null and addressId != ''">addressId = #{addressId},</if>
+			<if test="email != null and email != ''">email = #{email},</if>
+			<if test="storeId != null and storeId != ''">storeId = #{storeId},</if>
+			<if test="password != null and password != ''">password = #{password},</if>
+			<if test="active != null and active != ''">active = #{active},</if>
+		</set> 
+		WHERE staff_id = #{staffId}
+	</update>
+	
 </mapper>

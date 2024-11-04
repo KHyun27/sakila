@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
@@ -58,10 +59,11 @@
 	</li>
 	
 	<li class="list-group-item">
-		<a href="">Staff Add</a>
+		<a href="${pageContext.request.contextPath}/on/staffList">Staff List</a>
 	</li>
 	
 	<li class="list-group-item">
-		<a href="">Staff Update</a>
+		<a href="${pageContext.request.contextPath}/on/addStaff">Staff Add</a>
 	</li>
+	
 </ul>

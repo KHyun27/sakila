@@ -13,6 +13,11 @@
 			margin-top: 50px;
 			margin-left: 50px;
 		}
+		.modify-cell {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 	</style>
 	
 	<meta charset="UTF-8">
@@ -33,7 +38,7 @@
 		<div class="col-sm-10 bg-light">
 			<div class="info">
 				<!-- main -->
-				<table class="table" style="width:600px; border-radius: 10px; overflow: hidden;">
+				<table class="table" style="width:800px; border-radius: 10px; overflow: hidden;">
 					<tr>
 						<th class="table-success text-center" colspan="2">Staff Info</th>
 					</tr>
@@ -51,7 +56,10 @@
 					</tr>
 					<tr>
 						<th>Staff Email</th>
-						<td>${staff.staffEmail}</td>
+						<td class="modify-cell">
+						${staff.staffEmail}
+						<a href="" style="margin-right: 20px;">수정</a>
+						</td>
 					</tr>
 					<tr>
 						<th>Staff PostalCode</th>
@@ -59,7 +67,10 @@
 					</tr>
 					<tr>
 						<th>Staff Address</th>
-						<td>${staff.staffAddress}${staff.staffAddress2}, ${staff.staffDistrict}, ${staff.staffCity}, ${staff.staffCountry}</td>
+						<td class="modify-cell">
+							${staff.staffAddress}${staff.staffAddress2}, ${staff.staffDistrict}, ${staff.staffCity}, ${staff.staffCountry}
+							<a href="" style="margin-right: 20px;">수정</a>
+						</td>
 					</tr>
 					<tr>
 						<th>Staff Phone</th>
@@ -67,15 +78,21 @@
 					</tr>
 				</table>
 				
-				<hr style="width:600px;">
+				<div style="width: 800px; display: flex; justify-content: flex-end; margin-right: 50px;">
+				    <a href="">Password 수정</a>
+				</div>
+				<hr style="width: 800px;">
 				
-				<table class="table" style="width:600px; border-radius: 10px; overflow: hidden;">
+				<table class="table" style="width:800px; border-radius: 10px; overflow: hidden;">
 					<tr>
 						<th class="table-success text-center" colspan="2">Store Info</th>
 					</tr>
 					<tr>
 						<th>Store Id</th>
-						<td>${staff.storeId}</td>
+						<td class="modify-cell">
+							${staff.storeId}
+							<a href="" style="margin-right: 20px;">수정</a>
+						</td>
 					</tr>
 					<tr>
 						<th>Manager Staff Id</th>
@@ -98,6 +115,7 @@
 						<td>${staff.storePhone}</td>
 					</tr>
 				</table>
+				
 			</div>
 		</div>
 	</div>
