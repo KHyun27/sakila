@@ -55,6 +55,22 @@
 
 <ul class="list-group text-center">
 	<li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
+		:: Actor Management ::
+	</li>
+	
+	<li class="list-group-item">
+		<a href="${pageContext.request.contextPath}/on/actorList">Actor List</a>
+	</li>
+	
+	<li class="list-group-item">
+		<a href="${pageContext.request.contextPath}/on/addActor">Actor Add</a>
+	</li>
+</ul>
+
+<hr>
+
+<ul class="list-group text-center">
+	<li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
 		:: Staff Management ::
 	</li>
 	
