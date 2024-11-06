@@ -24,13 +24,28 @@
 			margin-left: 50px;
 		}
 		
+       .actor-link {
+        	color: black;
+        	text-decoration: none;
+        }
+        
+        .actor-link:hover {
+            color: #002266;
+            text-decoration: none;
+        }
+        
+        .actor-link:visited {
+        	color: black;
+        	text-decoration: none;
+        }
+		
 		.pagination {
 		  display: flex;
   		  justify-content: center;
 		}
 		
 		.pagination a {
-		  color: black;
+		  color: #008000;
 		  float: left;
 		  padding: 8px 16px;
 		  text-decoration: none;
@@ -38,9 +53,9 @@
 		}
 		
 		.pagination a.active {
-		  background-color: #8BBDFF;
+		  background-color: #28a745;
 		  color: white;
-		  border: 1px solid #8BBDFF;
+		  border: 1px solid #28a745;
 		}
 		
 		.pagination a:hover:not(.active) {background-color: #ddd;}
@@ -73,8 +88,15 @@
 		<div class="col-sm-10 bg-light">
 			<div class="main">
 				<!-- main -->
-				<h1>Actor List</h1>
-				<table class="table text-center" style="width:400px; border-radius: 10px; overflow: hidden;">
+				<table class="table table-success text-center" style="width:500px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+					<tr>
+						<th style="font-size: x-large;">Actor List</th>
+					</tr>
+				</table>
+				
+				<hr style="width:500px;">
+				
+				<table class="table text-center" style="width:500px; border-radius: 10px; overflow: hidden;">
 					<thead class="table-success">
 						<tr>
 							<th>Actor ID</th>
@@ -85,17 +107,22 @@
 						<tr>
 							<td>${a.actorId}</td>
 							<td>
-								<a style="color: black;" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a>
+								<a class="actor-link" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a>
 							</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<form id="formSearch" method="get" action="${pageContext.request.contextPath}/on/actorList">
+				<div class="d-flex justify-content-between" style="width: 500px;">
+					<div><span style="color: #008000;">Current SearchWord : ${searchWord}</span></div>
+					<div>
 					<input type="text" name="searchWord" id="searchWord">
 					<button id="btnSearch" type="button" class="btn btn-sm btn-outline-success">Search</button>
+					</div>
+				</div>
 				</form>
 				<!-- Pagination -->
-				<div class="pagination justify-content-center" style="text-align: center; margin-top: 20px; width: 400px">
+				<div class="pagination justify-content-center" style="text-align: center; margin-top: 20px; width: 500px">
 					<!-- 첫 페이지 -->
 					<c:if test="${!(currentPage > 1)}">
 						<a href="" style="pointer-events: none;">&laquo;</a>

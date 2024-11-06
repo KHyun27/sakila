@@ -90,4 +90,9 @@ public class ActorService {
 	public Actor getActorOne(int actorId) { 
 		return actorMapper.selectActorOne(actorId);
 	}
+	
+	// /on/filmOne
+	public List<Actor> getActorListByFilm(int filmId) {
+		return actorMapper.selectActorListByFilm(filmId);
+	}
 }

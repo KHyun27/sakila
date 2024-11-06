@@ -13,11 +13,33 @@
 			margin-top: 50px;
 			margin-left: 50px;
 		}
-		.modify-cell {
+		
+		.modify-link a {
+       		color: DodgerBlue;
+        	text-decoration: none;
+        }
+        
+        .modify-link a:hover {
+            color: #002266;
+        }
+        .modify-link a:visited {
+      		color: #DodgerBlue;
+      		text-decoration: none;
+    	}
+		.modify-cell	 {
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
+	    }
+	    
+	    .table th {
+	    padding-left: 50px;
+        text-align: left;
+    	}
+    	.table td {
+    	padding-left: 90px;
+        text-align: left;
+    	}
 	</style>
 	
 	<meta charset="UTF-8">
@@ -38,12 +60,12 @@
 		<div class="col-sm-10 bg-light">
 			<div class="info">
 				<!-- main -->
-				<table class="table" style="width:800px; border-radius: 10px; overflow: hidden;">
+				<table class="table space-text" style="width:800px; border-radius: 10px; overflow: hidden;">
 					<tr>
 						<th class="table-success text-center" colspan="2">Staff Info</th>
 					</tr>
 					<tr>
-						<th>Staff Id</th>
+						<th class="spaced-text">Staff Id</th>
 						<td>${staff.staffId}</td>
 					</tr>
 					<tr>
@@ -56,7 +78,7 @@
 					</tr>
 					<tr>
 						<th>Staff Email</th>
-						<td class="modify-cell">
+						<td class="modify-cell modify-link">
 						${staff.staffEmail}
 						<a href="" style="margin-right: 20px;">수정</a>
 						</td>
@@ -67,7 +89,7 @@
 					</tr>
 					<tr>
 						<th>Staff Address</th>
-						<td class="modify-cell">
+						<td class="modify-cell modify-link">
 							${staff.staffAddress}${staff.staffAddress2}, ${staff.staffDistrict}, ${staff.staffCity}, ${staff.staffCountry}
 							<a href="" style="margin-right: 20px;">수정</a>
 						</td>
@@ -78,7 +100,7 @@
 					</tr>
 				</table>
 				
-				<div style="width: 800px; display: flex; justify-content: flex-end;">
+				<div style="width: 800px; display: flex; justify-content: flex-end;" class="modify-link">
 				    <a href="" style="margin-right: 20px;">Password 수정</a>
 				</div>
 				<hr style="width: 800px;">
@@ -89,7 +111,7 @@
 					</tr>
 					<tr>
 						<th>Store Id</th>
-						<td class="modify-cell">
+						<td class="modify-cell modify-link">
 							${staff.storeId}
 							<a href="" style="margin-right: 20px;">수정</a>
 						</td>

@@ -20,5 +20,8 @@ public interface ActorMapper {
 	
 	// /on/actorOne
 	Actor selectActorOne(int actorId);
+	
+	// /on/actorList by Film
+	List<Actor> selectActorListByFilm(int filmId);
 
 }
