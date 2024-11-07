@@ -35,10 +35,12 @@
 	    .table th {
 	    padding-left: 50px;
         text-align: left;
+        vertical-align: middle;
     	}
     	.table td {
     	padding-left: 90px;
         text-align: left;
+        vertical-align: middle;
     	}
 	</style>
 	

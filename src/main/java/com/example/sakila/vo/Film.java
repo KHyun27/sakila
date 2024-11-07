@@ -7,16 +7,16 @@ public class Film {
 	
 	private int filmId; // PK
 	private String title; 
-	private String description;
-	private String releaseYear;
+	private String description; // default : null
+	private Integer releaseYear; // default : null
 	private int languageId; // FK → language.language_id
-	private int originalLanguageId; // FK → language.language_id
+	private Integer originalLanguageId; // FK → language.language_id
 	private int rentalDuration;
 	private double rentalRate;
-	private int length;
+	private Integer length; // default : null
 	private double replacementCost;
 	private String rating;
-	private String specialFeatures;
+	private String specialFeatures; // default : null
 	private String lastUpdate;
 
 }

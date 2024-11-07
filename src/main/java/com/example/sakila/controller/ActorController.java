@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -98,6 +99,21 @@ public class ActorController {
 		model.addAttribute("filmList", filmList);
 		return "on/actorOne";
 	}
+	
+	@GetMapping("/on/modifyActor")
+	public String modifyActor(Model model, int actorId) {
+		log.debug("actorId : " + actorId);
+		model.addAttribute("actorId", actorId);
+		return "on/modifyActor";
+	}
+	
+	@PostMapping("/on/modifyActor")
+	public String modifyActor(Actor actor) {
+		int modifyActorRow = actorService.modifyActor(actor);
+		return "redirect:/on/actorOne?actorId=" + actor.getActorId();
+	}
+	
+	
 	
 	
 

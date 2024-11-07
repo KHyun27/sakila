@@ -15,5 +15,8 @@ public interface FilmMapper {
 	
 	// /on/filmOne (film join language)
 	Map<String, Object> selectFilmOne(int filmId);
+	
+	// /on/addFilm
+	int insertFilm(Film film);
 
 }

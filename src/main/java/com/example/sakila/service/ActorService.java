@@ -95,4 +95,9 @@ public class ActorService {
 	public List<Actor> getActorListByFilm(int filmId) {
 		return actorMapper.selectActorListByFilm(filmId);
 	}
+	
+	// /on/modifyActor
+	public int modifyActor(Actor actor) {
+		return actorMapper.updateActorOne(actor);
+	}
 }

@@ -116,8 +116,8 @@
 				<div class="d-flex justify-content-between" style="width: 500px;">
 					<div><span style="color: #008000;">Current SearchWord : ${searchWord}</span></div>
 					<div>
-					<input type="text" name="searchWord" id="searchWord">
-					<button id="btnSearch" type="button" class="btn btn-sm btn-outline-success">Search</button>
+						<input type="text" name="searchWord" id="searchWord">
+						<button id="btnSearch" type="button" class="btn btn-sm btn-outline-success">Search</button>
 					</div>
 				</div>
 				</form>

@@ -10,10 +10,30 @@
 	<script>
 		$(document).ready(function() {
 			$('#btnAddFilm').click(function(){
-				// 폼 유효성 검사
-				$('#formAddFilm').submit();
+				// 폼 유효성 검사 (제외 : description, releaseYear, originalLanguageId, length, specialFeatures)
+				if($('#title').val()== '') {
+					alert('Title을 입력하세요');
+					return false;
+				} else if($('#languageId').val()== '') {
+					alert('Language ID를 입력하세요');
+					return false;
+				} else if(!$.isNumeric($('#rentalDuration').val())) {
+					alert('Rental Duration는 숫자만 입력 가능합니다');
+					return false;
+				} else if(!$.isNumeric($('#rentalRate').val())) {
+					alert('Rental Rate는 숫자만 입력 가능합니다');
+					return false;
+				} else if(!$.isNumeric($('#replacementCost').val())) {
+					alert('Replacement Cost는 숫자만 입력 가능합니다');
+					return false;
+				} else if($('.rating:checked').length == 0) {
+					alert('Rating을 선택하세요');
+					return false;
+				} else {
+					$('#formAddFilm').submit();	
+				}
+				
 			});
-			
 		});
 	</script>
 	<style>
@@ -54,7 +74,7 @@
 					        <th class="table-success text-center" colspan="2">Film Insert&#128516;</th>
 					    </tr>
 					    <tr>
-					    	<th>Title</th>
+					    	<th>Title <span style="color: red;">*</span></th>
 					    	<td>
 					    		<input type="text" id="title" name="title">
 					    	</td>
@@ -69,11 +89,11 @@
 					    <tr>
 					    	<th>Release Year</th>
 					    	<td>
-					    		<input type="number" id="releaseYear" name="releaseYear">
+					    		<input type="number" id="releaseYear" name="releaseYear"> Year
 					    	</td>
 					    </tr>
 					    <tr>
-					    	<th>language ID</th>
+					    	<th>language ID <span style="color: red;">*</span></th>
 					    	<td>
 					    		<select id="languageId" name="languageId">
 					    			<option value="">Select Language</option>
@@ -95,17 +115,17 @@
 					    	</td>
 					    </tr>
 					    <tr>
-					    	<th>Rental Duration</th>
+					    	<th>Rental Duration <span style="color: red;">*</span></th>
 					    	<td>
 					    		<!-- DB기본값 : 3 -->
-					    		<input type="number" id="rentalDuration" name="rentalDuration" value="3">
+					    		<input type="number" id="rentalDuration" name="rentalDuration" value="3"> day
 					    	</td>
 					    </tr>
 					    <tr>
-					    	<th>Rental Rate</th>
+					    	<th>Rental Rate <span style="color: red;">*</span></th>
 					    	<td>
 					    		<!-- DB기본값 : 4.99 -->
-					    		<input type="number" id="rentalRate" name="rentalRate" value="4.99">
+					    		<input type="number" id="rentalRate" name="rentalRate" value="4.99"> $
 					    	</td>
 					    </tr>
 					    <tr>
@@ -115,21 +135,21 @@
 					    	</td>
 					    </tr>
 					    <tr>
-					    	<th>Replacement Cost</th>
+					    	<th>Replacement Cost <span style="color: red;">*</span></th>
 					    	<td>
 					    		<!-- DB기본값 : 19.99 -->
-					    		<input type="number" id="replacementCost" name="replacementCost" value="19.99">
+					    		<input type="number" id="replacementCost" name="replacementCost" value="19.99"> $
 					    	</td>
 					    </tr>
 					    <tr>
-					    	<th>Rating</th>
+					    	<th>Rating <span style="color: red;">*</span></th>
 					    	<td>
 					    		<!-- radio, ENUM Type(G,PG,PG-13,R,NC-17) DB기본값 : 'G' -->
-					    		<input type="radio" name="rating" id="rating" value="G"> G<br>
-					    		<input type="radio" name="rating" id="rating" value="PG"> PG<br>
-					    		<input type="radio" name="rating" id="rating" value="PG-13"> PG-13<br>
-					    		<input type="radio" name="rating" id="rating" value="R"> R<br>
-					    		<input type="radio" name="rating" id="rating" value="NC-17"> NC-17<br>
+					    		<input type="radio" name="rating" class="rating" value="G"> G<br>
+					    		<input type="radio" name="rating" class="rating" value="PG"> PG<br>
+					    		<input type="radio" name="rating" class="rating" value="PG-13"> PG-13<br>
+					    		<input type="radio" name="rating" class="rating" value="R"> R<br>
+					    		<input type="radio" name="rating" class="rating" value="NC-17"> NC-17<br>
 					    	</td>
 					    </tr>
 					    <tr>
@@ -143,9 +163,12 @@
 					    	</td>
 					    </tr>
 					</table>
-					<div class="d-flex justify-content-end" style="width: 800px;">
-						<button type="reset" class="btn btn-sm btn-outline-danger" style="margin-right: 5px">Reset</button>
-						<button id="btnAddFilm" type="button" class="btn btn-sm btn-outline-success">Film Add</button>
+					<div class="d-flex justify-content-between" style="width: 800px;">
+						<div><span class="text-danger">* 표시는 필수항목</span></div>
+						<div>
+							<button type="reset" class="btn btn-sm btn-outline-danger" style="margin-right: 5px">Reset</button>
+							<button id="btnAddFilm" type="button" class="btn btn-sm btn-outline-success">Film Add</button>
+						</div>
 					</div>
 				</form>
 			</div>

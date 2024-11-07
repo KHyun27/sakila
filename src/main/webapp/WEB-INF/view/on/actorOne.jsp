@@ -96,11 +96,11 @@
 				    </tr>
 				    <tr>
 				        <td colspan="2" style="text-align: right; background-color: transparent; border-bottom-color: transparent;">
-				            <a href="${pageContext.request.contextPath}/on/modifyActor" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Actor 수정</a>
-				            과제 : 입력폼, 액션, 서비스, 맵퍼
+				            <a href="${pageContext.request.contextPath}/on/modifyActor?actorId=${actor.actorId}" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Modify Actor</a>
 				        </td>
 				    </tr>
 				</table>
+				
 				<!-- Film -->
 				<div>
 					<table class="table table-sm text-center" style="width:500px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">

@@ -8,16 +8,16 @@ import lombok.Data;
 public class FilmForm {
 	
 	private String title; 
-	private String description;
-	private String releaseYear;
+	private String description; // default : null
+	private Integer releaseYear; // default : null
 	private int languageId; 
-	private int originalLanguageId;
+	private Integer originalLanguageId;
 	private int rentalDuration;
 	private double rentalRate;
-	private int length;
+	private Integer length; // default : null
 	private double replacementCost;
 	private String rating;
-	private List<String> specialFeatures;
+	private List<String> specialFeatures; // default : null
 	// private String[] specialFeatures;
 	
 	// 빌드 패턴
