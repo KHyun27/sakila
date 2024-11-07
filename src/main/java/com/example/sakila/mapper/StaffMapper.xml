@@ -130,9 +130,9 @@
 	<update id="updateStaff" parameterType="com.example.sakila.vo.Staff">
 		UPDATE staff 
 		<set>
-			<if test="addressId != null and addressId != ''">addressId = #{addressId},</if>
+			<if test="addressId != null and addressId != ''">address_id = #{addressId},</if>
 			<if test="email != null and email != ''">email = #{email},</if>
-			<if test="storeId != null and storeId != ''">storeId = #{storeId},</if>
+			<if test="storeId != null and storeId != ''">store_id = #{storeId},</if>
 			<if test="password != null and password != ''">password = #{password},</if>
 			<if test="active != null and active != ''">active = #{active},</if>
 		</set> 

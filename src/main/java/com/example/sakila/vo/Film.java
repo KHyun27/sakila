@@ -12,9 +12,9 @@ public class Film {
 	private int languageId; // FK → language.language_id
 	private int originalLanguageId; // FK → language.language_id
 	private int rentalDuration;
-	private int rentalRate;
+	private double rentalRate;
 	private int length;
-	private int replacementCost;
+	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
 	private String lastUpdate;

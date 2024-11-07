@@ -52,6 +52,22 @@
     </ul>
 
     <hr>
+    
+    <ul class="list-group text-center">
+        <li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
+            :: Film Management ::
+        </li>
+
+        <li class="list-group-item">
+            <a href="">Film List</a>
+        </li>
+
+        <li class="list-group-item">
+            <a href="${pageContext.request.contextPath}/on/addFilm">Film Add</a>
+        </li>
+    </ul>
+    
+    <hr>
 
     <ul class="list-group text-center">
         <li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
@@ -80,6 +96,14 @@
 
         <li class="list-group-item">
             <a href="${pageContext.request.contextPath}/on/addStaff">Staff Add</a>
+        </li>
+    </ul>
+    
+    <hr>
+    
+     <ul class="list-group text-center">
+        <li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
+        	<a href="${pageContext.request.contextPath}/on/addStaff">:: 통계 ::</a>
         </li>
     </ul>
 </div>

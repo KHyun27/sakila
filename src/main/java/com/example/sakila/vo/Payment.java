@@ -9,7 +9,7 @@ public class Payment {
 	private int customerId; // FK → customer.customer_id
 	private int staffId; // FK → staff.staff_id
 	private int rentalId; // FK → rental.rental_id
-	private int amount;
+	private double amount;
 	private String paymentDate;
 	private String lastUpdate;
 

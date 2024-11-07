@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.sakila.service.ActorFileService;
 import com.example.sakila.service.ActorService;
@@ -35,7 +36,7 @@ public class ActorController {
 	}
 	
 	@PostMapping("/on/addActor")
-	public String addActor(ActorForm actorForm, HttpSession session) { // input type = "file"
+	public String addActor(Model model, ActorForm actorForm, HttpSession session) { // input type = "file"
 		/*
 		log.debug("actorForm.getFirstName() : " + actorForm.getFirstName());
 		log.debug("actorForm.getLastName() : " + actorForm.getLastName());
@@ -44,6 +45,14 @@ public class ActorController {
 			log.debug("actorForm.getActorFile().size() : " + actorForm.getActorFile().size());
 		}
 		*/
+		List<MultipartFile> list = actorForm.getActorFile();
+		for(MultipartFile f : list) { // 이미지파일은 *.jpg or *png만 가능
+			if(!(f.getContentType().equals("image/jpeg") || f.getContentType().equals("image/png"))) {
+				model.addAttribute("msg", "이미지 파일만 입력이 가능합니다");
+				return "on/addActor";
+			}
+		}
+		
 		String path = session.getServletContext().getRealPath("/upload/");
 		actorService.addActor(actorForm, path);
 		

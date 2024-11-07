@@ -8,7 +8,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script>
-		$(document).ready(function() { // <body> 까지 메모리에 로드 후 진행
+		$(document).ready(function() {
 			$('#btnAddFile').click(function() {
 				if($('.actorFile').last().val() == '') { // 마지막 input=file값이 공백이라면
 					alert('첨부하지 않은 파일이 이미 존재');
@@ -41,48 +41,37 @@
 					$('#formActor').submit();
 				}
 			});
-				
-			/* 자바스크립트 API
-			$('#btnAddFile').click(function() {
-				let arr = $('.actorFile');
-				arr.forEach(function(item, index) {
-				}); 
-				
-				// JQuery API 사용
-				let flag = true;
-				$('.actorFile').each(function() { // 매개값(index, item), item == $(this)
-					console.log($(this).val());
-					if($(this).val() == '') {
-						flag = false;
-					}
-				});
-				
-				if(flag) {
-					let html = '<div><input type="file" name="actorFile" class="actorFile mt-1"></div>';
-					$('#fileDiv').append(html);
+			
+			$('#btnAddActorFile').click(function(){
+				if($('.actorFile').length == 0) {
+					alert('첨부 할 파일이 없습니다');
+				} else if($('.actorFile').last().val() == '') {
+					alert('첨부되지 않은 파일이 있습니다');
 				} else {
-					alert('첨부하지 않은 파일이 이미 존재');
+					$('#formAddActorFile').submit();
 				}
 			});
 			
-			$('#btnRemoveFile').click(function() {
-				// 마지막 <input type="file" name="actorFile" class="actorFile"> 태그를 제거
-				// console.log($('.actorFile').length);
-				$('.actorFile').last().closest('div').remove();
-			});
-			*/
-			
 		});
 	</script>
-	
 	<style>
 		.main {
 			margin-top: 50px;
 			margin-left: 50px;
 		}
+		
+		.table th {
+	    padding-left: 50px;
+        text-align: center;
+    	}
+    	.table td {
+    	padding-left: 90px;
+        text-align: left;
+    	}
+		
 	</style>
 	<meta charset="UTF-8">
-	<title>Add Actor</title>
+	<title>Add Actor File</title>
 </head>
 
 <body class="container-fluid bg-light p-3">
@@ -99,31 +88,30 @@
 		<div class="col-sm-10 bg-light">
 			<div class="main">
 				<!-- main -->
-				<h1>Add Actor</h1>
-				<form id="formActor" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/on/addActor">
-					<table class="table" style="width:600px; border-radius: 10px; overflow: hidden;">
+				<form id="formAddActorFile" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/on/addActorFile">
+					<table class="table" style="width: 600px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
 						<tr>
-							<th>First Name</th>
-							<td><input type="text" name="firstName" id="firstName"></td>
-						</tr>
-						<tr>
-							<th>Last Name</th>
-							<td><input type="text" name="lastName" id="lastName"></td>
-						</tr>
-						<tr>
-							<th>File</th>
-							<td>
-								<div id="fileDiv">
+					        <th class="table-success text-center" colspan="2">Actor File ADD</th>
+					    </tr>
+					    <tr>
+					    	<th>Actor ID</th>
+					    	<td>
+					    		<input type="text" name="actorId" value="${actorId}" readonly>
+					    	</td>
+					    </tr>
+					    <tr>
+					    	<th>File</th>
+					    	<td>
+					    		<div id="fileDiv">
 									<button id="btnAddFile" type="button" class="btn btn-sm btn-outline-success">파일추가</button>
-									<button id="btnRemoveFile" type="button" class="btn btn-sm btn-outline-success">파일삭제</button>
+									<button id="btnRemoveFile" type="button" class="btn btn-sm btn-outline-danger">파일삭제</button>
+									<div><input type="file" name="actorFile" class="actorFile mt-1"></div>
 								</div>
-							</td>
-						</tr>
+					    	</td>
+					    </tr>
 					</table>
-					<button id="btnAddActor" type="button" class="btn btn-sm btn-outline-success">배우추가</button>
-					<div>
-						${msg}
-					</div>
+					<button id="btnAddActorFile" type="button" class="btn btn-sm btn-outline-success">배우 파일 추가</button>
+					<div>${msg}</div>
 				</form>
 			</div>
 		</div>

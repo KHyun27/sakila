@@ -73,7 +73,8 @@
 			<div class="main">
 				<!-- main -->
 				<!-- Actor -->
-				<table class="table text-center" style="width: 500px; border-radius: 10px; overflow: hidden; float: left; margin-right: 30px;">
+				<div style="float: left;">
+				<table class="table text-center" style="width: 500px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
 				    <tr>
 				        <th class="table-success text-center" colspan="2">Actor Info</th>
 				    </tr>
@@ -95,10 +96,25 @@
 				    </tr>
 				    <tr>
 				        <td colspan="2" style="text-align: right; background-color: transparent; border-bottom-color: transparent;">
-				            <a href="" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Actor 수정</a>
+				            <a href="${pageContext.request.contextPath}/on/modifyActor" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Actor 수정</a>
+				            과제 : 입력폼, 액션, 서비스, 맵퍼
 				        </td>
 				    </tr>
 				</table>
+				<!-- Film -->
+				<div>
+					<table class="table table-sm text-center" style="width:500px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+						<tr>
+							<th class="table-success" colspan="2">Film List</th>
+						</tr>
+						<c:forEach var="f" items="${filmList}">
+							<tr>
+								<td><a class="film-link" href="${pageContext.request.contextPath}/on/filmOne?filmId=${f.filmId}">${f.title}</a></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+				</div>
 				
 				<table class="table text-center" style="width: 800px; border-radius: 10px; overflow: hidden; float: left;">
 				    <tr>
@@ -114,39 +130,22 @@
 				    <c:forEach var="af" items="${actorFileList}">
 				        <tr>
 				            <td>
-				                <img src="${pageContext.request.contextPath}/upload/${af.filename}.${af.ext}">
+				                <img width="100px" src="${pageContext.request.contextPath}/upload/${af.filename}.${af.ext}">
 				            </td>
 				            <td>${af.type}</td>
 				            <td>${af.size} Byte</td>
 				            <td>${af.createDate}</td>
-				            <td><a href="">삭제</a></td>
+				            <td><a href="" class="btn btn-sm btn-outline-danger">삭제</a></td>
 				        </tr>
 				    </c:forEach>
 				    <tr>
 				        <td colspan="5" style="text-align: right; background-color: transparent; border-bottom-color: transparent;">
-				            <a href="" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Image 추가</a>
+				            <a href="${pageContext.request.contextPath}/on/addActorFile?actorId=${actor.actorId}" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Image 추가</a>
 				        </td>
 				    </tr>
 				</table>
-				<div style="clear: both;"></div>
-				
-				<!-- clear float을 위한 div -->
-
+				<div style="clear: both;"></div><!-- clear float을 위한 div -->
 				<hr style="width:1330px">
-				<!-- Film -->
-				<table class="table table-success text-center" style="width:500px; border-bottom-color: transparent; border-radius: 10px; overflow: hidden;">
-					<tr>
-						<th style="font-size: x-large;">Film List</th>
-					</tr>
-				</table>
-				<table class="table table-sm text-center" style="width:500px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
-					<c:forEach var="f" items="${filmList}">
-						<tr>
-							<td><a class="film-link" href="${pageContext.request.contextPath}/on/filmOne?filmId=${f.filmId}">${f.title}</a></td>
-						</tr>
-					</c:forEach>
-				</table>
-				</div>
 			</div>
 		</div>
 	</div>

@@ -122,11 +122,14 @@
 						</tr>
 						<c:forEach var="a" items="${actorList}">
 							<tr>
-								<th class="text-center">Name</th>
+								<th class="text-center" rowspan="1">Name</th>
 								<td class="text-center"><a class="actor-link" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a></td>
 							</tr>
 						</c:forEach>
 					</table>
+				</div>
+				<div style="float: left;">
+					<a href="">Film Modify</a>
 				</div>
 				</div>
 			</div>
