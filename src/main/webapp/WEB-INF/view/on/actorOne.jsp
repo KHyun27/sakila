@@ -168,37 +168,36 @@
 					</table>
 				</div>
 				<!-- Pagination -->
-				<div class="pagination justify-content-center" style="text-align: center; margin-top: 5px; margin-bottom: 10px; width: 500px">
+				<div class="pagination justify-content-center" style="font-size: small; text-align: center; margin-top: 5px; margin-bottom: 10px; width: 500px">
 					<!-- 첫 페이지 -->
-					<c:if test="${!(currentPage > 1)}">
+					<c:if test="${!(filmListCurrentPage > 1)}">
 						<a href="" style="pointer-events: none;">&laquo;</a>
 					</c:if>
-					<c:if test="${currentPage > 1}">
+					<c:if test="${filmListCurrentPage > 1}">
 						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=1">&laquo;</a>
 					</c:if>
 					<!-- 이전 페이지 -->
-					<c:if test="${!(currentPage > 1)}">
+					<c:if test="${!(filmListCurrentPage > 1)}">
 						<a href="" style="pointer-events: none;">Previous</a>
 					</c:if>
-					<c:if test="${currentPage > 1}">
+					<c:if test="${filmListCurrentPage > 1}">
 						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListCurrentPage - 1}">Previous</a>
 					</c:if>
 					<!-- 페이지 번호 링크 -->
 					<a class="active">${filmListCurrentPage}</a>
 					<!-- 다음 페이지 -->
-					<c:if test="${!(currentPage < lastPage)}">
+					<c:if test="${!(filmListCurrentPage < filmListLastPage)}">
 						<a href="" style="pointer-events: none;">Next</a>
 					</c:if>
-					<c:if test="${currentPage < lastPage}">
-						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListcurrentPage=${filmListCurrentPage + 1}">Next</a>
-						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${currentPage + 1}">Next</a>
+					<c:if test="${filmListCurrentPage < filmListLastPage}">
+						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListCurrentPage + 1}">Next</a>
 					</c:if>
 					<!-- 마지막 페이지 -->
-					<c:if test="${!(currentPage < lastPage)}">
+					<c:if test="${!(filmListCurrentPage < filmListLastPage)}">
 						<a href="" style="pointer-events: none;">&raquo;</a>
 					</c:if>
-					<c:if test="${currentPage < lastPage}">
-						<a href="${pageContext.request.contextPath}}/on/actorOne?actorId=${actor.actorId}&filmListcurrentPage=${filmListLastPage}">&raquo;</a>
+					<c:if test="${filmListCurrentPage < filmListLastPage}">
+						<a href="${pageContext.request.contextPath}}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListLastPage}">&raquo;</a>
 					</c:if>
 				</div>
 				<!-- 출연작 추가 -->
@@ -224,7 +223,7 @@
 								<br>
 							</c:if>
 							<c:if test="${not empty searchFilmList}">
-							<select size="3" name="filmId">
+							<select size="5" name="filmId">
 								<c:forEach var="sf" items="${searchFilmList}">
 									<option value="${sf.filmId}">[${sf.filmId}] ${sf.title}</option>
 								</c:forEach>
