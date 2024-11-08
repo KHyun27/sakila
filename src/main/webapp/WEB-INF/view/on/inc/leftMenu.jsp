@@ -102,8 +102,8 @@
     <hr>
     
      <ul class="list-group text-center">
-        <li class="list-group-item text-white" style="font-weight:bold; background-color: #8BBDDF;">
-        	<a href="${pageContext.request.contextPath}/on/addStaff">:: 통계 ::</a>
+        <li class="list-group-item" style="font-weight:bold; background-color: #24468A;">
+        	<a href="${pageContext.request.contextPath}/on/addStaff" style="color: white;">:: Statistics ::</a>
         </li>
     </ul>
 </div>

@@ -47,7 +47,7 @@
 		.pagination a {
 		  color: #008000;
 		  float: left;
-		  padding: 8px 16px;
+		  padding: 6px 12px;
 		  text-decoration: none;
 		  border: 1px solid #ddd;
 		}

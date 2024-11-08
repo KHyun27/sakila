@@ -83,13 +83,18 @@
 		<div class="col-sm-10 bg-light">
 			<div class="add">
 				<!-- main -->
-				<h1>Staff Add</h1>
+				<table class="table table-success text-center" style="width:600px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+					<tr>
+						<th style="font-size: large;">Staff Add</th>
+					</tr>
+				</table>
+				
 				<hr style="width:600px;">
-				<h5>Search Address</h5>
+				<h5 style="color: #24468A;">Search Address</h5>
 				
 				<form id="formAddress" method="get" action="${pageContext.request.contextPath}/on/addStaff">
 					<input id="searchAddress" type="text" name="searchAddress" placeholder="Search Address ..." >
-					<button id="btnAddress" type="button" class="btn btn-sm btn-primary">Search</button>
+					<button id="btnAddress" type="button" class="btn btn-sm btn-outline-primary">Search</button>
 				</form>
 				<div>
 					<c:if test="${empty addressList}">
@@ -155,7 +160,7 @@
 							</td>
 						</tr>
 					</table>
-					<button id="btnAddStaff" type="button" class="btn btn-sm btn-success">Add Staff</button>
+					<button id="btnAddStaff" type="button" class="btn btn-sm btn-outline-success">Add Staff</button>
 				</form>
 			</div>
 		</div>

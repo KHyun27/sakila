@@ -22,17 +22,17 @@
 		}
 		
 		.pagination a {
-		  color: black;
+		  color: #008000;
 		  float: left;
-		  padding: 8px 16px;
+		  padding: 6px 12px;
 		  text-decoration: none;
 		  border: 1px solid #ddd;
 		}
 		
 		.pagination a.active {
-		  background-color: #8BBDFF;
+		  background-color: #28a745;
 		  color: white;
-		  border: 1px solid #8BBDFF;
+		  border: 1px solid #28a745;
 		}
 		
 		.pagination a:hover:not(.active) {background-color: #ddd;}

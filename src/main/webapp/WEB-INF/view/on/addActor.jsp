@@ -99,9 +99,11 @@
 		<div class="col-sm-10 bg-light">
 			<div class="main">
 				<!-- main -->
-				<h1>Add Actor</h1>
 				<form id="formActor" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/on/addActor">
 					<table class="table" style="width:600px; border-radius: 10px; overflow: hidden;">
+						<tr>
+							<th class="table-success text-center"colspan="2">Actor Add</th>
+						</tr>
 						<tr>
 							<th>First Name</th>
 							<td><input type="text" name="firstName" id="firstName"></td>
