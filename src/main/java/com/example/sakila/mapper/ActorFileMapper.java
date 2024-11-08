@@ -13,5 +13,11 @@ public interface ActorFileMapper {
 	
 	// /on/actorOne
 	List<ActorFile> selectActorFileListByActor(int actorId);
+	
+	// /on/removeActorFile
+	int deleteActorFile(int actorFileId);
+	
+	// /on/removeActorFile:Service 파일 이름 가져오기
+	ActorFile selectActorFileOne(int actorFileId);
 
 }

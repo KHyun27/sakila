@@ -11,6 +11,9 @@ import com.example.sakila.mapper.FilmMapper;
 import com.example.sakila.vo.Film;
 import com.example.sakila.vo.FilmForm;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @Transactional
 public class FilmService {
@@ -19,7 +22,7 @@ public class FilmService {
 	
 	// /on/actorOne
 	public List<Film> selectFileTitleListByActor(int actorId) {
-		return filmMapper.selectFileTitleListByActor(actorId);
+		return filmMapper.selectFilmTitleListByActor(actorId);
 	}
 
 	// /on/filmOne
@@ -30,7 +33,7 @@ public class FilmService {
 	// /on/addFilm
 	public int addFilm(FilmForm filmForm) {
 		Film film = new Film();
-		film.setTitle(filmForm.getTitle());
+			film.setTitle(filmForm.getTitle());
 		if(filmForm.getDescription().equals("")) {
 			film.setDescription(null);
 		} else {
@@ -53,7 +56,13 @@ public class FilmService {
 			for(int i = 1; i < filmForm.getSpecialFeatures().size(); i++) {
 				specialFeatures += "," + filmForm.getSpecialFeatures().get(i); // 그 뒤 값을 넣어줌
 			}
+			film.setSpecialFeatures(specialFeatures);
 		}
+		log.debug("Inserting film: {}", film.toString());
 		return filmMapper.insertFilm(film);
+	}
+	
+	public List<Film> getFilmListByTitle(String searchTitle) {
+		return filmMapper.selectFilmListByTitle(searchTitle);
 	}
 }

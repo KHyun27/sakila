@@ -12,4 +12,14 @@
 		SELECT actor_file_id actorFileId, actor_id actorId, originname, filename, ext, type, size, create_date createDate 
 		FROM actor_file WHERE actor_id = #{actorId}
 	</select>
+	
+	<!-- deleteActorFile Query -->
+	<delete id="deleteActorFile" parameterType="int">
+		DELETE FROM actor_file WHERE actor_file_id = #{actorFileId}
+	</delete>
+	
+	<!-- selectActorFileOne Query -->
+	<select id="selectActorFileOne" parameterType="int" resultType="com.example.sakila.vo.ActorFile">
+		SELECT actor_file_id actorFileId, actor_id actorId, originname, filename, ext FROM actor_file WHERE actor_file_id = #{actorFileId}
+	</select>
 </mapper>

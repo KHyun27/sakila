@@ -9,7 +9,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			
+			$('#btnSearchFilm').click(function(){
+				$('#formSearchFilm').submit();
+			});
+			// 출연작(film 추가)
+			$('#btnAddFilm').click(function(){
+				$('#formAddFilm').submit();
+			});
 			
 		});
 	</script>
@@ -63,6 +69,19 @@
 	<div class="bg-light"><!-- header.jsp -->
 		<c:import url="/WEB-INF/view/on/inc/headMenu.jsp"></c:import>
 	</div>
+	<!-- 
+		√ 1) actor 상세
+		1-1) actor 수정 /on/modifyActor
+		1-2) actor 삭제 /on/removeActor (actor_file 삭제 + film_actor 삭제 + actor 삭제)
+		 
+		√ 2) actor_file List
+		√ 2-1) actor_file 추가
+		√ 2-2) actor_file 삭제 /on/removeActorFile
+		
+		√ 3) film_actor List
+		3-1) film_actor 추가 /on/addFilmByActor → Film 검색 후 선택
+		3-2) film_actor 삭제 /on/removeFilmActor
+	 -->
 
 	<div class="row">
 		<div class="col-sm-2 bg-light">
@@ -105,14 +124,56 @@
 				<div>
 					<table class="table table-sm text-center" style="width:500px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 						<tr>
-							<th class="table-success" colspan="2">Film List</th>
+							<th class="table-success" colspan="3">Film List</th>
 						</tr>
 						<c:forEach var="f" items="${filmList}">
 							<tr>
+								<td align="right">${f.filmId}</td>
 								<td><a class="film-link" href="${pageContext.request.contextPath}/on/filmOne?filmId=${f.filmId}">${f.title}</a></td>
+								<td><a href="${pageContext.request.contextPath}/on/removeFilmActor?filmId=${f.filmId}&actorId=${actor.actorId}" class="film-link" style="color: red;">삭제</a></td>
+								<!-- 삭제 시 f.filmId & actor.actorId 필요 -->
 							</tr>
 						</c:forEach>
 					</table>
+				</div>
+				<!-- 출연작 추가 -->
+				<div class="d-flex justify-content-end mb-2" style="width: 500px;">
+					<div>
+						${param.existsMsg}
+					</div>
+					<!-- 출연작 추가 -->
+					<div>
+						<form id="formSearchFilm" method="get" action="${pageContext.request.contextPath}/on/actorOne"><!-- 영화 검색 -->
+							<!-- film 검색 시 actorId 같이 전송 -->
+							<input type="hidden" name="actorId" value="${actor.actorId}">
+							<input type="text" name="searchTitle">
+							<button id="btnSearchFilm" type="button" class="btn btn-sm btn-outline-success">Search</button>
+						</form>
+					</div>
+				</div>
+				<div class="d-flex justify-content-end" style="width: 500px;">
+					<form id="formAddFilm" method="post" action="${pageContext.request.contextPath}/on/addFilmByActor">
+						<input type="hidden" name="actorId" value="${actor.actorId}">
+						<div class="d-flex justify-content-end mb-2" style="width: 500px;">
+							<c:if test="${empty searchFilmList}">
+								<br>
+							</c:if>
+							<c:if test="${not empty searchFilmList}">
+							<select size="3" name="filmId">
+								<c:forEach var="sf" items="${searchFilmList}">
+									<option value="${sf.filmId}">[${sf.filmId}] ${sf.title}</option>
+								</c:forEach>
+							</select>
+							</c:if>	
+						</div>
+						
+						<div class="d-flex justify-content-end" style="width: 500px;">
+							<c:if test="${not empty searchFilmList}">
+								<button id="btnAddFilm" type="button" class="btn btn-sm btn-outline-success">Add</button>
+							</c:if>
+						</div>
+						
+					</form>
 				</div>
 				</div>
 				
@@ -135,7 +196,7 @@
 				            <td>${af.type}</td>
 				            <td>${af.size} Byte</td>
 				            <td>${af.createDate}</td>
-				            <td><a href="" class="btn btn-sm btn-outline-danger">삭제</a></td>
+				            <td><a href="${pageContext.request.contextPath}/on/removeActorFile?actorFileId=${af.actorFileId}&actorId=${actor.actorId}" class="btn btn-sm btn-outline-danger">삭제</a></td>
 				        </tr>
 				    </c:forEach>
 				    <tr>

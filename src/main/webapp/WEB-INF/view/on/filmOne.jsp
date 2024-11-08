@@ -58,6 +58,21 @@
 			<!-- leftMenu.jsp include -->
 			<c:import url="/WEB-INF/view/on/inc/leftMenu.jsp"></c:import>
 		</div>
+		
+		<!-- 
+			√ 1) film 상세
+			1-1) film 수정 /on/modifyFilm
+			1-2) film 삭제 /on/removiFilm (film_category 삭제 + film_actor 삭제 + film 삭제)
+			
+			2) film_category List
+			2-1) film_category 추가 /on/addFilmCategory → Category 전체 목록에서 선택
+			2-2) film_category 삭제 /on/removeFilmCategory
+			
+			√ 3) film_actor List
+			3-1) film_actor 추가 /on/addActorByFilm → Actor 검색 후 선택
+			3-2) film_actor 삭제 /on/removeFileActor
+		 -->
+		
 		<div class="col-sm-10 bg-light">
 			<div class="main">
 				<!-- main -->
@@ -130,6 +145,7 @@
 				</div>
 				<div style="float: left;">
 					<a href="">Film Modify</a>
+					<a href="">Film Delete</a>
 				</div>
 				</div>
 			</div>

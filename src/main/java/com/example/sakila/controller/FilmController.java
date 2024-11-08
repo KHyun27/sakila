@@ -61,6 +61,11 @@ public class FilmController {
 		return "redirect:/on/filmList";
 	}
 	
+	// /on/filmList
+	@GetMapping("/on/filmList")
+	public String filmList() {
+		return "on/filmList";
+	}
 	
 	
 
