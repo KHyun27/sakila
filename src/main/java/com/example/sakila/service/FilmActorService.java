@@ -24,6 +24,7 @@ public class FilmActorService {
 		return filmActorMapper.deleteFilmActor(filmActor);
 	}
 	
+	// on/actorOne : 이미 존재하는 filmList 확인
 	public boolean isFilmActorExists(FilmActor filmActor) {
 	    return filmActorMapper.isFilmActorExists(filmActor);
 	}

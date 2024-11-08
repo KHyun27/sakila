@@ -1,5 +1,6 @@
 package com.example.sakila.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +22,15 @@ public class FilmService {
 	@Autowired FilmMapper filmMapper;
 	
 	// /on/actorOne
-	public List<Film> selectFileTitleListByActor(int actorId) {
-		return filmMapper.selectFilmTitleListByActor(actorId);
+	public List<Film> selectFileTitleListByActor(int actorId, int filmListCurrentPage, int filmListRowPerPage) {
+		Map<String, Object> paramMap = new HashMap<>();
+
+		int filmBeginRow = (filmListCurrentPage - 1) * filmListRowPerPage;
+		paramMap.put("actorId", actorId);
+		paramMap.put("filmListBeginRow", filmBeginRow);
+		paramMap.put("filmListRowPerPage", filmListRowPerPage);
+
+		return filmMapper.selectFilmTitleListByActor(paramMap);
 	}
 
 	// /on/filmOne

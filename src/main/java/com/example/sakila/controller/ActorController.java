@@ -47,11 +47,20 @@ public class ActorController {
 		}
 		*/
 		List<MultipartFile> list = actorForm.getActorFile();
-		for(MultipartFile f : list) { // 이미지파일은 *.jpg or *png만 가능
+		
+		// 배우 정보만 입력하고 사진은 첨부 안했을 때
+		if(list == null || list.isEmpty()) {
+			String path = null;	
+			actorService.addActor(actorForm, path);
+			return "redirect:/on/actorList";
+		}
+		
+		// 이미지파일은 *.jpg or *png만 가능
+		for(MultipartFile f : list) { 
 			if(!(f.getContentType().equals("image/jpeg") || f.getContentType().equals("image/png"))) {
-				model.addAttribute("msg", "이미지 파일만 입력이 가능합니다");
+				model.addAttribute("imageMsg", "jpeg, png 파일만 입력이 가능합니다");
 				return "on/addActor";
-			}
+			} 
 		}
 		
 		String path = session.getServletContext().getRealPath("/upload/");
@@ -85,11 +94,12 @@ public class ActorController {
 	}
 	
 	@GetMapping("/on/actorOne")
-	public String actorOne(Model model, @RequestParam int actorId, @RequestParam(defaultValue = "") String searchTitle) {
+	public String actorOne(Model model, @RequestParam int actorId, @RequestParam(defaultValue = "") String searchTitle,
+										@RequestParam(defaultValue = "1") int filmListCurrentPage, @RequestParam(defaultValue = "5") int filmListRowPerPage) {
 		// searchWord = "" 이면 actorOne 상세보기 요청이고, "" 아니면 film 검색 요청
 		Actor actor = actorService.getActorOne(actorId);
 		List<ActorFile> actorFileList = actorFileService.selectActorFileListByActor(actorId);
-		List<Film> filmList = filmService.selectFileTitleListByActor(actorId);
+		List<Film> filmList = filmService.selectFileTitleListByActor(actorId, filmListCurrentPage, filmListRowPerPage);
 		
 		log.debug(actor.toString());
 		log.debug(actorFileList.toString());
@@ -101,28 +111,41 @@ public class ActorController {
 			model.addAttribute("searchFilmList", searchFilmList);
 		}
 		
+		int filmListLastPage = actorService.getLastPageByActorFilmList(actorId, filmListRowPerPage);
+		
 		model.addAttribute("actor", actor);
 		model.addAttribute("actorFileList", actorFileList);
 		model.addAttribute("filmList", filmList);
+		log.debug("filmListCurrentPage : " + filmListCurrentPage);
+		log.debug("filmListRowPerPage : " + filmListRowPerPage);
+		log.debug("filmListLastPage : " + filmListLastPage);
+		model.addAttribute("filmListCurrentPage", filmListCurrentPage);
+		model.addAttribute("filmListRowPerPage", filmListRowPerPage);
+		model.addAttribute("filmListLastPage", filmListLastPage);
 		
 		return "on/actorOne";
 	}
 	
 	@GetMapping("/on/modifyActor")
-	public String modifyActor(Model model, int actorId) {
-		log.debug("actorId : " + actorId);
-		model.addAttribute("actorId", actorId);
+	public String modifyActor(Model model, @RequestParam int actorId) {
+		Actor actor = actorService.getActorOne(actorId);
+		// log.debug("actor : " + actor.toString());
+		model.addAttribute("actor", actor);
 		return "on/modifyActor";
 	}
 	
 	@PostMapping("/on/modifyActor")
 	public String modifyActor(Actor actor) {
+		log.debug(actor.toString());
 		int modifyActorRow = actorService.modifyActor(actor);
 		return "redirect:/on/actorOne?actorId=" + actor.getActorId();
 	}
 	
-	
-	
-	
+	@GetMapping("/on/removeActor")
+	public String removeActor(HttpSession session, @RequestParam int actorId) {
+		String path = session.getServletContext().getRealPath("/upload/");
+		actorService.removeActor(actorId, path);
+		return "redirect:/on/actorList";
+	}
 
 }

@@ -11,7 +11,7 @@ import com.example.sakila.vo.Film;
 public interface FilmMapper {
 	
 	// /on/actorOne
-	List<Film> selectFilmTitleListByActor(int actorId);
+	List<Film> selectFilmTitleListByActor(Map<String, Object> map);
 	
 	// /on/filmOne (film join language)
 	Map<String, Object> selectFilmOne(int filmId);

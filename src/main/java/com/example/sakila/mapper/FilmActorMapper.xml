@@ -10,9 +10,13 @@
 		DELETE FROM film_actor WHERE actor_id = #{actorId} and film_id = #{filmId}	
 	</delete>
 	
-	<!-- isFilmActorExists Query -->
+	<!-- isFilmActorExists Query → on/actorOne : 이미 존재하는 filmList 확인 -->
 	<select id="isFilmActorExists" parameterType="com.example.sakila.vo.FilmActor" resultType="boolean">
 	    SELECT COUNT(*) > 0 FROM film_actor WHERE actor_id = #{actorId} AND film_id = #{filmId}
 	</select>
-
+	
+	<!-- deleteFilmByActor Query → /on/removeActor -->
+	<delete id="deleteFilmByActor" parameterType="int">
+		DELETE FROM film_actor WHERE actor_id = #{actorId}
+	</delete>
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.sakila.service.ActorFileService;
 import com.example.sakila.vo.ActorForm;
@@ -30,13 +31,13 @@ public class ActorFileController {
 	}
 	
 	@PostMapping("/on/addActorFile")
-	public String addActorFile(Model model, ActorForm actorForm, HttpSession session) {
+	public String addActorFile(Model model, ActorForm actorForm, HttpSession session, RedirectAttributes redirectAttributes) {
 		List<MultipartFile> list = actorForm.getActorFile();
 		if(list != null && list.size() != 0) {
 			for(MultipartFile f : list) { // 이미지파일은 *.jpg or *png만 가능
 				if(!(f.getContentType().equals("image/jpeg") || f.getContentType().equals("image/png"))) {
-					model.addAttribute("msg", "이미지 파일만 입력이 가능합니다");
-					return "on/addActorFile";
+					redirectAttributes.addFlashAttribute("imageMsg", "jpeg, png 파일만 입력이 가능합니다");
+					return "redirect:/on/addActorFile?actorId=" + actorForm.getActorId();
 				}
 			}
 		}

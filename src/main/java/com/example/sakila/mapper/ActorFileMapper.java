@@ -19,5 +19,8 @@ public interface ActorFileMapper {
 	
 	// /on/removeActorFile:Service 파일 이름 가져오기
 	ActorFile selectActorFileOne(int actorFileId);
+	
+	// /on/actorOne → /on/removeActor 호출 actor 삭제 시 파일 같이 삭제
+	int deleteActorFileByActor(int actorId);
 
 }

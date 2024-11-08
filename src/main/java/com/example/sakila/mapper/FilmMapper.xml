@@ -3,10 +3,11 @@
 <mapper namespace="com.example.sakila.mapper.FilmMapper">
 
 	<!-- selectFileTitleListByActor Query -->
-	<select id="selectFilmTitleListByActor" parameterType="int" resultType="com.example.sakila.vo.Film">
+	<select id="selectFilmTitleListByActor" parameterType="Map" resultType="com.example.sakila.vo.Film">
 		SELECT f.film_id filmId, f.title title 
 		FROM film_actor fa INNER JOIN film f ON fa.film_id = f.film_id
 		WHERE fa.actor_id = #{actorId}
+		ORDER BY f.film_id ASC LIMIT #{filmListBeginRow}, #{filmListRowPerPage}
 	</select>
 	
 	<!-- selectFilmOne Query -->
@@ -20,8 +21,6 @@
 		WHERE film_id = #{filmId}
 	</select>
 
-	
-	
 	
 	<insert id="insertFilm" parameterType="com.example.sakila.vo.Film">
 		INSERT INTO film(title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length

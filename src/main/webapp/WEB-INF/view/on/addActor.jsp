@@ -115,14 +115,18 @@
 							<td>
 								<div id="fileDiv">
 									<button id="btnAddFile" type="button" class="btn btn-sm btn-outline-success">파일추가</button>
-									<button id="btnRemoveFile" type="button" class="btn btn-sm btn-outline-success">파일삭제</button>
+									<button id="btnRemoveFile" type="button" class="btn btn-sm btn-outline-danger">파일삭제</button>
 								</div>
 							</td>
 						</tr>
 					</table>
-					<button id="btnAddActor" type="button" class="btn btn-sm btn-outline-success">배우추가</button>
-					<div>
-						${msg}
+					<div class="d-flex justify-content-between" style="width: 600px">
+						<div>
+							<button id="btnAddActor" type="button" class="btn btn-sm btn-outline-success">배우추가</button>
+						</div>
+						<div>
+							<span style="color: red; margin-right: 15px">${imageMsg}</span>
+						</div>
 					</div>
 				</form>
 			</div>

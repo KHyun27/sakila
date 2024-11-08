@@ -16,7 +16,6 @@
 			$('#btnAddFilm').click(function(){
 				$('#formAddFilm').submit();
 			});
-			
 		});
 	</script>
 	<style>
@@ -58,6 +57,37 @@
         	text-decoration: none;
         }
         
+        .pagination {
+		  display: flex;
+  		  justify-content: center;
+		}
+		
+		.pagination a {
+		  color: #008000;
+		  float: left;
+		  padding: 4px 8px;
+		  text-decoration: none;
+		  border: 1px solid #ddd;
+		}
+		
+		.pagination a.active {
+		  background-color: #28a745;
+		  color: white;
+		  border: 1px solid #28a745;
+		}
+		
+		.pagination a:hover:not(.active) {background-color: #ddd;}
+		
+		.pagination a:first-child {
+		  border-top-left-radius: 5px;
+		  border-bottom-left-radius: 5px;
+		}
+		
+		.pagination a:last-child {
+		  border-top-right-radius: 5px;
+		  border-bottom-right-radius: 5px;
+		}
+        
     	
 	</style>
 	<meta charset="UTF-8">
@@ -71,16 +101,16 @@
 	</div>
 	<!-- 
 		√ 1) actor 상세
-		1-1) actor 수정 /on/modifyActor
-		1-2) actor 삭제 /on/removeActor (actor_file 삭제 + film_actor 삭제 + actor 삭제)
+		√ 1-1) actor 수정 /on/modifyActor
+		√ 1-2) actor 삭제 /on/removeActor (actor_file 삭제 + film_actor 삭제 + actor 삭제)
 		 
 		√ 2) actor_file List
 		√ 2-1) actor_file 추가
 		√ 2-2) actor_file 삭제 /on/removeActorFile
 		
 		√ 3) film_actor List
-		3-1) film_actor 추가 /on/addFilmByActor → Film 검색 후 선택
-		3-2) film_actor 삭제 /on/removeFilmActor
+		√ 3-1) film_actor 추가 /on/addFilmByActor → Film 검색 후 선택
+		√ 3-2) film_actor 삭제 /on/removeFilmActor
 	 -->
 
 	<div class="row">
@@ -116,6 +146,7 @@
 				    <tr>
 				        <td colspan="2" style="text-align: right; background-color: transparent; border-bottom-color: transparent;">
 				            <a href="${pageContext.request.contextPath}/on/modifyActor?actorId=${actor.actorId}" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Modify Actor</a>
+				            <a href="${pageContext.request.contextPath}/on/removeActor?actorId=${actor.actorId}" class="btn btn-sm btn-outline-danger" style="margin-top: 5px">Remove Actor</a>
 				        </td>
 				    </tr>
 				</table>
@@ -130,16 +161,50 @@
 							<tr>
 								<td align="right">${f.filmId}</td>
 								<td><a class="film-link" href="${pageContext.request.contextPath}/on/filmOne?filmId=${f.filmId}">${f.title}</a></td>
-								<td><a href="${pageContext.request.contextPath}/on/removeFilmActor?filmId=${f.filmId}&actorId=${actor.actorId}" class="film-link" style="color: red;">삭제</a></td>
+								<td><a href="${pageContext.request.contextPath}/on/removeFilmActor?filmId=${f.filmId}&actorId=${actor.actorId}" class="film-link" style="color: red; font-size:small;">삭제</a></td>
 								<!-- 삭제 시 f.filmId & actor.actorId 필요 -->
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
+				<!-- Pagination -->
+				<div class="pagination justify-content-center" style="text-align: center; margin-top: 5px; margin-bottom: 10px; width: 500px">
+					<!-- 첫 페이지 -->
+					<c:if test="${!(currentPage > 1)}">
+						<a href="" style="pointer-events: none;">&laquo;</a>
+					</c:if>
+					<c:if test="${currentPage > 1}">
+						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=1">&laquo;</a>
+					</c:if>
+					<!-- 이전 페이지 -->
+					<c:if test="${!(currentPage > 1)}">
+						<a href="" style="pointer-events: none;">Previous</a>
+					</c:if>
+					<c:if test="${currentPage > 1}">
+						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListCurrentPage - 1}">Previous</a>
+					</c:if>
+					<!-- 페이지 번호 링크 -->
+					<a class="active">${filmListCurrentPage}</a>
+					<!-- 다음 페이지 -->
+					<c:if test="${!(currentPage < lastPage)}">
+						<a href="" style="pointer-events: none;">Next</a>
+					</c:if>
+					<c:if test="${currentPage < lastPage}">
+						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListcurrentPage=${filmListCurrentPage + 1}">Next</a>
+						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${currentPage + 1}">Next</a>
+					</c:if>
+					<!-- 마지막 페이지 -->
+					<c:if test="${!(currentPage < lastPage)}">
+						<a href="" style="pointer-events: none;">&raquo;</a>
+					</c:if>
+					<c:if test="${currentPage < lastPage}">
+						<a href="${pageContext.request.contextPath}}/on/actorOne?actorId=${actor.actorId}&filmListcurrentPage=${filmListLastPage}">&raquo;</a>
+					</c:if>
+				</div>
 				<!-- 출연작 추가 -->
-				<div class="d-flex justify-content-end mb-2" style="width: 500px;">
+				<div class="d-flex justify-content-between mb-2" style="width: 500px;">
 					<div>
-						${param.existsMsg}
+						<span style="color: red; margin-left: 15px;">${existsMsg}</span>
 					</div>
 					<!-- 출연작 추가 -->
 					<div>

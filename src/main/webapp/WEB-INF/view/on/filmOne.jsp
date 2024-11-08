@@ -130,22 +130,26 @@
 				        <td>${film.lastUpdate}</td>
 				    </tr>
 				</table>
-				<div class="d-flex justify-content-left" style="width:1300px;">
-					<table class="table text-center" style="width:400px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
-						<tr>
-							<th class="table-success text-center" colspan="2">Film Actor List</th>
-						</tr>
-						<c:forEach var="a" items="${actorList}">
+				<div class="d-flex justify-content-between" style="width:1300px;">
+					<div>
+						<table class="table table-sm text-center" style="width:400px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 							<tr>
-								<th class="text-center" rowspan="1">Name</th>
-								<td class="text-center"><a class="actor-link" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a></td>
+								<th class="table-success text-center" colspan="3">Film Actor List</th>
 							</tr>
-						</c:forEach>
-					</table>
-				</div>
-				<div style="float: left;">
-					<a href="">Film Modify</a>
-					<a href="">Film Delete</a>
+							<c:forEach var="a" items="${actorList}">
+								<tr>
+									<td class="text-center">${a.actorId}</td>
+									<td class="text-center"><a class="actor-link" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a></td>
+									<td><a href="" class="actor-link" style="color: red; font-size:small;">삭제</a></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+					
+					<div>
+						<a href="" class="btn btn-sm btn-outline-success">Film Modify</a>
+						<a href="" class="btn btn-sm btn-outline-danger">Film Delete</a>
+					</div>
 				</div>
 				</div>
 			</div>

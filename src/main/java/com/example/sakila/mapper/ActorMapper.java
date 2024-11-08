@@ -18,6 +18,9 @@ public interface ActorMapper {
 	// actorListCount
 	int selectActorCount(String searchWord);
 	
+	// actor Film List
+	int selectActorFilmListCount(int actorId);
+	
 	// /on/actorOne
 	Actor selectActorOne(int actorId);
 	
@@ -25,6 +28,9 @@ public interface ActorMapper {
 	List<Actor> selectActorListByFilm(int filmId);
 	
 	// /on/modifyActor
-	int updateActorOne(Actor actor);
+	int updateActor(Actor actor);
+	
+	// /on/removeActor
+	int deleteActor(int actorId);
 
 }

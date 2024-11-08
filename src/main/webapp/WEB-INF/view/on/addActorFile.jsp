@@ -110,8 +110,14 @@
 					    	</td>
 					    </tr>
 					</table>
-					<button id="btnAddActorFile" type="button" class="btn btn-sm btn-outline-success">배우 파일 추가</button>
-					<div>${msg}</div>
+					<div class="d-flex justify-content-between" style="width: 600px">
+						<div>
+							<button id="btnAddActorFile" type="button" class="btn btn-sm btn-outline-success">배우 파일 추가</button>
+						</div>
+						<div>
+							<span style="color: red; margin-right: 15px">${imageMsg}</span>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>
