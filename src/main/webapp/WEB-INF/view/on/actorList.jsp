@@ -90,7 +90,7 @@
 				<!-- main -->
 				<table class="table table-success text-center" style="width:500px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 					<tr>
-						<th style="font-size: x-large;">Actor List</th>
+						<th style="font-size: large;">Actor List</th>
 					</tr>
 				</table>
 				

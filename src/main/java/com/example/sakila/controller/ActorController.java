@@ -85,7 +85,8 @@ public class ActorController {
 	}
 	
 	@GetMapping("/on/actorOne")
-	public String actorOne(Model model, @RequestParam int actorId) {
+	public String actorOne(Model model, @RequestParam int actorId, @RequestParam(defaultValue = "") String searchTitle) {
+		// searchWord = "" 이면 actorOne 상세보기 요청이고, "" 아니면 film 검색 요청
 		Actor actor = actorService.getActorOne(actorId);
 		List<ActorFile> actorFileList = actorFileService.selectActorFileListByActor(actorId);
 		List<Film> filmList = filmService.selectFileTitleListByActor(actorId);
@@ -94,9 +95,16 @@ public class ActorController {
 		log.debug(actorFileList.toString());
 		log.debug(filmList.toString());
 		
+		if(!searchTitle.equals("")) { // Film title 검색어가 있다면..
+			// film 검색결과 리스트를 추가
+			List<Film> searchFilmList = filmService.getFilmListByTitle(searchTitle);
+			model.addAttribute("searchFilmList", searchFilmList);
+		}
+		
 		model.addAttribute("actor", actor);
 		model.addAttribute("actorFileList", actorFileList);
 		model.addAttribute("filmList", filmList);
+		
 		return "on/actorOne";
 	}
 	

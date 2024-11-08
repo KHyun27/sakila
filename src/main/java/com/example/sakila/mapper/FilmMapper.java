@@ -11,7 +11,7 @@ import com.example.sakila.vo.Film;
 public interface FilmMapper {
 	
 	// /on/actorOne
-	List<Film> selectFileTitleListByActor(int actorId);
+	List<Film> selectFilmTitleListByActor(int actorId);
 	
 	// /on/filmOne (film join language)
 	Map<String, Object> selectFilmOne(int filmId);
@@ -19,4 +19,6 @@ public interface FilmMapper {
 	// /on/addFilm
 	int insertFilm(Film film);
 
+	// /on/actorOne - film 검색 요청 시 사용
+	List<Film> selectFilmListByTitle(String searchTitle);
 }

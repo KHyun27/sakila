@@ -59,7 +59,7 @@
         </li>
 
         <li class="list-group-item">
-            <a href="">Film List</a>
+            <a href="${pageContext.request.contextPath}/on/filmList">Film List</a>
         </li>
 
         <li class="list-group-item">
