@@ -100,7 +100,7 @@
 					<c:if test="${empty addressList}">
 						<br>
 					</c:if>
-					<c:if test="${not empty addressList}">
+					<c:if test="${not empty addressList}"> 
 					<h5>Select Address</h5>
 						<select id="resultAddress" size="7">
 							<c:forEach var="a" items="${addressList}">
