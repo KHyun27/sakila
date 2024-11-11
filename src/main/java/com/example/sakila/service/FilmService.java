@@ -22,6 +22,7 @@ public class FilmService {
 	@Autowired FilmMapper filmMapper;
 	
 	// /on/actorOne
+<<<<<<< HEAD
 	public List<Film> selectFileTitleListByActor(int actorId, int filmListCurrentPage, int filmListRowPerPage) {
 		Map<String, Object> paramMap = new HashMap<>();
 
@@ -31,6 +32,10 @@ public class FilmService {
 		paramMap.put("filmListRowPerPage", filmListRowPerPage);
 
 		return filmMapper.selectFilmTitleListByActor(paramMap);
+=======
+	public List<Film> selectFileTitleListByActor(int actorId) {
+		return filmMapper.selectFilmTitleListByActor(actorId);
+>>>>>>> refs/remotes/origin/master
 	}
 
 	// /on/filmOne

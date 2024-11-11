@@ -22,10 +22,13 @@
 	<select id="selectActorFileOne" parameterType="int" resultType="com.example.sakila.vo.ActorFile">
 		SELECT actor_file_id actorFileId, actor_id actorId, originname, filename, ext FROM actor_file WHERE actor_file_id = #{actorFileId}
 	</select>
+<<<<<<< HEAD
 	
 	<!-- deleteActorFileByActor Query : 동일 Actor의 모든 파일 삭제 -->
 	<delete id="deleteActorFileByActor" parameterType="int">
 		DELETE FROM actor_file WHERE actor_id = #{actorId}
 	</delete>
 	
+=======
+>>>>>>> refs/remotes/origin/master
 </mapper>

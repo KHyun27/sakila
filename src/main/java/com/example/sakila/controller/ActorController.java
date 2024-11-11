@@ -94,8 +94,12 @@ public class ActorController {
 	}
 	
 	@GetMapping("/on/actorOne")
+<<<<<<< HEAD
 	public String actorOne(Model model, @RequestParam int actorId, @RequestParam(defaultValue = "") String searchTitle,
 										@RequestParam(defaultValue = "1") int filmListCurrentPage, @RequestParam(defaultValue = "5") int filmListRowPerPage) {
+=======
+	public String actorOne(Model model, @RequestParam int actorId, @RequestParam(defaultValue = "") String searchTitle) {
+>>>>>>> refs/remotes/origin/master
 		// searchWord = "" 이면 actorOne 상세보기 요청이고, "" 아니면 film 검색 요청
 		Actor actor = actorService.getActorOne(actorId);
 		List<ActorFile> actorFileList = actorFileService.selectActorFileListByActor(actorId);
@@ -111,17 +115,23 @@ public class ActorController {
 			model.addAttribute("searchFilmList", searchFilmList);
 		}
 		
+<<<<<<< HEAD
 		int filmListLastPage = actorService.getLastPageByActorFilmList(actorId, filmListRowPerPage);
 		
+=======
+>>>>>>> refs/remotes/origin/master
 		model.addAttribute("actor", actor);
 		model.addAttribute("actorFileList", actorFileList);
 		model.addAttribute("filmList", filmList);
+<<<<<<< HEAD
 		log.debug("filmListCurrentPage : " + filmListCurrentPage);
 		log.debug("filmListRowPerPage : " + filmListRowPerPage);
 		log.debug("filmListLastPage : " + filmListLastPage);
 		model.addAttribute("filmListCurrentPage", filmListCurrentPage);
 		model.addAttribute("filmListRowPerPage", filmListRowPerPage);
 		model.addAttribute("filmListLastPage", filmListLastPage);
+=======
+>>>>>>> refs/remotes/origin/master
 		
 		return "on/actorOne";
 	}

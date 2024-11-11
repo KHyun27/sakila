@@ -136,6 +136,7 @@
 							<tr>
 								<th class="table-success text-center" colspan="3">Film Actor List</th>
 							</tr>
+<<<<<<< HEAD
 							<c:forEach var="a" items="${actorList}">
 								<tr>
 									<td class="text-center">${a.actorId}</td>
@@ -150,6 +151,14 @@
 						<a href="" class="btn btn-sm btn-outline-success">Film Modify</a>
 						<a href="" class="btn btn-sm btn-outline-danger">Film Delete</a>
 					</div>
+=======
+						</c:forEach>
+					</table>
+				</div>
+				<div style="float: left;">
+					<a href="">Film Modify</a>
+					<a href="">Film Delete</a>
+>>>>>>> refs/remotes/origin/master
 				</div>
 				</div>
 			</div>
