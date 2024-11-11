@@ -11,12 +11,8 @@ import com.example.sakila.vo.Film;
 public interface FilmMapper {
 	
 	// /on/actorOne
-<<<<<<< HEAD
 	List<Film> selectFilmTitleListByActor(Map<String, Object> map);
-=======
-	List<Film> selectFilmTitleListByActor(int actorId);
->>>>>>> refs/remotes/origin/master
-	
+
 	// /on/filmOne (film join language)
 	Map<String, Object> selectFilmOne(int filmId);
 	
@@ -25,4 +21,12 @@ public interface FilmMapper {
 
 	// /on/actorOne - film 검색 요청 시 사용
 	List<Film> selectFilmListByTitle(String searchTitle);
+	
+	// /on/filmList - category가 (없을 때) null이나 0일 때 filmList
+	List<Map<String, Object>> selectFilmList(Map<String, Object> paramMap);
+	
+	// /on/filmList - category가 (있을 때) null이나 0이 아닐 때 filmList
+	List<Map<String, Object>> selectFilmListByCategory(Map<String, Object> paramMap);
+	
+	int selectFilmCount(Integer categoryId);
 }

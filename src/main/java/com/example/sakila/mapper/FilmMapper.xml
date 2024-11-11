@@ -3,11 +3,7 @@
 <mapper namespace="com.example.sakila.mapper.FilmMapper">
 
 	<!-- selectFileTitleListByActor Query -->
-<<<<<<< HEAD
 	<select id="selectFilmTitleListByActor" parameterType="Map" resultType="com.example.sakila.vo.Film">
-=======
-	<select id="selectFilmTitleListByActor" parameterType="int" resultType="com.example.sakila.vo.Film">
->>>>>>> refs/remotes/origin/master
 		SELECT f.film_id filmId, f.title title 
 		FROM film_actor fa INNER JOIN film f ON fa.film_id = f.film_id
 		WHERE fa.actor_id = #{actorId}
@@ -24,13 +20,8 @@
 		ON fi.language_id = la.language_id
 		WHERE film_id = #{filmId}
 	</select>
-
 	
-<<<<<<< HEAD
-=======
-	
-	
->>>>>>> refs/remotes/origin/master
+	<!-- insertFilm Query -->
 	<insert id="insertFilm" parameterType="com.example.sakila.vo.Film">
 		INSERT INTO film(title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length
 			, replacement_cost, rating, special_features
@@ -43,4 +34,32 @@
 		SELECT film_id filmId, title FROM film WHERE title LIKE CONCAT('%',#{searchTitle},'%')
 	</select>
 	
+	<!-- selectFilmList Query : category가 0이나 null -->
+	<select id="selectFilmList" parameterType="Map" resultType="Map">
+		SELECT film_id filmId, title, release_year releaseYear, rental_duration rentalDuration, 
+			   rental_rate rentalRate, length, replacement_cost replacementCost, rating
+		FROM film ORDER BY film_id DESC LIMIT #{beginRow}, #{rowPerPage};
+	</select>
+	
+	<!-- selectFilmListByCategory Query : 카테고리가 선택 되었을 때 filmList null이나 0이 아닐 때 -->
+	<select id="selectFilmListByCategory" parameterType="Map" resultType="Map">
+		SELECT f.film_id filmId, f.title title, f.release_year releaseYear, f.rental_duration rentalDuration, 
+			   f.rental_rate rentalRate, f.length length, f.replacement_cost replacementCost, f.rating rating, fc.category_id categoryId
+		FROM film f INNER JOIN film_category fc ON f.film_id = fc.film_id 
+		WHERE fc.category_id = #{categoryId} 
+		ORDER BY f.film_id DESC LIMIT #{beginRow}, #{rowPerPage};
+	</select>
+	
+	<!-- selectFilmCount Query : FilmList의 갯수 (카테고리 있을때, 없을때) -->
+	<select id="selectFilmCount" parameterType="int" resultType="int">
+    <choose>
+        <when test="categoryId == null">
+            SELECT COUNT(*) FROM film
+        </when>
+        <otherwise>
+            SELECT COUNT(*) FROM film_category WHERE category_id = #{categoryId}
+        </otherwise>
+    </choose>
+</select>
+
 </mapper>

@@ -27,11 +27,22 @@
         </li>
 
         <li class="list-group-item">
-            <a href="">Store List</a>
+            <a href="${pageContext.request.contextPath}/on/storeList">Store List</a>
+            <!--
+            	StoreMapper.selectStoreList() : List<Map> - Join(store x staff x address)
+            	StoreService.getStoreList() : List<Map>
+             	Get - /on/storeList → StoreController.storeList() → storeList.jsp 
+            -->
         </li>
 
         <li class="list-group-item">
-            <a href="">Store Add</a>
+            <a href="${pageContext.request.contextPath}/on/addStore">Store Add</a>
+            <!-- 
+           		Get - /on/addStore → StoreController.addStore() : staffList 모델 추가, searchAddress 모델 추가 → addStore.jsp
+           		StoreMapper.insertStore() : Integer
+           		StoreService.addStore() : Integer
+           		Post - /on/addStore → StoreController.addStore(Store)  
+            -->
         </li>
     </ul>
 
@@ -64,6 +75,14 @@
 
         <li class="list-group-item">
             <a href="${pageContext.request.contextPath}/on/addFilm">Film Add</a>
+        </li>
+        
+        <li class="list-group-item">
+            <a href="${pageContext.request.contextPath}/on/languageList">Language List</a>
+        </li>
+        
+        <li class="list-group-item">
+            <a href="${pageContext.request.contextPath}/on/addlanguage">Language Add</a>
         </li>
     </ul>
     

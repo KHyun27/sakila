@@ -22,7 +22,6 @@ public class FilmService {
 	@Autowired FilmMapper filmMapper;
 	
 	// /on/actorOne
-<<<<<<< HEAD
 	public List<Film> selectFileTitleListByActor(int actorId, int filmListCurrentPage, int filmListRowPerPage) {
 		Map<String, Object> paramMap = new HashMap<>();
 
@@ -32,10 +31,6 @@ public class FilmService {
 		paramMap.put("filmListRowPerPage", filmListRowPerPage);
 
 		return filmMapper.selectFilmTitleListByActor(paramMap);
-=======
-	public List<Film> selectFileTitleListByActor(int actorId) {
-		return filmMapper.selectFilmTitleListByActor(actorId);
->>>>>>> refs/remotes/origin/master
 	}
 
 	// /on/filmOne
@@ -78,4 +73,35 @@ public class FilmService {
 	public List<Film> getFilmListByTitle(String searchTitle) {
 		return filmMapper.selectFilmListByTitle(searchTitle);
 	}
+	
+	public List<Map<String, Object>> getFilmList(int currentPage, int rowPerPage, Integer categoryId) {
+		Map<String, Object> paramMap = new HashMap<>();
+		
+		if(categoryId == null || categoryId == 0) {
+			paramMap.put("categoryId", null);
+		} else {
+			paramMap.put("categoryId", categoryId);
+		}
+		
+		int beginRow = (currentPage - 1) * rowPerPage;
+		paramMap.put("beginRow", beginRow);
+		paramMap.put("rowPerPage", rowPerPage);
+		
+		if(paramMap.get("categoryId") == null) {
+			return filmMapper.selectFilmList(paramMap);
+		} else {
+			return filmMapper.selectFilmListByCategory(paramMap);
+		}
+	}
+	
+	public int getLastPageByFilmList(int rowPerPage, Integer categoryId) {
+		int filmListCount = filmMapper.selectFilmCount(categoryId);
+		int lastPage = filmListCount / rowPerPage;
+		
+		if(filmListCount % rowPerPage != 0) {
+			lastPage++;
+		}
+		return lastPage;
+	}
+	
 }

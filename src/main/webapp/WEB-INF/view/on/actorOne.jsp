@@ -16,10 +16,7 @@
 			$('#btnAddFilm').click(function(){
 				$('#formAddFilm').submit();
 			});
-<<<<<<< HEAD
-=======
 			
->>>>>>> refs/remotes/origin/master
 		});
 	</script>
 	<style>
@@ -105,7 +102,7 @@
 	</div>
 	<!-- 
 		√ 1) actor 상세
-<<<<<<< HEAD
+
 		√ 1-1) actor 수정 /on/modifyActor
 		√ 1-2) actor 삭제 /on/removeActor (actor_file 삭제 + film_actor 삭제 + actor 삭제)
 		 
@@ -116,7 +113,7 @@
 		√ 3) film_actor List
 		√ 3-1) film_actor 추가 /on/addFilmByActor → Film 검색 후 선택
 		√ 3-2) film_actor 삭제 /on/removeFilmActor
-=======
+
 		1-1) actor 수정 /on/modifyActor
 		1-2) actor 삭제 /on/removeActor (actor_file 삭제 + film_actor 삭제 + actor 삭제)
 		 
@@ -127,7 +124,7 @@
 		√ 3) film_actor List
 		3-1) film_actor 추가 /on/addFilmByActor → Film 검색 후 선택
 		3-2) film_actor 삭제 /on/removeFilmActor
->>>>>>> refs/remotes/origin/master
+
 	 -->
 
 	<div class="row">
@@ -140,155 +137,124 @@
 				<!-- main -->
 				<!-- Actor -->
 				<div style="float: left;">
-				<table class="table text-center" style="width: 500px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
-				    <tr>
-				        <th class="table-success text-center" colspan="2">Actor Info</th>
-				    </tr>
-				    <tr>
-				        <th>Actor ID</th>
-				        <td>${actor.actorId}</td>
-				    </tr>
-				    <tr>
-				        <th>First Name</th>
-				        <td>${actor.firstName}</td>
-				    </tr>
-				    <tr>
-				        <th>Last Name</th>
-				        <td>${actor.lastName}</td>
-				    </tr>
-				    <tr>
-				        <th>Last Update</th>
-				        <td>${actor.lastUpdate}</td>
-				    </tr>
-				    <tr>
-				        <td colspan="2" style="text-align: right; background-color: transparent; border-bottom-color: transparent;">
-				            <a href="${pageContext.request.contextPath}/on/modifyActor?actorId=${actor.actorId}" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Modify Actor</a>
-				            <a href="${pageContext.request.contextPath}/on/removeActor?actorId=${actor.actorId}" class="btn btn-sm btn-outline-danger" style="margin-top: 5px">Remove Actor</a>
-				        </td>
-				    </tr>
-				</table>
-				
-				<!-- Film -->
-				<div>
-					<table class="table table-sm text-center" style="width:500px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
-						<tr>
-							<th class="table-success" colspan="3">Film List</th>
-						</tr>
-						<c:forEach var="f" items="${filmList}">
-							<tr>
-								<td align="right">${f.filmId}</td>
-								<td><a class="film-link" href="${pageContext.request.contextPath}/on/filmOne?filmId=${f.filmId}">${f.title}</a></td>
-<<<<<<< HEAD
-								<td><a href="${pageContext.request.contextPath}/on/removeFilmActor?filmId=${f.filmId}&actorId=${actor.actorId}" class="film-link" style="color: red; font-size:small;">삭제</a></td>
-=======
-								<td><a href="${pageContext.request.contextPath}/on/removeFilmActor?filmId=${f.filmId}&actorId=${actor.actorId}" class="film-link" style="color: red;">삭제</a></td>
->>>>>>> refs/remotes/origin/master
-								<!-- 삭제 시 f.filmId & actor.actorId 필요 -->
-							</tr>
-						</c:forEach>
+					<table class="table text-center" style="width: 500px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
+					    <tr>
+					        <th class="table-success text-center" colspan="2">Actor Info</th>
+					    </tr>
+					    <tr>
+					        <th>Actor ID</th>
+					        <td>${actor.actorId}</td>
+					    </tr>
+					    <tr>
+					        <th>First Name</th>
+					        <td>${actor.firstName}</td>
+					    </tr>
+					    <tr>
+					        <th>Last Name</th>
+					        <td>${actor.lastName}</td>
+					    </tr>
+					    <tr>
+					        <th>Last Update</th>
+					        <td>${actor.lastUpdate}</td>
+					    </tr>
+					    <tr>
+					        <td colspan="2" style="text-align: right; background-color: transparent; border-bottom-color: transparent;">
+					            <a href="${pageContext.request.contextPath}/on/modifyActor?actorId=${actor.actorId}" class="btn btn-sm btn-outline-success" style="margin-top: 5px">Modify Actor</a>
+					            <a href="${pageContext.request.contextPath}/on/removeActor?actorId=${actor.actorId}" class="btn btn-sm btn-outline-danger" style="margin-top: 5px">Remove Actor</a>
+					        </td>
+					    </tr>
 					</table>
-				</div>
-<<<<<<< HEAD
-				<!-- Pagination -->
-				<div class="pagination justify-content-center" style="font-size: small; text-align: center; margin-top: 5px; margin-bottom: 10px; width: 500px">
-					<!-- 첫 페이지 -->
-					<c:if test="${!(filmListCurrentPage > 1)}">
-						<a href="" style="pointer-events: none;">&laquo;</a>
-					</c:if>
-					<c:if test="${filmListCurrentPage > 1}">
-						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=1">&laquo;</a>
-					</c:if>
-					<!-- 이전 페이지 -->
-					<c:if test="${!(filmListCurrentPage > 1)}">
-						<a href="" style="pointer-events: none;">Previous</a>
-					</c:if>
-					<c:if test="${filmListCurrentPage > 1}">
-						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListCurrentPage - 1}">Previous</a>
-					</c:if>
-					<!-- 페이지 번호 링크 -->
-					<a class="active">${filmListCurrentPage}</a>
-					<!-- 다음 페이지 -->
-					<c:if test="${!(filmListCurrentPage < filmListLastPage)}">
-						<a href="" style="pointer-events: none;">Next</a>
-					</c:if>
-					<c:if test="${filmListCurrentPage < filmListLastPage}">
-						<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListCurrentPage + 1}">Next</a>
-					</c:if>
-					<!-- 마지막 페이지 -->
-					<c:if test="${!(filmListCurrentPage < filmListLastPage)}">
-						<a href="" style="pointer-events: none;">&raquo;</a>
-					</c:if>
-					<c:if test="${filmListCurrentPage < filmListLastPage}">
-						<a href="${pageContext.request.contextPath}}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListLastPage}">&raquo;</a>
-					</c:if>
-				</div>
-				<!-- 출연작 추가 -->
-				<div class="d-flex justify-content-between mb-2" style="width: 500px;">
+					
+					<!-- Film -->
 					<div>
-						<span style="color: red; margin-left: 15px;">${existsMsg}</span>
+						<table class="table table-sm text-center" style="width:500px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+							<tr>
+								<th class="table-success" colspan="3">Film List</th>
+							</tr>
+							<c:forEach var="f" items="${filmList}">
+								<tr>
+									<td align="right">${f.filmId}</td>
+									<td><a class="film-link" href="${pageContext.request.contextPath}/on/filmOne?filmId=${f.filmId}">${f.title}</a></td>
+	
+									<td><a href="${pageContext.request.contextPath}/on/removeFilmActor?filmId=${f.filmId}&actorId=${actor.actorId}" class="film-link" style="color: red; font-size:small;">삭제</a></td>
+	
+									<!-- 삭제 시 f.filmId & actor.actorId 필요 -->
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+	
+					<!-- Pagination -->
+					<div class="pagination justify-content-center" style="font-size: small; text-align: center; margin-top: 5px; margin-bottom: 10px; width: 500px">
+						<!-- 첫 페이지 -->
+						<c:if test="${!(filmListCurrentPage > 1)}">
+							<a href="" style="pointer-events: none;">&laquo;</a>
+						</c:if>
+						<c:if test="${filmListCurrentPage > 1}">
+							<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=1">&laquo;</a>
+						</c:if>
+						<!-- 이전 페이지 -->
+						<c:if test="${!(filmListCurrentPage > 1)}">
+							<a href="" style="pointer-events: none;">Previous</a>
+						</c:if>
+						<c:if test="${filmListCurrentPage > 1}">
+							<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListCurrentPage - 1}">Previous</a>
+						</c:if>
+						<!-- 페이지 번호 링크 -->
+						<a class="active">${filmListCurrentPage}</a>
+						<!-- 다음 페이지 -->
+						<c:if test="${!(filmListCurrentPage < filmListLastPage)}">
+							<a href="" style="pointer-events: none;">Next</a>
+						</c:if>
+						<c:if test="${filmListCurrentPage < filmListLastPage}">
+							<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListCurrentPage + 1}">Next</a>
+						</c:if>
+						<!-- 마지막 페이지 -->
+						<c:if test="${!(filmListCurrentPage < filmListLastPage)}">
+							<a href="" style="pointer-events: none;">&raquo;</a>
+						</c:if>
+						<c:if test="${filmListCurrentPage < filmListLastPage}">
+							<a href="${pageContext.request.contextPath}/on/actorOne?actorId=${actor.actorId}&filmListCurrentPage=${filmListLastPage}">&raquo;</a>
+						</c:if>
 					</div>
 					<!-- 출연작 추가 -->
-					<div>
-						<form id="formSearchFilm" method="get" action="${pageContext.request.contextPath}/on/actorOne"><!-- 영화 검색 -->
-							<!-- film 검색 시 actorId 같이 전송 -->
+					<div class="d-flex justify-content-between mb-2" style="width: 500px;">
+						<div>
+							<span style="color: red; margin-left: 15px;">${existsMsg}</span>
+						</div>
+						<!-- 출연작 추가 -->
+						<div>
+							<form id="formSearchFilm" method="get" action="${pageContext.request.contextPath}/on/actorOne"><!-- 영화 검색 -->
+								<!-- film 검색 시 actorId 같이 전송 -->
+								<input type="hidden" name="actorId" value="${actor.actorId}">
+								<input type="text" name="searchTitle">
+								<button id="btnSearchFilm" type="button" class="btn btn-sm btn-outline-success">Search</button>
+							</form>
+						</div>
+					</div>
+					<div class="d-flex justify-content-end" style="width: 500px; float: none;">
+						<form id="formAddFilm" method="post" action="${pageContext.request.contextPath}/on/addFilmByActor">
 							<input type="hidden" name="actorId" value="${actor.actorId}">
-							<input type="text" name="searchTitle">
-							<button id="btnSearchFilm" type="button" class="btn btn-sm btn-outline-success">Search</button>
+							<div class="d-flex justify-content-end mb-2" style="width: 500px;">
+								<c:if test="${empty searchFilmList}">
+									<br>
+								</c:if>
+								<c:if test="${not empty searchFilmList}">
+								<select size="5" name="filmId">
+									<c:forEach var="sf" items="${searchFilmList}">
+										<option value="${sf.filmId}">[${sf.filmId}] ${sf.title}</option>
+									</c:forEach>
+								</select>
+								</c:if>	
+							</div>
+							<div class="d-flex justify-content-end" style="width: 500px;">
+								<c:if test="${not empty searchFilmList}">
+									<button id="btnAddFilm" type="button" class="btn btn-sm btn-outline-success">Add</button>
+								</c:if>
+							</div>
 						</form>
 					</div>
 				</div>
-				<div class="d-flex justify-content-end" style="width: 500px;">
-					<form id="formAddFilm" method="post" action="${pageContext.request.contextPath}/on/addFilmByActor">
-						<input type="hidden" name="actorId" value="${actor.actorId}">
-						<div class="d-flex justify-content-end mb-2" style="width: 500px;">
-							<c:if test="${empty searchFilmList}">
-								<br>
-							</c:if>
-							<c:if test="${not empty searchFilmList}">
-							<select size="5" name="filmId">
-=======
-				<!-- 출연작 추가 -->
-				<div class="d-flex justify-content-end mb-2" style="width: 500px;">
-					<div>
-						${param.existsMsg}
-					</div>
-					<!-- 출연작 추가 -->
-					<div>
-						<form id="formSearchFilm" method="get" action="${pageContext.request.contextPath}/on/actorOne"><!-- 영화 검색 -->
-							<!-- film 검색 시 actorId 같이 전송 -->
-							<input type="hidden" name="actorId" value="${actor.actorId}">
-							<input type="text" name="searchTitle">
-							<button id="btnSearchFilm" type="button" class="btn btn-sm btn-outline-success">Search</button>
-						</form>
-					</div>
-				</div>
-				<div class="d-flex justify-content-end" style="width: 500px;">
-					<form id="formAddFilm" method="post" action="${pageContext.request.contextPath}/on/addFilmByActor">
-						<input type="hidden" name="actorId" value="${actor.actorId}">
-						<div class="d-flex justify-content-end mb-2" style="width: 500px;">
-							<c:if test="${empty searchFilmList}">
-								<br>
-							</c:if>
-							<c:if test="${not empty searchFilmList}">
-							<select size="3" name="filmId">
->>>>>>> refs/remotes/origin/master
-								<c:forEach var="sf" items="${searchFilmList}">
-									<option value="${sf.filmId}">[${sf.filmId}] ${sf.title}</option>
-								</c:forEach>
-							</select>
-							</c:if>	
-						</div>
-						
-						<div class="d-flex justify-content-end" style="width: 500px;">
-							<c:if test="${not empty searchFilmList}">
-								<button id="btnAddFilm" type="button" class="btn btn-sm btn-outline-success">Add</button>
-							</c:if>
-						</div>
-						
-					</form>
-				</div>
-				</div>
-				
 				<table class="table text-center" style="width: 800px; border-radius: 10px; overflow: hidden; float: left;">
 				    <tr>
 				        <th class="table-success text-center" colspan="5">Actor Image</th>
@@ -318,8 +284,8 @@
 				    </tr>
 				</table>
 				<div style="clear: both;"></div><!-- clear float을 위한 div -->
-				<hr style="width:1330px">
-			</div>
+					<hr style="width:1330px">
+				</div>
 		</div>
 	</div>
 </body>

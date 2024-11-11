@@ -108,7 +108,7 @@
 							</c:forEach>
 						</select>
 						<br>
-						<button id="btnAddrSel" type="button" class="btn btn-sm btn-primary">Select</button>
+						<button id="btnAddrSel" type="button" class="btn btn-sm btn-outline-primary">Select</button>
 					</c:if>
 					<br>
 				</div>

@@ -116,7 +116,7 @@
 							<th>File</th>
 							<td>
 								<div id="fileDiv">
-									<button id="btnAddFile" type="button" class="btn btn-sm btn-outline-success">파일추가</button>
+									<button id="btnAddFile" type="button" class="btn btn-sm btn-outline-primary">파일추가</button>
 									<button id="btnRemoveFile" type="button" class="btn btn-sm btn-outline-danger">파일삭제</button>
 								</div>
 							</td>

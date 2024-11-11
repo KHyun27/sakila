@@ -62,7 +62,8 @@
 		<!-- 
 			√ 1) film 상세
 			1-1) film 수정 /on/modifyFilm
-			1-2) film 삭제 /on/removiFilm (film_category 삭제 + film_actor 삭제 + film 삭제)
+			1-2) film 삭제 /on/removiFilm 
+			(inventory 렌탈 정보 확인 + film_category 삭제 + film_actor 삭제 + film 삭제)
 			
 			2) film_category List
 			2-1) film_category 추가 /on/addFilmCategory → Category 전체 목록에서 선택
@@ -71,95 +72,90 @@
 			√ 3) film_actor List
 			3-1) film_actor 추가 /on/addActorByFilm → Actor 검색 후 선택
 			3-2) film_actor 삭제 /on/removeFileActor
+			
+			4) inventory 연동
 		 -->
 		
 		<div class="col-sm-10 bg-light">
 			<div class="main">
 				<!-- main -->
 				<div>	
-				<table class="table text-center" style="width: 1300px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
-				    <tr>
-				        <th class="table-success text-center" colspan="2">Film Info</th>
-				    </tr>
-				    <tr>
-				        <th>Film ID</th>
-				        <td>${film.filmId}</td>
-				    </tr>
-				    <tr>
-				        <th>Title</th>
-				        <td>${film.title}</td>
-				    </tr>
-				    <tr>
-				        <th>Description</th>
-				        <td>${film.description}</td>
-				    </tr>
-				    <tr>
-				        <th>ReleaseYear</th>
-				        <td>${film.releaseYear}</td>
-				    </tr>
-				    <tr>
-				        <th>Language</th>
-				        <td>${film.language}</td>
-				    </tr>
-				    <tr>
-				        <th>Length</th>
-				        <td>${film.length} minute</td>
-				    </tr>
-				    <tr>
-				        <th>Special Features</th>
-				        <td>${film.specialFeatures}</td>
-				    </tr>
-				    <tr>
-				        <th>Rental Rate</th>
-				        <td>${film.rentalRate}$</td>
-				    </tr>
-				    <tr>
-				        <th>Rental Duration</th>
-				        <td>${film.rentalDuration} days</td>
-				    </tr>
-				    <tr>
-				        <th>Replacement Cost</th>
-				        <td>${film.replacementCost}$</td>
-				    </tr>
-				    <tr>
-				        <th>Rating</th>
-				        <td>${film.rating}</td>
-				    </tr>
-				    <tr>
-				        <th>Last Update</th>
-				        <td>${film.lastUpdate}</td>
-				    </tr>
-				</table>
-				<div class="d-flex justify-content-between" style="width:1300px;">
-					<div>
-						<table class="table table-sm text-center" style="width:400px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
-							<tr>
-								<th class="table-success text-center" colspan="3">Film Actor List</th>
-							</tr>
-<<<<<<< HEAD
-							<c:forEach var="a" items="${actorList}">
-								<tr>
-									<td class="text-center">${a.actorId}</td>
-									<td class="text-center"><a class="actor-link" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a></td>
-									<td><a href="" class="actor-link" style="color: red; font-size:small;">삭제</a></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</div>
-					
-					<div>
-						<a href="" class="btn btn-sm btn-outline-success">Film Modify</a>
-						<a href="" class="btn btn-sm btn-outline-danger">Film Delete</a>
-					</div>
-=======
-						</c:forEach>
+					<table class="table text-center" style="width: 1300px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
+					    <tr>
+					        <th class="table-success text-center" colspan="2">Film Info</th>
+					    </tr>
+					    <tr>
+					        <th>Film ID</th>
+					        <td>${film.filmId}</td>
+					    </tr>
+					    <tr>
+					        <th>Title</th>
+					        <td>${film.title}</td>
+					    </tr>
+					    <tr>
+					        <th>Description</th>
+					        <td>${film.description}</td>
+					    </tr>
+					    <tr>
+					        <th>ReleaseYear</th>
+					        <td>${film.releaseYear}</td>
+					    </tr>
+					    <tr>
+					        <th>Language</th>
+					        <td>${film.language}</td>
+					    </tr>
+					    <tr>
+					        <th>Length</th>
+					        <td>${film.length} minute</td>
+					    </tr>
+					    <tr>
+					        <th>Special Features</th>
+					        <td>${film.specialFeatures}</td>
+					    </tr>
+					    <tr>
+					        <th>Rental Rate</th>
+					        <td>${film.rentalRate}$</td>
+					    </tr>
+					    <tr>
+					        <th>Rental Duration</th>
+					        <td>${film.rentalDuration} days</td>
+					    </tr>
+					    <tr>
+					        <th>Replacement Cost</th>
+					        <td>${film.replacementCost}$</td>
+					    </tr>
+					    <tr>
+					        <th>Rating</th>
+					        <td>${film.rating}</td>
+					    </tr>
+					    <tr>
+					        <th>Last Update</th>
+					        <td>${film.lastUpdate}</td>
+					    </tr>
 					</table>
-				</div>
-				<div style="float: left;">
-					<a href="">Film Modify</a>
-					<a href="">Film Delete</a>
->>>>>>> refs/remotes/origin/master
-				</div>
+					<div class="d-flex justify-content-between" style="width:1300px;">
+						<div>
+							<table class="table table-sm text-center" style="width:400px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+								<tr>
+									<th class="table-success text-center" colspan="3">Film Actor List</th>
+								</tr>
+	
+								<c:forEach var="a" items="${actorList}">
+									<tr>
+										<td class="text-center">${a.actorId}</td>
+										<td class="text-center"><a class="actor-link" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a></td>
+										<td><a href="" class="actor-link" style="color: red; font-size:small;">삭제</a></td>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
+						
+						<div>
+							<a href="${pageContext.request.contextPath}/on/filmList" class="btn btn-sm btn-outline-primary">Film List</a>
+							<a href="" class="btn btn-sm btn-outline-success">Film Modify</a>
+							<a href="" class="btn btn-sm btn-outline-danger">Film Delete</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
