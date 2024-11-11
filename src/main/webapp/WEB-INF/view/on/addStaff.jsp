@@ -107,10 +107,10 @@
 								<option value="${a.addressId}">[${a.addressId}] ${a.address}</option>
 							</c:forEach>
 						</select>
-						<br>
-						<button id="btnAddrSel" type="button" class="btn btn-sm btn-outline-primary">Select</button>
+						<div style="margin-top: 5px;">
+							<button id="btnAddrSel" type="button" class="btn btn-sm btn-outline-primary">Select</button>
+						</div>
 					</c:if>
-					<br>
 				</div>
 				<hr style="width:600px;">
 				<form id="addForm" method="post" action="${pageContext.request.contextPath}/on/addStaff">
@@ -160,7 +160,9 @@
 							</td>
 						</tr>
 					</table>
-					<button id="btnAddStaff" type="button" class="btn btn-sm btn-outline-success">Add Staff</button>
+					<div class="d-flex justify-content-end" style="width: 600px;">
+						<button id="btnAddStaff" type="button" class="btn btn-sm btn-outline-success">Add Staff</button>
+					</div>
 				</form>
 			</div>
 		</div>

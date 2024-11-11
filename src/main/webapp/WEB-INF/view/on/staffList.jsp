@@ -63,7 +63,14 @@
 		<div class="col-sm-10 bg-light">
 			<div class="add">
 				<!-- main -->
-				<h1>Staff List</h1>
+				<table class="table table-success text-center" style="width:1300px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+					<tr>
+						<th style="font-size: large;">Staff List</th>
+					</tr>
+				</table>
+				
+				<hr style="width:1300px;">
+				
 				<table class="table text-center" style="width:1300px; border-radius: 10px; overflow: hidden;">
 				<thead class="table-success">
 					<tr>
