@@ -123,7 +123,7 @@
 		
 		√ 3) film_actor List
 		3-1) film_actor 추가 /on/addFilmByActor → Film 검색 후 선택
-		3-2) film_actor 삭제 /on/removeFilmActor
+		3-2) film_actor 삭제 /on/removeActorByFilm
 
 	 -->
 

@@ -71,7 +71,7 @@
 			
 			√ 3) film_actor List
 			3-1) film_actor 추가 /on/addActorByFilm → Actor 검색 후 선택
-			3-2) film_actor 삭제 /on/removeFileActor
+			3-2) film_actor 삭제 /on/removeFilmActor
 			
 			4) inventory 연동
 		 -->
