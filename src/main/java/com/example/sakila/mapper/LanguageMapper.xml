@@ -7,4 +7,13 @@
 		SELECT language_id languageId, name, last_update lastUpdate FROM language
 	</select>
 	
+	<!-- insertLanguage Query : 언어 추가 -->
+	<insert id="insertLanguage" parameterType="com.example.sakila.vo.Language">
+		INSERT INTO language(name) VALUES(#{name})
+	</insert>
+	
+	<!-- deleteLanguage : 언어 삭제 -->
+	<delete id="deleteLanguage" parameterType="int">
+		DELETE FROM language WHERE language_id = #{languageId}
+	</delete>
 </mapper>

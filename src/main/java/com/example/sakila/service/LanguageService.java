@@ -19,5 +19,15 @@ public class LanguageService {
 	public List<Language> getLanguageList() {
 		return languageMapper.selectLanguageList();
 	}
+	
+	// /on/addLanguage
+	public int addLanguage(Language paramLanguage) {
+		return languageMapper.insertLanguage(paramLanguage);
+	}
+	
+	// on/removeLanguage
+	public int removeLanguage(int languageId) {
+		return languageMapper.deleteLanguage(languageId);
+	}
 
 }

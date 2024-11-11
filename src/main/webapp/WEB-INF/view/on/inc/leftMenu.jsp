@@ -82,7 +82,7 @@
         </li>
         
         <li class="list-group-item">
-            <a href="${pageContext.request.contextPath}/on/addlanguage">Language Add</a>
+            <a href="${pageContext.request.contextPath}/on/addLanguage">Language Add</a>
         </li>
     </ul>
     

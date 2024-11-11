@@ -36,18 +36,22 @@
 	
 	<!-- selectFilmList Query : category가 0이나 null -->
 	<select id="selectFilmList" parameterType="Map" resultType="Map">
-		SELECT film_id filmId, title, release_year releaseYear, rental_duration rentalDuration, 
-			   rental_rate rentalRate, length, replacement_cost replacementCost, rating
-		FROM film ORDER BY film_id DESC LIMIT #{beginRow}, #{rowPerPage};
+		SELECT f.film_id filmId, f.title title, c.name category, f.release_year releaseYear, 
+						f.rental_duration rentalDuration, f.rental_rate rentalRate,
+						f.length length, f.replacement_cost replacementCost, f.rating rating
+		FROM film f LEFT OUTER JOIN film_category fc ON f.film_id = fc.film_id
+		INNER JOIN category c ON fc.category_id = c.category_id 
+		ORDER BY f.film_id DESC LIMIT #{beginRow}, #{rowPerPage}
 	</select>
 	
 	<!-- selectFilmListByCategory Query : 카테고리가 선택 되었을 때 filmList null이나 0이 아닐 때 -->
 	<select id="selectFilmListByCategory" parameterType="Map" resultType="Map">
-		SELECT f.film_id filmId, f.title title, f.release_year releaseYear, f.rental_duration rentalDuration, 
-			   f.rental_rate rentalRate, f.length length, f.replacement_cost replacementCost, f.rating rating, fc.category_id categoryId
-		FROM film f INNER JOIN film_category fc ON f.film_id = fc.film_id 
-		WHERE fc.category_id = #{categoryId} 
-		ORDER BY f.film_id DESC LIMIT #{beginRow}, #{rowPerPage};
+		SELECT f.film_id filmId, f.title title, c.name category, f.release_year releaseYear, 
+						f.rental_duration rentalDuration, f.rental_rate rentalRate,
+						f.length length, f.replacement_cost replacementCost, f.rating rating
+		FROM film f LEFT OUTER JOIN film_category fc ON f.film_id = fc.film_id
+		INNER JOIN category c ON fc.category_id = c.category_id 
+		WHERE fc.category_id = #{categoryId} ORDER BY f.film_id DESC LIMIT #{beginRow}, #{rowPerPage}
 	</select>
 	
 	<!-- selectFilmCount Query : FilmList의 갯수 (카테고리 있을때, 없을때) -->

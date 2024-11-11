@@ -11,5 +11,11 @@ public interface LanguageMapper {
 	
 	// /on/addFilm
 	List<Language> selectLanguageList();
+	
+	// /on/addLanguage
+	int insertLanguage(Language paramLanguage);
+	
+	// /on/removeLanguage
+	int deleteLanguage(int languageId);
 
 }

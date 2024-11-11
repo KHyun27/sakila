@@ -85,19 +85,19 @@
 		<div class="col-sm-10 bg-light">
 			<div class="main">
 				<!-- main -->
-				<table class="table table-success text-center" style="width:1100px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+				<table class="table table-success text-center" style="width:1300px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 					<tr>
 						<th style="font-size: large;">Film List</th>
 					</tr>
 				</table>
 				
-				<hr style="width:1100px;">
+				<hr style="width:1300px;">
 				
 				<!-- 카테고리 선택 -->
-				<div class="d-flex justify-content-end" style="width:1100px; margin-bottom: 15px">
+				<div class="d-flex justify-content-end" style="width:1300px; margin-bottom: 15px">
 					<form id="formCategory" method="get" action="${pageContext.request.contextPath}/on/filmList">
 						<select name="categoryId" id="categoryId">
-							<option value="0">All Category</option>
+							<option value="">All Category</option>
 							<c:forEach var="c" items="${categoryList}">
 								<c:if test="${c.categoryId == currentCategoryId}">
 									<option selected value="${c.categoryId}">${c.name}</option>
@@ -109,17 +109,19 @@
 						</select>
 					</form>
 				</div>
-				<table class="table text-center" style="width:1100px; border-radius: 10px; overflow: hidden;">
+				<table class="table text-center" style="width:1300px; border-radius: 10px; overflow: hidden;">
 					<thead class="table-success">
 						<tr>
 							<th>Film ID</th>
 							<th>Title</th>
-							<th>Release Year</th>
+							<th>Category</th>
+							<th>Rating</th>
+							<th>Length</th>
 							<th>Rental Duration</th>
 							<th>Rental Rate</th>
-							<th>Length</th>
 							<th>Replacement Cost</th>
-							<th>Rating</th>
+							<th>Release Year</th>
+							
 						</tr>
 					<thead>
 					<c:forEach var="f" items="${filmList}"> <!-- filmList -->
@@ -128,67 +130,126 @@
 							<td>
 								<a class="film-link" href="${pageContext.request.contextPath}/on/filmOne?filmId=${f.filmId}">${f.title}</a>
 							</td>
-							<td>${f.releaseYear}</td>
+							<td>${f.category}</td>
+							<td>${f.rating}</td>
+							<td>${f.length}</td>
 							<td>${f.rentalDuration} day</td>
 							<td>${f.rentalRate} $</td>
-							<td>${f.length}</td>
 							<td>${f.replacementCost} $</td>
-							<td>${f.rating}</td>
+							<td>${f.releaseYear}</td>
 						</tr>
 					</c:forEach>
 				</table>
 				
 				<!-- Pagination -->
-				<div class="pagination justify-content-center" style="text-align: center; margin-top: 20px; width: 1100px">
-					<!-- 첫 페이지 -->
-					<c:if test="${!(currentPage > 1)}">
-						<a href="" style="pointer-events: none;">&laquo;</a>
-					</c:if>
-					<c:if test="${currentPage > 1}">
-						<a href="${pageContext.request.contextPath}/on/filmList?currentPage=1">&laquo;</a>
-					</c:if>
-					<!-- 이전 페이지 -->
-					<c:if test="${!(currentPage > 1)}">
-						<a href="" style="pointer-events: none;">Previous</a>
-					</c:if>
-					<c:if test="${currentPage > 1}">
-						<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage-1}">Previous</a>
-					</c:if>
-					<!-- 페이지 번호 링크 -->
-
-					<c:if test="${currentPage <= 1}">
-						<a href="" style="pointer-events: none;">&nbsp;&nbsp;</a>
-					</c:if>
-					
-					<c:if test="${currentPage > 1}">
-						<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage-1}">${currentPage - 1}</a>
-					</c:if>
-					
-					<a class="active">${currentPage}</a>
-					
-					<c:if test="${currentPage < lastPage}">
-						<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage+1}">${currentPage + 1}</a>
-					</c:if>
-					
-					<c:if test="${currentPage >= lastPage}">
-						<a href="" style="pointer-events: none;">&nbsp;&nbsp;</a>
-					</c:if>
-					
-				    <!-- 다음 페이지 -->
-				    <c:if test="${!(currentPage < lastPage)}">
-						<a href="" style="pointer-events: none;">Next</a>
-					</c:if>
-					<c:if test="${currentPage < lastPage}">
-						<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage+1}">Next</a>
-					</c:if>
-					
-				    <!-- 마지막 페이지 -->
-					<c:if test="${!(currentPage < lastPage)}">
-						<a href="" style="pointer-events: none;">&raquo;</a>
-					</c:if>
-					<c:if test="${currentPage < lastPage}">
-						<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${lastPage}">&raquo;</a>
-					</c:if>
+				<div class="pagination justify-content-center" style="text-align: center; margin-top: 20px; width: 1300px">
+					<c:choose>
+						<c:when test="${empty currentCategoryId}">
+							<!-- 첫 페이지 -->
+							<c:if test="${!(currentPage > 1)}">
+								<a href="" style="pointer-events: none;">&laquo;</a>
+							</c:if>
+							<c:if test="${currentPage > 1}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=1">&laquo;</a>
+							</c:if>
+							
+							<!-- 이전 페이지 -->
+							<c:if test="${!(currentPage > 1)}">
+								<a href="" style="pointer-events: none;">Previous</a>
+							</c:if>
+							<c:if test="${currentPage > 1}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage-1}">Previous</a>
+							</c:if>
+							
+							<!-- 페이지 번호 링크 -->
+							<c:if test="${currentPage <= 1}">
+								<a href="" style="pointer-events: none;">&nbsp;&nbsp;</a>
+							</c:if>
+							
+							<c:if test="${currentPage > 1}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage-1}">${currentPage - 1}</a>
+							</c:if>
+							
+							<a class="active">${currentPage}</a>
+							
+							<c:if test="${currentPage < lastPage}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage+1}">${currentPage + 1}</a>
+							</c:if>
+							
+							<c:if test="${currentPage >= lastPage}">
+								<a href="" style="pointer-events: none;">&nbsp;&nbsp;</a>
+							</c:if>
+							
+						    <!-- 다음 페이지 -->
+						    <c:if test="${!(currentPage < lastPage)}">
+								<a href="" style="pointer-events: none;">Next</a>
+							</c:if>
+							<c:if test="${currentPage < lastPage}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage+1}">Next</a>
+							</c:if>
+							
+						    <!-- 마지막 페이지 -->
+							<c:if test="${!(currentPage < lastPage)}">
+								<a href="" style="pointer-events: none;">&raquo;</a>
+							</c:if>
+							<c:if test="${currentPage < lastPage}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${lastPage}">&raquo;</a>
+							</c:if>
+						</c:when>
+						
+						<c:otherwise>
+							<!-- 첫 페이지 -->
+							<c:if test="${!(currentPage > 1)}">
+								<a href="" style="pointer-events: none;">&laquo;</a>
+							</c:if>
+							<c:if test="${currentPage > 1}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=1&categoryId=${currentCategoryId}">&laquo;</a>
+							</c:if>
+							
+							<!-- 이전 페이지 -->
+							<c:if test="${!(currentPage > 1)}">
+								<a href="" style="pointer-events: none;">Previous</a>
+							</c:if>
+							<c:if test="${currentPage > 1}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage-1}&categoryId=${currentCategoryId}">Previous</a>
+							</c:if>
+							
+							<!-- 페이지 번호 링크 -->
+							<c:if test="${currentPage <= 1}">
+								<a href="" style="pointer-events: none;">&nbsp;&nbsp;</a>
+							</c:if>
+							
+							<c:if test="${currentPage > 1}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage-1}&categoryId=${currentCategoryId}">${currentPage - 1}</a>
+							</c:if>
+							
+							<a class="active">${currentPage}</a>
+							
+							<c:if test="${currentPage < lastPage}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage+1}&categoryId=${currentCategoryId}">${currentPage + 1}</a>
+							</c:if>
+							
+							<c:if test="${currentPage >= lastPage}">
+								<a href="" style="pointer-events: none;">&nbsp;&nbsp;</a>
+							</c:if>
+							
+						    <!-- 다음 페이지 -->
+						    <c:if test="${!(currentPage < lastPage)}">
+								<a href="" style="pointer-events: none;">Next</a>
+							</c:if>
+							<c:if test="${currentPage < lastPage}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${currentPage+1}&categoryId=${currentCategoryId}">Next</a>
+							</c:if>
+							
+						    <!-- 마지막 페이지 -->
+							<c:if test="${!(currentPage < lastPage)}">
+								<a href="" style="pointer-events: none;">&raquo;</a>
+							</c:if>
+							<c:if test="${currentPage < lastPage}">
+								<a href="${pageContext.request.contextPath}/on/filmList?currentPage=${lastPage}&categoryId=${currentCategoryId}">&raquo;</a>
+							</c:if>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				
 			</div>
