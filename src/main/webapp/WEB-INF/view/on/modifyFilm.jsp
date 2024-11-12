@@ -11,10 +11,18 @@
 		$(document).ready(function() {
 			
 			$('#btnTitle').click(function(){
-				if($('#Title').val() == '') {
+				if($('#title').val() == '') {
 					alert('수정 할 Title을 입력해주세요');
 				} else {
 					$('#formTitle').submit();	
+				}
+			});
+			
+			$('#btnLanguage').click(function(){
+				if($('#language').val() == '') {
+					alert('수정 할 Language를 입력해주세요');
+				} else {
+					$('#formLanguage').submit();	
 				}
 			});
 			
