@@ -15,8 +15,13 @@
 	    SELECT COUNT(*) > 0 FROM film_actor WHERE actor_id = #{actorId} AND film_id = #{filmId}
 	</select>
 	
-	<!-- deleteFilmByActor Query → /on/removeActor -->
+	<!-- deleteFilmByActor Query → /on/removeActor : 배우 삭제시 film_actor 같이 삭제 -->
 	<delete id="deleteFilmByActor" parameterType="int">
 		DELETE FROM film_actor WHERE actor_id = #{actorId}
+	</delete>
+	
+	<!-- deleteFilmActorByFilm Query → /on/removeFilm : 필름 삭제시 film_actor 같이 삭제 -->
+	<delete id="deleteFilmActorByFilm" parameterType="Integer">
+		DELETE FROM film_actor WHERE film_id = #{filmId}
 	</delete>
 </mapper>

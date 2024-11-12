@@ -95,7 +95,7 @@
 				        		<div class="d-flex justify-content-between">
 				        			<input type="hidden" name="actorId" value="${actor.actorId}">
 				        			<input type="text" id="firstName" name="firstName" value="${actor.firstName}">
-				        			<button id="btnFirstName" type="button" class="btn btn-sm btn-outline-success">First Name 수정</button>
+				        			<button id="btnFirstName" type="button" class="btn btn-sm btn-outline-primary">First Name 수정</button>
 				        		</div>
 				        	</form>	
 				        </td>
@@ -107,7 +107,7 @@
 				        		<div class="d-flex justify-content-between">
 				        			<input type="hidden" name="actorId" value="${actor.actorId}">
 				        			<input type="text" id="lastName" name="lastName" value="${actor.lastName}">
-				        			<button id="btnLastName" type="button" class="btn btn-sm btn-outline-success">Last Name 수정</button>
+				        			<button id="btnLastName" type="button" class="btn btn-sm btn-outline-primary">Last Name 수정</button>
 				        		</div>
 				        	</form>	
 				        </td>

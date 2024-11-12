@@ -10,14 +10,14 @@
 		ORDER BY f.film_id ASC LIMIT #{filmListBeginRow}, #{filmListRowPerPage}
 	</select>
 	
-	<!-- selectFilmOne Query -->
+	<!-- selectFilmOne Query - /Get:/on/filmOne, /Get:/on/modifyFilm -->
 	<select id="selectFilmOne" parameterType="int" resultType="Map">
 		SELECT fi.film_id filmId, fi.title title, fi.description description, fi.release_year releaseYear, fi.rental_duration rentalDuration, 
 			   fi.rental_rate rentalRate, fi.length length, fi.replacement_cost replacementCost,
 			   fi.rating rating, fi.special_features specialFeatures, fi.last_update lastUpdate, 
-			   fi.original_language_id originalLanguageId, la.name language
+			   fi.original_language_id originalLanguageId, la.name language, ol.name originalLanguage
 		FROM film fi INNER JOIN language la
-		ON fi.language_id = la.language_id
+		ON fi.language_id = la.language_id LEFT OUTER JOIN language ol ON fi.original_language_id = ol.language_id
 		WHERE film_id = #{filmId}
 	</select>
 	
@@ -40,7 +40,7 @@
 						f.rental_duration rentalDuration, f.rental_rate rentalRate,
 						f.length length, f.replacement_cost replacementCost, f.rating rating
 		FROM film f LEFT OUTER JOIN film_category fc ON f.film_id = fc.film_id
-		INNER JOIN category c ON fc.category_id = c.category_id 
+		LEFT OUTER JOIN category c ON fc.category_id = c.category_id 
 		ORDER BY f.film_id DESC LIMIT #{beginRow}, #{rowPerPage}
 	</select>
 	
@@ -64,6 +64,30 @@
             SELECT COUNT(*) FROM film_category WHERE category_id = #{categoryId}
         </otherwise>
     </choose>
-</select>
+	</select>
+	
+	<!-- deleteFilmByKey Query : Film 삭제 -->
+	<delete id="deleteFilmByKey" parameterType="Integer">
+		DELETE FROM film WHERE film_id = #{filmId}
+	</delete>
+	
+	<!-- updateFilm - Post : /on/modifyFilm : Film 수정 -->
+	<update id="updateFilm" parameterType="com.example.sakila.vo.Film">
+		UPDATE film
+			<set>
+				<if test="title != null and title != ''">title = #{title}</if>
+				<if test="description != null and description != ''">description = #{description}</if>
+				<if test="releaseYear != null and releaseYear != ''">releaseYear = #{releaseYear}</if>
+				<if test="languageId != null and languageId != ''">language_id = #{languageId}</if>
+				<if test="originalLanguageId != null and originalLanguageId != ''">original_language_id = #{originalLanguageId}</if>
+				<if test="rentalDuration != null and rentalDuration != ''">rental_duration = #{rentalDuration}</if>
+				<if test="rentalRate != null and rentalRate != ''">rental_rate = #{rentalRate}</if>
+				<if test="length != null and length != ''">length = #{length}</if>
+				<if test="replacementCost != null and replacementCost != ''">replacement_cost = #{replacementCost}</if>
+				<if test="rating != null and rating != ''">rating = #{rating}</if>
+				<if test="specialFeatures != null and specialFeatures != ''">special_features = #{specialFeatures}</if>
+			</set>
+		WHERE film_id = #{filmId}
+	</update>
 
 </mapper>

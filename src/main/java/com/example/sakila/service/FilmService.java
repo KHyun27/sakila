@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.sakila.mapper.FilmActorMapper;
+import com.example.sakila.mapper.FilmCategoryMapper;
 import com.example.sakila.mapper.FilmMapper;
 import com.example.sakila.vo.Film;
 import com.example.sakila.vo.FilmForm;
@@ -20,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 public class FilmService {
 	
 	@Autowired FilmMapper filmMapper;
+	@Autowired FilmActorMapper filmActorMapper;
+	@Autowired FilmCategoryMapper filmCategoryMapper; 
 	
 	// /on/actorOne
 	public List<Film> selectFileTitleListByActor(int actorId, int filmListCurrentPage, int filmListRowPerPage) {
@@ -87,9 +91,11 @@ public class FilmService {
 		paramMap.put("beginRow", beginRow);
 		paramMap.put("rowPerPage", rowPerPage);
 		
-		if(paramMap.get("categoryId") == null) {
+		if(paramMap.get("categoryId") == null || paramMap.get("categoryId").equals("")) {
+			log.debug("selectFilmList 실행");
 			return filmMapper.selectFilmList(paramMap);
 		} else {
+			log.debug("selectFilmListByCategory 실행");
 			return filmMapper.selectFilmListByCategory(paramMap);
 		}
 	}
@@ -102,6 +108,21 @@ public class FilmService {
 			lastPage++;
 		}
 		return lastPage;
+	}
+	
+	public void removeFilmByKey(Integer filmId) {
+		// film_category 삭제
+		filmCategoryMapper.deleteFilmCateogryByFilm(filmId);
+		
+		// film_actor 삭제
+		filmActorMapper.deleteFilmActorByFilm(filmId);
+		
+		// film 삭제
+		filmMapper.deleteFilmByKey(filmId);
+	}
+	
+	public int modifyFilm(Film film) {
+		return filmMapper.updateFilm(film);
 	}
 	
 }

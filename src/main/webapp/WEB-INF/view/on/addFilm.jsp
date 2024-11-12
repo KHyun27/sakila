@@ -71,7 +71,7 @@
 				<form id="formAddFilm" method="post" action="${pageContext.request.contextPath}/on/addFilm">
 					<table class="table" style="width: 800px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
 						<tr>
-					        <th class="table-success text-center" colspan="2">Film Insert&#128516;</th>
+					        <th class="table-success text-center" colspan="2" style="padding-left: 0px">Film Insert&#128516;</th>
 					    </tr>
 					    <tr>
 					    	<th>Title <span style="color: red;">*</span></th>
@@ -93,7 +93,7 @@
 					    	</td>
 					    </tr>
 					    <tr>
-					    	<th>language ID <span style="color: red;">*</span></th>
+					    	<th>language <span style="color: red;">*</span></th>
 					    	<td>
 					    		<select id="languageId" name="languageId">
 					    			<option value="">Select Language</option>
@@ -104,7 +104,7 @@
 					    	</td>
 					    </tr>
 					    <tr>
-					    	<th>Original Language ID</th>
+					    	<th>Original Language</th>
 					    	<td>
 					    		<select id="originalLanguageId" name="originalLanguageId">
 					    			<option value="">Select Original Language</option>

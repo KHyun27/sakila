@@ -29,4 +29,10 @@ public interface FilmMapper {
 	List<Map<String, Object>> selectFilmListByCategory(Map<String, Object> paramMap);
 	
 	int selectFilmCount(Integer categoryId);
+	
+	// /on/removeFilm
+	Integer deleteFilmByKey(Integer filmId);
+	
+	// /on/modifyFilm
+	Integer updateFilm(Film film);
 }

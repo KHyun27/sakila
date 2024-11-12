@@ -1,5 +1,6 @@
 package com.example.sakila.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -9,13 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.sakila.service.ActorService;
 import com.example.sakila.service.CategoryService;
+import com.example.sakila.service.FilmCategoryService;
 import com.example.sakila.service.FilmService;
+import com.example.sakila.service.InventoryService;
 import com.example.sakila.service.LanguageService;
 import com.example.sakila.vo.Actor;
 import com.example.sakila.vo.Category;
+import com.example.sakila.vo.Film;
 import com.example.sakila.vo.FilmForm;
 import com.example.sakila.vo.Language;
 
@@ -30,15 +35,41 @@ public class FilmController {
 	@Autowired ActorService actorService;
 	@Autowired LanguageService languageService;
 	@Autowired CategoryService categoryService;
+	@Autowired InventoryService inventoryService;
+	@Autowired FilmCategoryService filmcsCategoryService;
 	
 	@GetMapping("/on/filmOne")
-	public String filmOne(Model model, @RequestParam int filmId) {
-		Map<String, Object> film = filmService.getFilmOne(filmId);
-		// debug
-		log.debug("film : " + film.toString());
-		model.addAttribute("film", film);
+	public String filmOne(Model model, @RequestParam int filmId, @RequestParam(required = false) String searchName) {
+		/*
+		 * + 1) 현재 필름
+		 * + 2) 전체 카테고리 리스트
+		 * + 3) 현재 필름의 카테고리
+		 * 4) 검색 배우 리스트(searchName이 null이 아닐때만)
+		 * + 5) 현재필름의 배우 리스트	
+		 */
 		
+		// 1)
+		Map<String, Object> film = filmService.getFilmOne(filmId);
+		log.debug("film : " + film.toString()); // debug
+		
+		// 2)
+		List<Category> allCategoryList = categoryService.getCategoryList();
+		log.debug("allCategoryList : " + allCategoryList.toString()); // debug
+		
+		// 3)
+		List<Map<String, Object>> filmCategoryList = filmcsCategoryService.getFilmCategoryListByFilm(filmId);
+		log.debug("filmCategoryList : " + filmCategoryList.toString()); // debug
+		
+		// 4)
+		
+		// 5
 		List<Actor> actorList = actorService.getActorListByFilm(filmId);
+		log.debug("actorList : " + actorList.toString()); // debug
+		
+		
+		model.addAttribute("film", film);
+		model.addAttribute("allCategoryList", allCategoryList);
+		model.addAttribute("filmCategoryList", filmCategoryList);
 		model.addAttribute("actorList", actorList);
 		
 		return "on/filmOne";
@@ -94,6 +125,44 @@ public class FilmController {
 		model.addAttribute("currentCategoryId", categoryId);
 		
 		return "on/filmList";
+	}
+	
+
+	@GetMapping("/on/removeFilm")
+	public String removeFilm(@RequestParam Integer filmId, RedirectAttributes redirectAttributes) {
+		
+		Integer inventoryCount = inventoryService.getCountInventoryByFilm(filmId);
+		if(inventoryCount != 0) {
+			redirectAttributes.addFlashAttribute("removeFilmMsg", "Film이 Inventory에 존재합니다.");
+			return "redirect:/on/filmOne?filmId=" + filmId; 
+		}
+		
+		filmService.removeFilmByKey(filmId);
+				
+		return "redirect:/on/filmList";
+	}
+	
+	@GetMapping("/on/modifyFilm")
+	public String modifyFilm(Model model, @RequestParam int filmId) {
+		Map<String, Object> film = filmService.getFilmOne(filmId);
+		List<Language> languageList = languageService.getLanguageList();
+		// debug
+		log.debug("specialFeatures : "+ film.get("specialFeatures"));
+		
+		String specialFeatures = (String)film.get("specialFeatures");
+		List<String> specialFeaturesList = Arrays.asList(specialFeatures.split(","));
+
+	    model.addAttribute("specialFeaturesList", specialFeaturesList);
+		model.addAttribute("film", film);
+		model.addAttribute("languageList", languageList);
+		return "on/modifyFilm";
+	}
+	
+	@PostMapping("/on/modifyFilm")
+	public String modifyActor(Film film) {
+		log.debug(film.toString());
+		int modifyFilmRow = filmService.modifyFilm(film);
+		return "redirect:/on/filmOne?filmId=" + film.getFilmId();
 	}
 	
 	

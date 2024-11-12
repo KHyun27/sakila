@@ -84,6 +84,14 @@
         <li class="list-group-item">
             <a href="${pageContext.request.contextPath}/on/addLanguage">Language Add</a>
         </li>
+        
+        <li class="list-group-item">
+            <a href="${pageContext.request.contextPath}/on/categoryList">Category List</a>
+        </li>
+        
+        <li class="list-group-item">
+            <a href="${pageContext.request.contextPath}/on/addCategory">Category Add</a>
+        </li>
     </ul>
     
     <hr>
@@ -122,7 +130,7 @@
     
      <ul class="list-group text-center">
         <li class="list-group-item" style="font-weight:bold; background-color: #24468A;">
-        	<a href="${pageContext.request.contextPath}/on/addStaff" style="color: white;">:: Statistics ::</a>
+        	<a href="${pageContext.request.contextPath}/on/sakilaMain" style="color: white;">:: Statistics ::</a>
         </li>
     </ul>
 </div>

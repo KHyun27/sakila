@@ -34,13 +34,15 @@
         	text-decoration: none;
         }
         
-        .table th {
-	    	padding-left: 20px;
+        .my-table th {
+	    	padding-left: 80px;
         	text-align: left;
+        	width: 300px;
     	}
-    	.table td {
-    		padding-left: 30px;
+    	.my-table td {
+    		padding-right: 200px;
         	text-align: left;
+        	width: 800px;
     	}
 	</style>
 	<meta charset="UTF-8">
@@ -80,9 +82,9 @@
 			<div class="main">
 				<!-- main -->
 				<div>	
-					<table class="table text-center" style="width: 1300px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
+					<table class="my-table table text-center" style="width: 1300px; border-radius: 10px; overflow: hidden; margin-right: 30px;">
 					    <tr>
-					        <th class="table-success text-center" colspan="2">Film Info</th>
+					        <th class="table-success text-center" colspan="2" style="padding-left: 0px">Film Info</th>
 					    </tr>
 					    <tr>
 					        <th>Film ID</th>
@@ -105,6 +107,10 @@
 					        <td>${film.language}</td>
 					    </tr>
 					    <tr>
+					        <th>OriginalLanguage</th>
+					        <td>${film.originalLanguage}</td>
+					    </tr>
+					    <tr>
 					        <th>Length</th>
 					        <td>${film.length} minute</td>
 					    </tr>
@@ -114,7 +120,7 @@
 					    </tr>
 					    <tr>
 					        <th>Rental Rate</th>
-					        <td>${film.rentalRate}$</td>
+					        <td>${film.rentalRate} $</td>
 					    </tr>
 					    <tr>
 					        <th>Rental Duration</th>
@@ -122,7 +128,7 @@
 					    </tr>
 					    <tr>
 					        <th>Replacement Cost</th>
-					        <td>${film.replacementCost}$</td>
+					        <td>${film.replacementCost} $</td>
 					    </tr>
 					    <tr>
 					        <th>Rating</th>
@@ -133,13 +139,12 @@
 					        <td>${film.lastUpdate}</td>
 					    </tr>
 					</table>
-					<div class="d-flex justify-content-between" style="width:1300px;">
+					<div class="d-flex justify-content-between" style="width:1300px; ">
 						<div>
-							<table class="table table-sm text-center" style="width:400px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+							<table class="table table-sm text-center" style="width:400px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden; margin-right: 20px; float: left;">
 								<tr>
 									<th class="table-success text-center" colspan="3">Film Actor List</th>
 								</tr>
-	
 								<c:forEach var="a" items="${actorList}">
 									<tr>
 										<td class="text-center">${a.actorId}</td>
@@ -148,12 +153,59 @@
 									</tr>
 								</c:forEach>
 							</table>
+							<table class="table table-sm text-center" style="width:300px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+								<tr>
+									<th class="table-success text-center" colspan="3">Category</th>
+								</tr>
+							</table>
 						</div>
-						
+
 						<div>
+							<span class="text-danger" style="margin-right: 20px;">${removeFilmMsg}</span>
 							<a href="${pageContext.request.contextPath}/on/filmList" class="btn btn-sm btn-outline-primary">Film List</a>
-							<a href="" class="btn btn-sm btn-outline-success">Film Modify</a>
-							<a href="" class="btn btn-sm btn-outline-danger">Film Delete</a>
+							<a href="${pageContext.request.contextPath}/on/modifyFilm?filmId=${film.filmId}" class="btn btn-sm btn-outline-success">Film Modify</a>
+							<a href="${pageContext.request.contextPath}/on/removeFilm?filmId=${film.filmId}" class="btn btn-sm btn-outline-danger">Film Delete</a>
+						</div>
+					</div>
+					<div style="clear: both;"><!-- float clear -->
+					<div>
+						<h5>작품 장르(CATEGORY)</h5>
+						<div>
+							<form method="post">
+				        		<select name="categoryId" id="categoryId">
+				        			<option value="">Select Category</option>
+				        			<!-- modle.categoryList -->
+				        			<c:forEach var="ac" items="${allCategoryList}">
+				        				<option>${ac.name}</option>
+				        			</c:forEach>
+				        		</select>
+				        		<button type="button" class="btn btn-sm btn-outline-primary">현재필름 카테고리 추가</button>
+				        	</form>
+				        	<!-- 카테고리 리스트 model.filmCategoryList -->
+				        	<div>
+				        		<c:forEach var="fc" items="${filmCategoryList}">
+				        			<div>
+				        				${fc.name}
+				        				&nbsp;
+				        				<a href="">삭제</a>
+				        			</div>
+				        		</c:forEach>
+				        	</div>
+			        	</div>
+					</div>
+					<div>
+						<h5>작품에 출연한 배우들</h5>
+						<div>
+							<form><!-- 배우이름 검색 -->
+								<input type="text" name="searchName">
+								<button type="button" class="btn btn-sm btn-outline-primary">이름검색</button>
+							</form>
+							<form method="post">
+								<select name="actorId" id="actorId" size="5">
+									<option value="">Select Actor</option>
+									<!-- model.actorList -->
+								</select>
+							</form>
 						</div>
 					</div>
 				</div>
