@@ -94,20 +94,29 @@
 				<hr style="width:1300px;">
 				
 				<!-- 카테고리 선택 -->
-				<div class="d-flex justify-content-end" style="width:1300px; margin-bottom: 15px">
-					<form id="formCategory" method="get" action="${pageContext.request.contextPath}/on/filmList">
-						<select name="categoryId" id="categoryId">
-							<option value="">All Category</option>
-							<c:forEach var="c" items="${categoryList}">
-								<c:if test="${c.categoryId == currentCategoryId}">
-									<option selected value="${c.categoryId}">${c.name}</option>
-								</c:if>
-								<c:if test="${c.categoryId != currentCategoryId}">
-									<option value="${c.categoryId}">${c.name}</option>
-								</c:if>
-							</c:forEach>
-						</select>
-					</form>
+				<div class="d-flex justify-content-between" style="width:1300px; margin-bottom: 15px">
+					<div>
+						<form id="formCategory" method="get" action="${pageContext.request.contextPath}/on/filmList">
+							<select name="categoryId" id="categoryId">
+								<option value="">All Category</option>
+								<c:forEach var="c" items="${categoryList}">
+									<c:if test="${c.categoryId == currentCategoryId}">
+										<option selected value="${c.categoryId}">${c.name}</option>
+									</c:if>
+									<c:if test="${c.categoryId != currentCategoryId}">
+										<option value="${c.categoryId}">${c.name}</option>
+									</c:if>
+								</c:forEach>
+							</select>
+						</form>
+					</div>
+					<div>
+						<form id="" method=get action="">
+							<input type="hidden" name="filmId" value="${film.filmId}">
+							<input type="text" name="" id="">
+							<button id="" type="button" class="btn btn-sm btn-outline-success">Search</button>
+						</form>
+					</div>
 				</div>
 				<table class="table text-center" style="width:1300px; border-radius: 10px; overflow: hidden;">
 					<thead class="table-success">

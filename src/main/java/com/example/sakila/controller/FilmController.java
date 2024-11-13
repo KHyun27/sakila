@@ -144,13 +144,17 @@ public class FilmController {
 	public String modifyFilm(Model model, @RequestParam int filmId) {
 		Map<String, Object> film = filmService.getFilmOne(filmId);
 		List<Language> languageList = languageService.getLanguageList();
-		// debug
-		log.debug("specialFeatures : "+ film.get("specialFeatures"));
+		// log.debug("film : " + film.toString());
+		if(film.get("specialFeatures") != null) {
+			// debug
+			log.debug("specialFeatures : "+ film.get("specialFeatures"));
+			
+			String specialFeatures = (String)film.get("specialFeatures");
+			List<String> specialFeaturesList = Arrays.asList(specialFeatures.split(","));
+			
+			model.addAttribute("specialFeaturesList", specialFeaturesList);
+		}
 		
-		String specialFeatures = (String)film.get("specialFeatures");
-		List<String> specialFeaturesList = Arrays.asList(specialFeatures.split(","));
-
-	    model.addAttribute("specialFeaturesList", specialFeaturesList);
 		model.addAttribute("film", film);
 		model.addAttribute("languageList", languageList);
 		return "on/modifyFilm";

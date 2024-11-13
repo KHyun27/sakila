@@ -44,17 +44,17 @@
 			margin-left: 50px;
 		}
 		
-		.actor-link {
+		.film-link {
         	color: black;
         	text-decoration: none;
         }
         
-        .actor-link:hover {
+        .film-link:hover {
             color: #002266;
             text-decoration: none;
         }
         
-        .actor-link:visited {
+        .film-link:visited {
         	color: black;
         	text-decoration: none;
         }
@@ -137,7 +137,11 @@
 					    </tr>
 					    <tr>
 					        <th>Length</th>
-					        <td>${film.length} minute</td>
+					        <td>
+			        	        <c:if test="${not empty film.length}">
+            						${film.length} Minute
+        						</c:if>
+					        </td>
 					    </tr>
 					    <tr>
 					        <th>Special Features</th>
@@ -149,7 +153,7 @@
 					    </tr>
 					    <tr>
 					        <th>Rental Duration</th>
-					        <td>${film.rentalDuration} days</td>
+					        <td>${film.rentalDuration} Days</td>
 					    </tr>
 					    <tr>
 					        <th>Replacement Cost</th>
@@ -173,8 +177,8 @@
 								<c:forEach var="a" items="${actorList}">
 									<tr>
 										<td class="text-center" style="padding-left: 20px;">${a.actorId}</td>
-										<td class="text-center"><a class="actor-link" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a></td>
-										<td><a href="${pageContext.request.contextPath}/on/removeFilmActorByFilm?filmId=${film.filmId}&actorId=${a.actorId}" class="actor-link" style="color: red; font-size:small; padding-right: 5px;">삭제</a></td>
+										<td class="text-center"><a class="film-link" href="${pageContext.request.contextPath}/on/actorOne?actorId=${a.actorId}">${a.firstName} ${a.lastName}</a></td>
+										<td><a href="${pageContext.request.contextPath}/on/removeFilmActorByFilm?filmId=${film.filmId}&actorId=${a.actorId}" class="film-link" style="color: red; font-size:small; padding-right: 5px;">삭제</a></td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -182,9 +186,32 @@
 								<tr>
 									<th class="table-success text-center" colspan="3">Category</th>
 								</tr>
+								<!-- 카테고리 리스트 model.filmCategoryList -->
+								<c:forEach var="fc" items="${filmCategoryList}">
+									<tr>
+										<td style="padding-left: 15px;">${fc.categoryId}</td>
+			        					<td style="padding-left: 25px;">${fc.name}</td>
+			        					<td>
+			        						<a href="${pageContext.request.contextPath}/on/removeFilmCategory?filmId=${fc.filmId}&categoryId=${fc.categoryId}" class="film-link" style="color: red; font-size:small;">삭제</a>	
+			        					</td>
+			        				</tr>
+			        		</c:forEach>
 							</table>
+							<div class="d-flex justify-content-end">
+								<form id="formFilmCategory" method="post" action="${pageContext.request.contextPath}/on/addFilmCategory">
+									<input type="hidden" name="filmId" value="${film.filmId}">
+					        		<select name="categoryId" id="categoryId" style="text-align: center;">
+					        			<option value="">Select Category</option>
+					        			<!-- modle.categoryList -->
+					        			<c:forEach var="ac" items="${allCategoryList}">
+					        				<option value="${ac.categoryId}">${ac.name}</option>
+					        			</c:forEach>
+					        		</select>
+					        		<button id="btnFilmCategory" type="button" class="btn btn-sm btn-outline-primary">Add Category</button>
+					        	</form>
+							</div>
 						</div>
-
+						
 						<div>
 							<span class="text-danger" style="margin-right: 20px;">${removeFilmMsg}</span>
 							<a href="${pageContext.request.contextPath}/on/filmList" class="btn btn-sm btn-outline-primary">Film List</a>
@@ -192,54 +219,36 @@
 							<a href="${pageContext.request.contextPath}/on/removeFilm?filmId=${film.filmId}" class="btn btn-sm btn-outline-danger">Film Delete</a>
 						</div>
 					</div>
-				<div style="clear: both;"></div><!-- float clear -->
-				<div>
-					<h5>작품 장르(CATEGORY)</h5>
-					<div>
-						<form id="formFilmCategory" method="post" action="${pageContext.request.contextPath}/on/addFilmCategory">
-							<input type="hidden" name="filmId" value="${film.filmId}">
-			        		<select name="categoryId" id="categoryId">
-			        			<option value="">Select Category</option>
-			        			<!-- modle.categoryList -->
-			        			<c:forEach var="ac" items="${allCategoryList}">
-			        				<option value="${ac.categoryId}">${ac.name}</option>
-			        			</c:forEach>
-			        		</select>
-			        		<button id="btnFilmCategory" type="button" class="btn btn-sm btn-outline-primary">현재필름 카테고리 추가</button>
-			        	</form>
-			        	<!-- 카테고리 리스트 model.filmCategoryList -->
-			        	<div>
-			        		<c:forEach var="fc" items="${filmCategoryList}">
-			        			<div>
-			        				${fc.name}
-			        				&nbsp;
-			        				<a href="${pageContext.request.contextPath}/on/removeFilmCategory?filmId=${fc.filmId}&categoryId=${fc.categoryId}">삭제</a>
-			        			</div>
-			        		</c:forEach>
-			        	</div>
-		        	</div>
+					<div style="clear: both;"></div><!-- float clear -->
 				</div>
-				<div>
-					<h5>작품에 출연한 배우들</h5>
-					<div>
-						<form id="formSearchName" method=get action="${pageContext.request.contextPath}/on/filmOne"><!-- 배우이름 검색 -->
-							<input type="hidden" name="filmId" value="${film.filmId}">
-							<input type="text" name="searchName" id="searchName" style="width: 200px">
-							<button id="btnSearchName" type="button" class="btn btn-sm btn-outline-primary">이름검색</button>
-						</form>
-						
-						<form id="formFilmActor" method="post" action="${pageContext.request.contextPath}/on/addFilmActorByFilm"><!-- 출연배우 검색 -->
-							<input type="hidden" name="filmId" value="${film.filmId}">
-							<select name="actorId" id="actorId" size="5" style="width: 200px">
+				<!-- 배우이름 검색 -->
+				<div class="d-flex justify-content-between mb-2" style="width:400px;">
+					<span style="color: red;">${addFilmActorMsg}</span>
+					<form id="formSearchName" method=get action="${pageContext.request.contextPath}/on/filmOne">
+						<input type="hidden" name="filmId" value="${film.filmId}">
+						<input type="text" name="searchName" id="searchName" style="width: 180px">
+						<button id="btnSearchName" type="button" class="btn btn-sm btn-outline-success">Search</button>
+					</form>
+				</div>
+				<!-- 출연배우 검색 -->
+				<div class="d-flex justify-content-end" style="width:400px;">	
+					<form id="formFilmActor" method="post" action="${pageContext.request.contextPath}/on/addFilmActorByFilm">
+						<input type="hidden" name="filmId" value="${film.filmId}">
+						<c:if test="${empty searchActorList}">
+							<br>
+						</c:if>
+						<c:if test="${not empty searchActorList}">
+							<select name="actorId" id="actorId" size="5" style="width: 245px; text-align: left;">
 								<!-- model.searchActorList -->
 								<c:forEach var="sa" items="${searchActorList}">
-									<option value="${sa.actorId}">${sa.firstName} ${sa.lastName}</option>
+									<option value="${sa.actorId}">[${sa.actorId}] ${sa.firstName} ${sa.lastName}</option>
 								</c:forEach>
 							</select>
-							<button id="btnFilmActor" type="button" class="btn btn-sm btn-outline-primary">출연배우 추가</button>
-						</form>
-						<span style="color: red; margin-left: 15px;">${addFilmActorMsg}</span>
-					</div>
+						<div class="d-flex justify-content-end mt-1">
+							<button id="btnFilmActor" type=	"button" class="btn btn-sm btn-outline-primary">Add Actor</button>
+						</div>
+						</c:if>
+					</form>
 				</div>
 			</div>
 		</div>

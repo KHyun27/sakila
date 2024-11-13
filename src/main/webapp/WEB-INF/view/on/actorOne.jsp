@@ -249,7 +249,7 @@
 							</div>
 							<div class="d-flex justify-content-end" style="width: 500px;">
 								<c:if test="${not empty searchFilmList}">
-									<button id="btnAddFilm" type="button" class="btn btn-sm btn-outline-success">Add</button>
+									<button id="btnAddFilm" type="button" class="btn btn-sm btn-outline-primary">Add Film</button>
 								</c:if>
 							</div>
 						</form>

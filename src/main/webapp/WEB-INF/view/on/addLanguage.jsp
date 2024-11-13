@@ -52,6 +52,7 @@
 					<div class="d-flex justify-content-end" style="width: 400px">
 						<div>
 							<button id="btnAddLanguage" type="button" class="btn btn-sm btn-outline-success">Language Add</button>
+							<a href="${pageContext.request.contextPath}/on/languageList" class="btn btn-sm btn-outline-danger">Cancel</a>
 						</div>
 					</div>
 				</form>

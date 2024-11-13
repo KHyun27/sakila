@@ -29,7 +29,7 @@ public class FilmActorController {
 	    boolean isExists = filmActorService.isFilmActorExists(filmActor);
 	    if (isExists) {
 	        // 이미 존재하는 Film이라면 리다이렉트하면서 메시지를 전달
-	        redirectAttributes.addFlashAttribute("addFilmActorMsg", "이미 등록된 Film 입니다");
+	        redirectAttributes.addFlashAttribute("addFilmActorMsg", "등록된 Film 입니다");
 	        return "redirect:/on/actorOne?actorId=" + filmActor.getActorId();
 	    }
 	    
@@ -53,7 +53,7 @@ public class FilmActorController {
 	    boolean isExists = filmActorService.isFilmActorExists(filmActor);
 	    if (isExists) {
 	        // 이미 존재하는 Actor라면 리다이렉트하면서 메시지를 전달
-	        redirectAttributes.addFlashAttribute("addFilmActorMsg", "이미 등록된 Actor 입니다");
+	        redirectAttributes.addFlashAttribute("addFilmActorMsg", "등록된 Actor 입니다");
 	        return "redirect:/on/filmOne?filmId=" + filmActor.getFilmId();
 	    }
 	    

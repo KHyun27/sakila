@@ -75,17 +75,19 @@
 	<update id="updateFilm" parameterType="com.example.sakila.vo.Film">
 		UPDATE film
 			<set>
-				<if test="title != null and title != ''">title = #{title}</if>
-				<if test="description != null and description != ''">description = #{description}</if>
-				<if test="releaseYear != null and releaseYear != ''">releaseYear = #{releaseYear}</if>
-				<if test="languageId != null and languageId != ''">language_id = #{languageId}</if>
-				<if test="originalLanguageId != null and originalLanguageId != ''">original_language_id = #{originalLanguageId}</if>
-				<if test="rentalDuration != null and rentalDuration != ''">rental_duration = #{rentalDuration}</if>
-				<if test="rentalRate != null and rentalRate != ''">rental_rate = #{rentalRate}</if>
-				<if test="length != null and length != ''">length = #{length}</if>
-				<if test="replacementCost != null and replacementCost != ''">replacement_cost = #{replacementCost}</if>
-				<if test="rating != null and rating != ''">rating = #{rating}</if>
-				<if test="specialFeatures != null and specialFeatures != ''">special_features = #{specialFeatures}</if>
+				<if test="title != null and title != ''">title = #{title},</if>
+				<if test="description != null and description != ''">description = #{description},</if>
+				<if test="releaseYear != null and releaseYear != ''">releaseYear = #{releaseYear},</if>
+				<if test="languageId != null and languageId != ''">language_id = #{languageId},</if>
+				<if test="originalLanguageId != null and originalLanguageId != ''">original_language_id = #{originalLanguageId},</if>
+				<if test="rentalDuration != null and rentalDuration != ''">rental_duration = #{rentalDuration},</if>
+				<if test="rentalRate != null and rentalRate != ''">rental_rate = #{rentalRate},</if>
+				<if test="length != null and length != ''">length = #{length},</if>
+				<if test="replacementCost != null and replacementCost != ''">replacement_cost = #{replacementCost},</if>
+				<if test="rating != null and rating != ''">rating = #{rating},</if>
+				<!-- specialFeatures 처리 -->
+		        <if test="specialFeatures != null">special_features = #{specialFeatures},</if>
+		        <if test="specialFeatures == null">special_features = null,</if>
 			</set>
 		WHERE film_id = #{filmId}
 	</update>

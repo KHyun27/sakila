@@ -10,6 +10,7 @@
 	<script>
 		$(document).ready(function() {
 			
+			// Title
 			$('#btnTitle').click(function(){
 				if($('#title').val() == '') {
 					alert('수정 할 Title을 입력해주세요');
@@ -18,11 +19,86 @@
 				}
 			});
 			
+			// Description
+			$('#btnDescription').click(function(){
+				if($('#description').val() == '') {
+					alert('수정 할 Description을 입력해주세요');
+				} else {
+					$('#formDescription').submit();	
+				}
+			});
+			
+			// ReleaseYear
+			
+			// Language
 			$('#btnLanguage').click(function(){
-				if($('#language').val() == '') {
+				if($('#languageId').val() == '') {
 					alert('수정 할 Language를 입력해주세요');
 				} else {
 					$('#formLanguage').submit();	
+				}
+			});
+			
+			// OriginalLanguage
+			$('#btnOriginalLanguage').click(function(){
+				if($('#originalLanguageId').val() == '') {
+					alert('수정 할 OriginalLanguage를 입력해주세요');
+				} else {
+					$('#formOriginalLanguage').submit();	
+				}
+			});
+			
+			// Length
+			$('#btnLength').click(function(){
+				if($('#length').val() == '') {
+					alert('수정 할 Length를 입력해주세요');
+				} else {
+					$('#formLength').submit();	
+				}
+			});
+			
+			// Special Features
+			$('#btnSpecialFeatures').click(function(){
+				if($('#specialFeatures').val() == '') {
+					alert('수정 할 Special Features를 입력해주세요');
+				} else {
+					$('#formSpecialFeatures').submit();	
+				}
+			});
+			
+			// Rental Rate
+			$('#btnRentalRate').click(function(){
+				if($('#rentalRate').val() == '') {
+					alert('수정 할 Rental Rate를 입력해주세요');
+				} else {
+					$('#formRentalRate').submit();	
+				}
+			});
+			
+			// Rental Duration
+			$('#btnRentalDuration').click(function(){
+				if($('#rentalDuration').val() == '') {
+					alert('수정 할 Rental Duration를 입력해주세요');
+				} else {
+					$('#formRentalDuration').submit();	
+				}
+			});
+			
+			// Replacement Cost
+			$('#btnReplacementCost').click(function(){
+				if($('#replacementCost').val() == '') {
+					alert('수정 할 Replacement Cost를 입력해주세요');
+				} else {
+					$('#formReplacementCost').submit();	
+				}
+			});
+			
+			// Rating
+			$('#btnRating').click(function(){
+				if($('#rating').val() == '') {
+					alert('수정 할 Rating을 입력해주세요');
+				} else {
+					$('#formRating').submit();	
 				}
 			});
 			
@@ -106,9 +182,14 @@
 					        <td>
 					        	<form id="formReleaseYear" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between">
-					        			<input type="hidden" name="filmId" value="${film.filmId}">
-					        			<input type="text" id="releaseYear" name="releaseYear" value="${film.releaseYear}">
-					        			<button id="btnReleaseYear" type="button" class="btn btn-sm btn-outline-primary">ReleaseYear 수정</button>
+					        			<span>
+						        			<input type="hidden" name="filmId" value="${film.filmId}">
+						        			<input type="text" id="releaseYear" name="releaseYear" value="${film.releaseYear}">
+						        			<span style="margin-left: 5px;">Year</span>
+				        				</span>
+				        				<span>
+					        				<button id="btnReleaseYear" type="button" class="btn btn-sm btn-outline-primary">ReleaseYear 수정</button>
+					        			</span>
 					        		</div>
 				        		</form>
 					        </td>
@@ -136,7 +217,7 @@
 					        	<form id="formOriginalLanguage" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between">
 					        			<input type="hidden" name="filmId" value="${film.filmId}">
-					        			<select id="languageId" name="languageId">
+					        			<select id="originalLanguageId" name="originalLanguageId">
 							    			<option selected="selected" value="${film.originalLanguageId}">${film.originalLanguage}</option>
 							    			<c:forEach var="la" items="${languageList}">
 							    				<option value="${la.languageId}">${la.name}</option>
@@ -152,9 +233,14 @@
 					        <td>
 					        	<form id="formLength" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between">
-					        			<input type="hidden" name="filmId" value="${film.filmId}">
-					        			<input type="number" id="length" name="length" value="${film.length}">
-					        			<button id="btnLength" type="button" class="btn btn-sm btn-outline-primary">Length 수정</button>
+					        			<span>
+						        			<input type="hidden" name="filmId" value="${film.filmId}">
+						        			<input type="number" id="length" name="length" value="${film.length}">
+						        			<span style="margin-left: 5px;">Minute</span>
+					        			</span>
+					        			<span>
+					        				<button id="btnLength" type="button" class="btn btn-sm btn-outline-primary">Length 수정</button>
+					        			</span>
 					        		</div>
 				        		</form>
 					        </td>
@@ -162,7 +248,7 @@
 				    	<tr>
 				        	<th>Special Features</th>
 					        <td>
-					        	<form id="formTitle" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
+					        	<form id="formSpecialFeatures" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between align-items-center">
 					        			<input type="hidden" name="filmId" value="${film.filmId}">
 					        			<div>
@@ -184,7 +270,7 @@
 									                <c:if test="${sf == 'Behind the Scenes'}">checked</c:if>
 									            </c:forEach>> Behind the Scenes<br>            
 							    		</div>
-					        			<button id="btnTitle" type="button" class="btn btn-sm btn-outline-primary">Special Features 수정</button>
+					        			<button id="btnSpecialFeatures" type="button" class="btn btn-sm btn-outline-primary">Special Features 수정</button>
 					        		</div>
 				        		</form>
 					        </td>
@@ -194,9 +280,14 @@
 					        <td>
 					        	<form id="formRentalRate" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between">
-					        			<input type="hidden" name="filmId" value="${film.filmId}">
-					        			<input type="number" id="rentalRate" name="rentalRate" value="${film.rentalRate}">
-					        			<button id="btnRentalRate" type="button" class="btn btn-sm btn-outline-primary">Rental Rate 수정</button>
+					        			<span>
+						        			<input type="hidden" name="filmId" value="${film.filmId}">
+						        			<input type="number" id="rentalRate" name="rentalRate" value="${film.rentalRate}">
+						        			<span style="margin-left: 5px;">$</span>
+					        			</span>
+					        			<span>
+					        				<button id="btnRentalRate" type="button" class="btn btn-sm btn-outline-primary">Rental Rate 수정</button>
+					        			</span>
 					        		</div>
 				        		</form>
 					        </td>
@@ -206,9 +297,14 @@
 					        <td>
 					        	<form id="formRentalDuration" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between">
-					        			<input type="hidden" name="filmId" value="${film.filmId}">
-					        			<input type="number" id="rentalDuration" name="rentalDuration" value="${film.rentalDuration}">
-					        			<button id="btnRentalDuration" type="button" class="btn btn-sm btn-outline-primary">Rental Duration 수정</button>
+					        			<span>
+						        			<input type="hidden" name="filmId" value="${film.filmId}">
+						        			<input type="number" id="rentalDuration" name="rentalDuration" value="${film.rentalDuration}">
+						        			<span style="margin-left: 5px;">Days</span>
+					        			</span>
+					        			<span>
+					        				<button id="btnRentalDuration" type="button" class="btn btn-sm btn-outline-primary">Rental Duration 수정</button>
+					        			</span>
 					        		</div>
 				        		</form>
 					        </td>
@@ -218,9 +314,14 @@
 					        <td>
 					        	<form id="formReplacementCost" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between">
-					        			<input type="hidden" name="filmId" value="${film.filmId}">
-					        			<input type="number" id="replacementCost" name="replacementCost" value="${film.replacementCost}">
-					        			<button id="btnReplacementCost" type="button" class="btn btn-sm btn-outline-primary">Replacement Cost 수정</button>
+					        			<span>
+						        			<input type="hidden" name="filmId" value="${film.filmId}">
+						        			<input type="number" id="replacementCost" name="replacementCost" value="${film.replacementCost}">
+						        			<span style="margin-left: 5px;">$</span>
+					        			</span>
+					        			<span>
+					        				<button id="btnReplacementCost" type="button" class="btn btn-sm btn-outline-primary">Replacement Cost 수정</button>
+					        			</span>
 					        		</div>
 				        		</form>
 					        </td>
@@ -228,7 +329,7 @@
 				    	<tr>
 				        	<th>Rating <span style="color: red;">*</span></th>
 					        <td>
-					        	<form id="formTitle" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
+					        	<form id="formRating" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between align-items-center">
 					        			<input type="hidden" name="filmId" value="${film.filmId}">
 					        			<div>
@@ -243,7 +344,7 @@
 								            <input type="radio" name="rating" class="rating" value="NC-17" 
 								                <c:if test="${film.rating == 'NC-17'}">checked</c:if>> NC-17<br>
 					        			</div>
-					        			<button id="btnTitle" type="button" class="btn btn-sm btn-outline-primary">Rating 수정</button>
+					        			<button id="btnRating" type="button" class="btn btn-sm btn-outline-primary">Rating 수정</button>
 					        		</div>
 				        		</form>
 					        </td>
