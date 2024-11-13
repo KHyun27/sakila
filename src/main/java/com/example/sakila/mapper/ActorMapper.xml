@@ -61,4 +61,11 @@
 		DELETE FROM actor
 		WHERE actor_id = #{actorId}
 	</delete>
+	
+	<!-- selectActorListByActor Query : searchName 검색 결과 리스트 -->
+	<select id="selectActorListByActor" parameterType="String" resultType="com.example.sakila.vo.Actor">
+		SELECT actor_id actorId, first_name firstName, last_name lastName FROM actor
+		WHERE first_name LIKE CONCAT('%', #{searchWord}, '%') OR last_name LIKE CONCAT('%', #{searchWord}, '%')
+	</select>
+	
 </mapper>

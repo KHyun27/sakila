@@ -12,7 +12,7 @@ public interface ActorMapper {
 	
 	int insertActor(Actor actor);
 	
-	// actorList 출력
+	// /on/actorList 출력 → List출력(page) 
 	List<Actor> selectActorList(Map<String, Object> map);
 	
 	// actorListCount
@@ -32,5 +32,8 @@ public interface ActorMapper {
 	
 	// /on/removeActor
 	int deleteActor(int actorId);
+	
+	// /on/filmOne → searchName 검색 결과 리스트
+	List<Actor> selectActorListByActor(String searchName);
 
 }

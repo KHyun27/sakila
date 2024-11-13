@@ -17,4 +17,15 @@
 		SELECT fc.film_id filmId, fc.category_id categoryId, c.`name` name 
 		FROM film_category fc INNER JOIN category c ON fc.category_id = c.category_id WHERE film_id = #{filmId};
 	</select>
+	
+	<!-- insertFilmCategory Query : Film에 Category 추가 -->
+	<insert id="insertFilmCategory" parameterType="com.example.sakila.vo.FilmCategory">
+		INSERT INTO film_category(film_id, category_id) VALUES(#{filmId}, #{categoryId})
+	</insert>
+	
+	<!-- deleteFilmCategory Query : Film에 등록된 Cateogry 삭제 -->
+	<delete id="deleteFilmCategory" parameterType="com.example.sakila.vo.FilmCategory">
+		DELETE FROM film_category WHERE film_id = #{filmId} AND category_id = #{categoryId}
+	</delete>
+	
 </mapper>

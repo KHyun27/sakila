@@ -107,7 +107,7 @@
 					        	<form id="formReleaseYear" method="post" action="${pageContext.request.contextPath}/on/modifyFilm">
 					        		<div class="d-flex justify-content-between">
 					        			<input type="hidden" name="filmId" value="${film.filmId}">
-					        			<input type="number" id="releaseYear" name="releaseYear" value="${film.releaseYear}">
+					        			<input type="text" id="releaseYear" name="releaseYear" value="${film.releaseYear}">
 					        			<button id="btnReleaseYear" type="button" class="btn btn-sm btn-outline-primary">ReleaseYear 수정</button>
 					        		</div>
 				        		</form>

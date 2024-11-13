@@ -36,41 +36,39 @@ public class FilmController {
 	@Autowired LanguageService languageService;
 	@Autowired CategoryService categoryService;
 	@Autowired InventoryService inventoryService;
-	@Autowired FilmCategoryService filmcsCategoryService;
+	@Autowired FilmCategoryService filmCategoryService;
 	
 	@GetMapping("/on/filmOne")
-	public String filmOne(Model model, @RequestParam int filmId, @RequestParam(required = false) String searchName) {
-		/*
-		 * + 1) 현재 필름
-		 * + 2) 전체 카테고리 리스트
-		 * + 3) 현재 필름의 카테고리
-		 * 4) 검색 배우 리스트(searchName이 null이 아닐때만)
-		 * + 5) 현재필름의 배우 리스트	
-		 */
+	public String filmOne(Model model, @RequestParam Integer filmId, @RequestParam(required = false) String searchName) {
 		
-		// 1)
+		// 1) 현재 필름
 		Map<String, Object> film = filmService.getFilmOne(filmId);
 		log.debug("film : " + film.toString()); // debug
 		
-		// 2)
+		// 2) 전체 카테고리 리스트
 		List<Category> allCategoryList = categoryService.getCategoryList();
 		log.debug("allCategoryList : " + allCategoryList.toString()); // debug
 		
-		// 3)
-		List<Map<String, Object>> filmCategoryList = filmcsCategoryService.getFilmCategoryListByFilm(filmId);
+		// 3) 현재 필름의 카테고리
+		List<Map<String, Object>> filmCategoryList = filmCategoryService.getFilmCategoryListByFilm(filmId);
 		log.debug("filmCategoryList : " + filmCategoryList.toString()); // debug
 		
-		// 4)
+		// 4) 검색 배우 리스트(searchName이 null이 아닐때만)
+		if(searchName != null) { // 검색이가 null이 아니라면
+			List<Actor> searchActorList = actorService.getActorListByActor(searchName);
+			log.debug("searchActorList : " + searchActorList.toString()); // debug
+			model.addAttribute("searchActorList", searchActorList); // 4)
+		}
 		
-		// 5
+		// 5) 현재필름의 배우 리스트
 		List<Actor> actorList = actorService.getActorListByFilm(filmId);
 		log.debug("actorList : " + actorList.toString()); // debug
 		
 		
-		model.addAttribute("film", film);
-		model.addAttribute("allCategoryList", allCategoryList);
-		model.addAttribute("filmCategoryList", filmCategoryList);
-		model.addAttribute("actorList", actorList);
+		model.addAttribute("film", film); // 1)
+		model.addAttribute("allCategoryList", allCategoryList); // 2)
+		model.addAttribute("filmCategoryList", filmCategoryList); // 3)
+		model.addAttribute("actorList", actorList); // 5)
 		
 		return "on/filmOne";
 	}

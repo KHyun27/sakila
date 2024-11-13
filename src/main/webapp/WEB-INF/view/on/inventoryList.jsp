@@ -18,23 +18,9 @@
 			margin-top: 50px;
 			margin-left: 50px;
 		}
-		.remove-link {
-        	color: red;
-        	text-decoration: none;
-        }
-        
-        .remove-link:hover {
-            color: #002266;
-            text-decoration: none;
-        }
-        
-        .remove-link:visited {
-        	color: red;
-        	text-decoration: none;
-        }
 	</style>
 	<meta charset="UTF-8">
-	<title>Store List</title>
+	<title>Inventory List</title>
 </head>
 
 <body class="container-fluid bg-light p-3">
@@ -53,7 +39,7 @@
 				<!-- main -->
 				<table class="table table-success text-center" style="width:1300px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 					<tr>
-						<th style="font-size: large;">Store List</th>
+						<th style="font-size: large;">Store [${storeId}] : Inventory List</th>
 					</tr>
 				</table>
 				
@@ -61,41 +47,25 @@
 				
 				<table class="table text-center" style="width:1300px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 					<thead class=table-success>
-					<tr>
-						<th>Store ID</th>
-						<th>Inventory</th>
-						<th>Store Address</th>
-						<th>Postal Code</th>
-						<th>Staff ID</th>
-						<th>Staff Name</th>
-						<th>Phone</th>
-						<th>Manager Staff ID</th>
+						<tr>
+						<th>Inventory Id</th>
+						<th>Film Id</th>
+						<th>Title</th>
 						<th>Last Update</th>
-						<th>Remove</th>
 					</tr>
 					</thead>
-					<c:forEach var="s" items="${storeList}">
+					<c:forEach var="iv" items="${inventoryList}">
 						<tr>
-							<td>${s.storeId}</td>
-							<td>
-								<a href="${pageContext.request.contextPath}/on/inventoryList?storeId=${s.storeId}" class="remove-link text-primary">Inventory</a>
-							</td>
-							<td>${s.address}${s.address2}, ${s.district}, ${s.city}, ${s.country}</td>
-							<td>${s.postalCode}</td>
-							<td>${s.staffId}</td>
-							<td>${s.firstName} ${s.lastName}</td>
-							<td>${s.phone}</td>
-							<td>${s.managerStaffId}</td>
-							<td>${s.lastUpdate}</td>
-							<td>
-								<a href="" class="remove-link text-danger" style="font-size: small;">Remove</a>
-							</td>
+							<td>${iv.inventoryId}</td>
+							<td>${iv.filmId}</td>
+							<td>${iv.title}</td>
+							<td>${iv.lastUpdate}</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<div class="d-flex justify-content-end" style="width: 1300px;">
-					<a href="${pageContext.request.contextPath}/on/addStore" class="btn btn-sm btn-outline-primary" style="margin-right: 5px;">Add Store</a>
-					<a href="" class="btn btn-sm btn-outline-success">Modify Store</a>
+					<a href="${pageContext.request.contextPath}/on/storeList" class="btn btn-sm btn-outline-primary" style="margin-right: 5px;">Store List</a>
+					<a href="" class="btn btn-sm btn-outline-success">Add Inventory</a>
 				</div>
 			</div>
 		</div>

@@ -176,7 +176,7 @@
 									<td align="right">${f.filmId}</td>
 									<td><a class="film-link" href="${pageContext.request.contextPath}/on/filmOne?filmId=${f.filmId}">${f.title}</a></td>
 	
-									<td><a href="${pageContext.request.contextPath}/on/removeFilmActor?filmId=${f.filmId}&actorId=${actor.actorId}" class="film-link" style="color: red; font-size:small;">삭제</a></td>
+									<td><a href="${pageContext.request.contextPath}/on/removeFilmActorByActor?filmId=${f.filmId}&actorId=${actor.actorId}" class="film-link" style="color: red; font-size:small;">삭제</a></td>
 	
 									<!-- 삭제 시 f.filmId & actor.actorId 필요 -->
 								</tr>
@@ -220,7 +220,7 @@
 					<!-- 출연작 추가 -->
 					<div class="d-flex justify-content-between mb-2" style="width: 500px;">
 						<div>
-							<span style="color: red; margin-left: 15px;">${existsMsg}</span>
+							<span style="color: red; margin-left: 15px;">${addFilmActorMsg}</span>
 						</div>
 						<!-- 출연작 추가 -->
 						<div>
@@ -233,7 +233,7 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-end" style="width: 500px; float: none;">
-						<form id="formAddFilm" method="post" action="${pageContext.request.contextPath}/on/addFilmByActor">
+						<form id="formAddFilm" method="post" action="${pageContext.request.contextPath}/on/addFilmActorByActor">
 							<input type="hidden" name="actorId" value="${actor.actorId}">
 							<div class="d-flex justify-content-end mb-2" style="width: 500px;">
 								<c:if test="${empty searchFilmList}">

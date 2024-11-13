@@ -7,4 +7,14 @@
 		SELECT COUNT(*) FROM inventory WHERE film_id = #{filmId}
 	</select>
 	
+	<!-- selectInventoryListByStore Query : Inventory List 조회 -->
+	<!-- 추가 수정 : film x rental x payment x customer 조인필요 -->
+	<select id="selectInventoryListByStore" parameterType="Map" resultType="Map" >
+		SELECT i.inventory_id inventoryId, i.film_id filmId, f.title title, i.last_update lastUpdate
+		FROM inventory i INNER JOIN film f ON i.film_id = f.film_id
+		WHERE i.store_id = #{storeId}
+		ORDER BY i.inventory_id DESC
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+	
 </mapper>

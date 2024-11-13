@@ -132,4 +132,9 @@ public class ActorService {
 			}
 		}
 	}
+	
+	// /on/filmOne → searchName 검색 결과 리스트
+	public List<Actor> getActorListByActor(String searchName) {
+		return actorMapper.selectActorListByActor(searchName);
+	}
 }
