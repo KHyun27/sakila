@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -28,7 +29,48 @@
 				}
 			});
 			
+			// 인풋에서 엔터키가 눌리면 버튼 클릭 이벤트 실행
+			$('#releaseYear').keydown(function(event) {
+			    if (event.key === 'Enter') { // Enter 키가 눌렸을 때
+			    	if ($('#releaseYear').val() == '') {
+				        alert('수정 할 ReleaseYear를 입력해주세요');
+				        return false;
+				    } else if ($('#releaseYear').val().length != 4) {
+				    	// ReleaseYear가 숫자 4자리인지 확인
+				        alert('ReleaseYear는 4자리 숫자여야 합니다');
+				    	return false;
+				    } else if ($('#releaseYear').val().substring(0, 4) == '1900') {
+				        // 1900년 이하의 값은 유효하지 않음
+				        alert('ReleaseYear는 1900년 이상이어야 합니다');
+				        return false; 
+				    } else if ($('#releaseYear').val().substring(0, 2) != '20' && $('#releaseYear').val().substring(0, 2) != '19') {
+				    	// 앞의 두 자리가 19 또는 20으로 시작하는지 확인
+				        alert('ReleaseYear는 19 또는 20으로 시작하는 4자리 숫자여야 합니다');
+				        return false;
+				    } else {
+				        $('#btnReleaseYear').click(); // 버튼 클릭 이벤트 트리거
+				        $('#formReleaseYear').submit();
+				    }
+			    }
+			});
+			
 			// ReleaseYear
+			$('#btnReleaseYear').click(function() {
+			    if ($('#releaseYear').val() == '') {
+			        alert('수정 할 ReleaseYear를 입력해주세요');
+			        return;
+			    } else if ($('#releaseYear').val().length != 4) {
+			    	// ReleaseYear가 숫자 4자리인지 확인
+			        alert('ReleaseYear는 4자리 숫자여야 합니다.');
+			    	return false;
+			    } else if ($('#releaseYear').val().substring(0, 2) != '20' && $('#releaseYear').val().substring(0, 2) != '19') {
+			    	// 앞의 두 자리가 19 또는 20으로 시작하는지 확인
+			        alert('ReleaseYear는 19 또는 20으로 시작하는 4자리 숫자여야 합니다.');
+			        return false;
+			    } else {
+			        $('#formReleaseYear').submit();
+			    }
+			});
 			
 			// Language
 			$('#btnLanguage').click(function(){
@@ -184,7 +226,7 @@
 					        		<div class="d-flex justify-content-between">
 					        			<span>
 						        			<input type="hidden" name="filmId" value="${film.filmId}">
-						        			<input type="text" id="releaseYear" name="releaseYear" value="${film.releaseYear}">
+						        			<input type="number" id="releaseYear" name="releaseYear" value="${fn:substring(film.releaseYear.toString(), 0, 4)}">
 						        			<span style="margin-left: 5px;">Year</span>
 				        				</span>
 				        				<span>

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -35,7 +36,6 @@
 					$('#formFilmActor').submit();	
 				}
 			});
-			
 		});
 	</script>
 	<style>
@@ -125,7 +125,7 @@
 					    </tr>
 					    <tr>
 					        <th>ReleaseYear</th>
-					        <td>${film.releaseYear}</td>
+					        <td>${fn:substring(film.releaseYear.toString(), 0, 4)}</td>
 					    </tr>
 					    <tr>
 					        <th>Language</th>

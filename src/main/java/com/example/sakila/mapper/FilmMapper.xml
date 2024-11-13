@@ -21,6 +21,8 @@
 		WHERE film_id = #{filmId}
 	</select>
 	
+	
+	
 	<!-- insertFilm Query -->
 	<insert id="insertFilm" parameterType="com.example.sakila.vo.Film">
 		INSERT INTO film(title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length
@@ -77,7 +79,7 @@
 			<set>
 				<if test="title != null and title != ''">title = #{title},</if>
 				<if test="description != null and description != ''">description = #{description},</if>
-				<if test="releaseYear != null and releaseYear != ''">releaseYear = #{releaseYear},</if>
+				<if test="releaseYear != null and releaseYear != ''">release_year = #{releaseYear},</if>
 				<if test="languageId != null and languageId != ''">language_id = #{languageId},</if>
 				<if test="originalLanguageId != null and originalLanguageId != ''">original_language_id = #{originalLanguageId},</if>
 				<if test="rentalDuration != null and rentalDuration != ''">rental_duration = #{rentalDuration},</if>

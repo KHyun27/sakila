@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -145,7 +146,7 @@
 							<td>${f.rentalDuration} day</td>
 							<td>${f.rentalRate} $</td>
 							<td>${f.replacementCost} $</td>
-							<td>${f.releaseYear}</td>
+							<td>${fn:substring(f.releaseYear.toString(), 0, 4)}</td>
 						</tr>
 					</c:forEach>
 				</table>

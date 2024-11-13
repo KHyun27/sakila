@@ -44,7 +44,7 @@ public class FilmController {
 		// 1) 현재 필름
 		Map<String, Object> film = filmService.getFilmOne(filmId);
 		log.debug("film : " + film.toString()); // debug
-		
+		log.debug("releaseYear : "+film.get("releaseYear"));
 		// 2) 전체 카테고리 리스트
 		List<Category> allCategoryList = categoryService.getCategoryList();
 		log.debug("allCategoryList : " + allCategoryList.toString()); // debug
