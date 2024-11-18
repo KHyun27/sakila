@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.sakila.vo.Inventory;
+
 @Mapper
 public interface InventoryMapper {
 	
@@ -14,4 +16,9 @@ public interface InventoryMapper {
 	// /on/inventoryList : storeId 별 inventoryList 조회
 	List<Map<String, Object>> selectInventoryListByStore(Map<String, Object> paramMap);
 	
+	// /on/addInventory : 인벤토리에 Film 추가
+	Integer insertInventory(Inventory inventory);
+	
+	// /on/removeInventoryByKey
+	Integer deleteInventoryByKey(Integer inventoryId);
 }

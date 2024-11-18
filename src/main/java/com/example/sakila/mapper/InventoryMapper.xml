@@ -17,4 +17,13 @@
 		LIMIT #{beginRow}, #{rowPerPage}
 	</select>
 	
+	<!-- insertInventory Query : Inventory에 Film 추가 -->
+	<insert id="insertInventory" parameterType="com.example.sakila.vo.Inventory">
+		INSERT INTO inventory(film_id, store_id) VALUES(#{filmId}, #{storeId});
+	</insert>
+	
+	<!-- deleteInventoryByKey Query : Inventory 삭제 -->
+	<delete id="deleteInventoryByKey" parameterType="Integer">
+		DELETE FROM inventory WHERE inventory_id = #{inventoryId}
+	</delete>
 </mapper>

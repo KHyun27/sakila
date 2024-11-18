@@ -44,10 +44,6 @@
            		Post - /on/addStore → StoreController.addStore(Store)  
             -->
         </li>
-        
-        <li class="list-group-item">
-            <a href="${pageContext.request.contextPath}/on/addInventory">Inventory Add</a>
-        </li>
     </ul>
 
     <hr>
@@ -58,11 +54,11 @@
         </li>
 
         <li class="list-group-item">
-            <a href="">Customer List</a>
+            <a href="${pageContext.request.contextPath}/on/customerList">Customer List</a>
         </li>
 
         <li class="list-group-item">
-            <a href="">Customer Add</a>
+            <a href="${pageContext.request.contextPath}/on/addCustomer">Customer Add</a>
         </li>
     </ul>
 
