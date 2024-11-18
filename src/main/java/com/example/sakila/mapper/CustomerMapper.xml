@@ -7,4 +7,27 @@
 		INSERT INTO customer(store_id, first_name, last_name, email, address_id, create_date) VALUES(#{storeId}, #{firstName}, #{lastName}, #{email}, #{addressId}, now())
 	</insert>
 
+	<!-- selectCustomerList Query : 고객 리스트 조회 -->
+	<select id="selectCustomerList" parameterType="Map" resultType="com.example.sakila.vo.Customer">
+		SELECT customer_id customerId, store_id storeId, first_name firstName, last_name lastName, address_id addressId, email, create_date createDate, last_update lastUpdate, active
+		FROM customer
+		<where>
+			<if test="searchWord != null and searchWord != ''">
+				first_name LIKE CONCAT('%', #{searchWord}, '%') OR last_name LIKE CONCAT('%', #{searchWord}, '%')
+			</if>
+		</where>
+		ORDER BY customer_id DESC
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+	
+	<!-- selectCustomerCount Query : 고객 리스트 페이징을 위한 갯수 조회 (searchWord) -->
+	<select id="selectCustomerCount" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM customer
+		<where>
+			<if test="searchWord != null">
+				first_name LIKE CONCAT('%', #{searchWord), '%') OR last_name LIKE CONCAT('%', #{searchWord}, '%')
+			</if>
+		</where>		
+	</select>
+
 </mapper>

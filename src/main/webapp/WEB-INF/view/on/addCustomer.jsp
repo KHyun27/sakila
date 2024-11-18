@@ -28,7 +28,11 @@
 				}
 			});
 			
+			// Customer 추가 submit 버튼  
 			$('#btnAddCustomer').click(function() {
+				
+				// 입력폼 유효성 검사
+				
 				$('#formAddCustomer').submit();
 			});
 			

@@ -58,7 +58,18 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/on/customerList")
-	public String customerList() {
+	public String customerList(Model model, @RequestParam(defaultValue = "1") Integer currentPage, 
+											@RequestParam(defaultValue = "10") Integer rowPerPage, 
+											@RequestParam(required = false) String searchWord) {
+		
+		Map<String, Object> resultMap = customerService.getCustomerList(currentPage, rowPerPage, searchWord);
+		
+		model.addAttribute("currentPage", currentPage);
+		// 가독성을 위해서 resultMap 풀어서 .. 
+		model.addAttribute("startPagingNum", resultMap.get("startPagingNum"));
+		model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
+		model.addAttribute("customerList", resultMap.get("customerList"));
+		model.addAttribute("lastPage", resultMap.get("lastPage"));
 		
 		return "on/customerList";
 	}

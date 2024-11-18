@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -9,8 +10,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			
-			
+			$('#btnSearch').click(function(){
+				if($('#searchWord').val() == '') {
+					alert('검색어를 입력하세요');
+					return;
+				}
+				$('#formSearch').submit();
+			});
 		});
 	</script>
 	<style>
@@ -94,18 +100,104 @@
 					<thead class="table-success">
 						<tr>
 							<th>Customer ID</th>
+							<th>Store ID</th>
 							<th>First Name</th>
 							<th>Last Name</th>
 							<th>Address ID</th>
 							<th>Email</th>
-							<th>Store ID</th>
+							<th>Create Date</th>
 							<th>Last Update</th>
 							<th>Active</th>
 							<th>활/비활</th>
 						</tr>
 					</thead>
-					
+					<c:forEach var="c" items="${customerList}">
+						<tr>
+							<td>
+								<!-- 고객 상세 정보(주소 x 렌탈 x payment 조인 발생 -->
+								<a href="" class="customer-link" style="color: #002266;">
+									${c.customerId}
+								</a>
+							</td>
+							<td>${c.storeId}</td>
+							<td>${c.firstName}</td>
+							<td>${c.lastName}</td>
+							<td>${c.addressId}</td>
+							<td>${c.email}</td>
+							<td>${fn:substring(c.createDate.toString(), 0, 10)}</td>
+							<td>${fn:substring(c.lastUpdate.toString(), 0, 10)}</td>
+							<td>
+								<c:if test="${c.active == 1}">
+									<span class="text-primary">활성화</span>
+								</c:if>
+								<c:if test="${c.active != 1}">
+									<span class="text-danger">비활성화</span>
+								</c:if>
+							</td>
+							<td>
+								<a href="${pageContext.request.contextPath}" class="customer-link">
+									<c:if test="${c.active == 1}"><span class="text-danger">비활성화</span></c:if>
+									<c:if test="${c.active == 0}"><span class="text-primary">활성화</span></c:if>
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
 				</table>
+				<div class="d-flex justify-content-end" style="width: 1300px;">
+					<form id="formSearch" method="get" action="${pageContext.request.contextPath}/on/customerList">
+						<input type="text" name="searchWord" id="searchWord">
+						<button id="btnSearch" type="button" class="btn btn-sm btn-outline-success">Search</button>
+					</form>
+				</div>
+				<div class="pagination justify-content-center" style="text-align: center; margin-top: 20px; width: 1300px">
+					<!-- Pagination --> <!-- 이전 11 12 13 14 15 16 17 18 19 20 다음 -->
+					<!-- 첫 페이지 -->
+					<c:if test="${!(currentPage > 1)}">
+						<a href="" style="pointer-events: none;">&laquo;</a>
+					</c:if>
+					<c:if test="${currentPage > 1}">
+						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=1">&laquo;</a>
+					</c:if>
+					
+					<!-- 이전 페이지 -->
+					<c:if test="${!(currentPage > 10)}">
+						<a href="" style="pointer-events: none;">Previous</a>
+					</c:if>
+					<c:if test="${currentPage > 10}">
+						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${currentPage - 10}">
+							Previous
+						</a>
+					</c:if>
+					
+					<!-- 페이지 번호 링크 -->
+					<c:forEach var="num" begin="${startPagingNum}" end="${endPagingNum}">
+						<c:if test= "${num == currentPage}">
+							<a class="active">${num}</a>
+						</c:if>
+						<c:if test= "${num != currentPage}">
+							<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${num}">${num}</a>
+						</c:if>
+					</c:forEach>
+					
+					<!-- 다음 페이지 -->
+					<c:if test="${!(currentPage < lastPage)}">
+						<a href="" style="pointer-events: none;">Next</a>
+					</c:if>
+					
+					<c:if test="${currentPage < lastPage}">
+						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${currentPage + 10}">
+							Next
+						</a>
+					</c:if>
+					
+					<!-- 마지막 페이지 -->
+					<c:if test="${!(currentPage < lastPage)}">
+						<a href="" style="pointer-events: none;">&raquo;</a>
+					</c:if>
+					<c:if test="${currentPage < lastPage}">
+						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${lastPage}">&raquo;</a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</div>

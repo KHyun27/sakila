@@ -144,7 +144,7 @@
 					<c:if test="${currentPage > 1}">
 						<a href="${pageContext.request.contextPath}/on/staffList?currentPage=${currentPage-1}">Previous</a>
 					</c:if>
-					 <!-- 페이지 번호 링크 -->
+					<!-- 페이지 번호 링크 -->
 				    <c:forEach var="page" begin="1" end="${lastPage}">
 				        <c:if test="${page == currentPage}">
 				            <a class="active">${page}</a> <!-- 현재 활성화 페이지 -->
