@@ -64,6 +64,8 @@ public class CustomerController {
 		
 		Map<String, Object> resultMap = customerService.getCustomerList(currentPage, rowPerPage, searchWord);
 		
+		log.debug("searchWord : " + searchWord);
+		
 		model.addAttribute("currentPage", currentPage);
 		// 가독성을 위해서 resultMap 풀어서 .. 
 		model.addAttribute("startPagingNum", resultMap.get("startPagingNum"));

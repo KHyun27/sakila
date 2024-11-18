@@ -27,6 +27,7 @@ public class CustomerService {
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("beginRow", beginRow);
 		paramMap.put("rowPerPage", rowPerPage);
+		paramMap.put("searchWord", searchWord);
 		
 		// 한 페이지 당 페이징 갯수는 10개씩이라고 가정
 		Integer numPerPage = 10;

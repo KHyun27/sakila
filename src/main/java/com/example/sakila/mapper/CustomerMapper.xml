@@ -12,10 +12,11 @@
 		SELECT customer_id customerId, store_id storeId, first_name firstName, last_name lastName, address_id addressId, email, create_date createDate, last_update lastUpdate, active
 		FROM customer
 		<where>
-			<if test="searchWord != null and searchWord != ''">
-				first_name LIKE CONCAT('%', #{searchWord}, '%') OR last_name LIKE CONCAT('%', #{searchWord}, '%')
-			</if>
-		</where>
+	        <if test="searchWord != null and searchWord != ''">
+	            AND (first_name LIKE CONCAT('%', UPPER(#{searchWord}), '%')
+	            OR last_name LIKE CONCAT('%', UPPER(#{searchWord}), '%'))
+	        </if>
+	    </where>
 		ORDER BY customer_id DESC
 		LIMIT #{beginRow}, #{rowPerPage}
 	</select>
