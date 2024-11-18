@@ -18,6 +18,51 @@
 			margin-top: 50px;
 			margin-left: 50px;
 		}
+		.iv-link {
+        	color: black;
+        	text-decoration: none;
+        }
+        
+        .iv-link:hover {
+            color: #002266;
+            text-decoration: none;
+        }
+        
+        .iv-link:visited {
+        	color: black;
+        	text-decoration: none;
+        }
+		
+		.pagination {
+		  display: flex;
+  		  justify-content: center;
+		}
+		
+		.pagination a {
+		  color: #008000;
+		  float: left;
+		  padding: 6px 12px;
+		  text-decoration: none;
+		  border: 1px solid #ddd;
+		}
+		
+		.pagination a.active {
+		  background-color: #28a745;
+		  color: white;
+		  border: 1px solid #28a745;
+		}
+		
+		.pagination a:hover:not(.active) {background-color: #ddd;}
+		
+		.pagination a:first-child {
+		  border-top-left-radius: 5px;
+		  border-bottom-left-radius: 5px;
+		}
+		
+		.pagination a:last-child {
+		  border-top-right-radius: 5px;
+		  border-bottom-right-radius: 5px;
+		}
 	</style>
 	<meta charset="UTF-8">
 	<title>Inventory List</title>
@@ -49,23 +94,29 @@
 					<thead class=table-success>
 						<tr>
 						<th>Inventory Id</th>
-						<th>Film Id</th>
-						<th>Title</th>
+						<th>[ID] Title</th>
 						<th>Last Update</th>
+						<th>Remove</th>
 					</tr>
 					</thead>
 					<c:forEach var="iv" items="${inventoryList}">
 						<tr>
 							<td>${iv.inventoryId}</td>
-							<td>${iv.filmId}</td>
-							<td>${iv.title}</td>
+							<td>	
+								<a href="${pageContext.request.contextPath}/on/filmOne?filmId=${iv.filmId}" class="iv-link">
+									[${iv.filmId}] ${iv.title}
+								</a>
+							</td>
 							<td>${iv.lastUpdate}</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/on/removeInventoryByKey?inventoryId=${iv.inventoryId}&storeId=${storeId}" class="iv-link text-danger" style="font-size: small;">Remove</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<div class="d-flex justify-content-end" style="width: 1300px;">
 					<a href="${pageContext.request.contextPath}/on/storeList" class="btn btn-sm btn-outline-primary" style="margin-right: 5px;">Store List</a>
-					<a href="" class="btn btn-sm btn-outline-success">Add Inventory</a>
+					<a href="${pageContext.request.contextPath}/on/addInventory?storeId=${storeId}" class="btn btn-sm btn-outline-success">Add Inventory</a>
 				</div>
 			</div>
 		</div>

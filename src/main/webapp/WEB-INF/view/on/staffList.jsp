@@ -16,6 +16,21 @@
 			margin-top: 50px;
 			margin-left: 50px;
 		}
+		.staff-link {
+        	color: black;
+        	text-decoration: none;
+        }
+        
+        .staff-link:hover {
+            color: #002266;
+            text-decoration: none;
+        }
+        
+        .staff-link:visited {
+        	color: black;
+        	text-decoration: none;
+        }
+		
 		.pagination {
 		  display: flex;
   		  justify-content: center;
@@ -79,7 +94,7 @@
 						<th>Last Name</th>
 						<th>Address ID</th>
 						<th>Email</th>
-						<th>Store_id</th>
+						<th>Store ID</th>
 						<th>Username</th>
 						<th>Last Update</th>
 						<th>Active</th>
@@ -98,16 +113,16 @@
 							<td>${s.lastUpdate}</td>
 							<td>
 								<c:if test="${s.active == 1}">
-									활성화
+									<span class="text-primary">활성화</span>
 								</c:if>
 								<c:if test="${s.active != 1}">
-									비활성화
+									<span class="text-danger">비활성화</span>
 								</c:if>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/modifyStaffActive?staffId=${s.staffId}&active=${s.active}&currentPage=${currentPage}">
-									<c:if test="${s.active == 1}">비활성화</c:if>
-									<c:if test="${s.active == 2}">활성화</c:if>
+								<a href="${pageContext.request.contextPath}/modifyStaffActive?staffId=${s.staffId}&active=${s.active}&currentPage=${currentPage}" class="staff-link">
+									<c:if test="${s.active == 1}"><span class="text-danger">비활성화</span></c:if>
+									<c:if test="${s.active == 2}"><span class="text-primary">활성화</span></c:if>
 								</a>
 							</td>
 						</tr>

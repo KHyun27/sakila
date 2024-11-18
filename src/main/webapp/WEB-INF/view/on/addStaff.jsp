@@ -64,6 +64,14 @@
 			margin-top: 50px;
 			margin-left: 50px;
 		}
+		.table th {
+	    padding-left: 50px;
+        text-align: left;
+    	}
+    	.table td {
+    	padding-left: 90px;
+        text-align: left;
+    	}
 	</style>
 	<meta charset="UTF-8">
 	<title>addStaff</title>
@@ -85,7 +93,7 @@
 				<!-- main -->
 				<table class="table table-success text-center" style="width:600px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 					<tr>
-						<th style="font-size: large;">Staff Add</th>
+						<th style="font-size: medium; padding-left: 0px;" class="text-center">Staff Add</th>
 					</tr>
 				</table>
 				
@@ -94,14 +102,13 @@
 				
 				<form id="formAddress" method="get" action="${pageContext.request.contextPath}/on/addStaff">
 					<input id="searchAddress" type="text" name="searchAddress" placeholder="Search Address ..." >
-					<button id="btnAddress" type="button" class="btn btn-sm btn-outline-primary">Search</button>
+					<button id="btnAddress" type="button" class="btn btn-sm btn-outline-success">Search</button>
 				</form>
-				<div>
+				<div style="margin-top: 5px;">
 					<c:if test="${empty addressList}">
 						<br>
 					</c:if>
 					<c:if test="${not empty addressList}"> 
-					<h5>Select Address</h5>
 						<select id="resultAddress" size="7">
 							<c:forEach var="a" items="${addressList}">
 								<option value="${a.addressId}">[${a.addressId}] ${a.address}</option>
@@ -116,7 +123,7 @@
 				<form id="addForm" method="post" action="${pageContext.request.contextPath}/on/addStaff">
 					<table class="table" style="width:600px; border-radius: 10px; overflow: hidden;">
 						<tr>
-							<th class="table-success text-center" colspan="2">Insert Staff Info</th>
+							<th class="table-success text-center" colspan="2" style="padding-left: 0px;">Insert Staff Info</th>
 						</tr>
 						<tr>
 							<th>First Name</th>
@@ -146,7 +153,7 @@
 							<th>Store ID</th>
 							<td>
 								<select id="storeId" name="storeId">
-									<option value="">- Select Store -</option>
+									<option value="" style="text-align: center;">- Select Store -</option>
 									<c:forEach var="s" items="${storeList}">
 										<option value="${s.storeId}">[${s.storeId}] ${s.address}</option>
 									</c:forEach>
@@ -161,7 +168,7 @@
 						</tr>
 					</table>
 					<div class="d-flex justify-content-end" style="width: 600px;">
-						<button id="btnAddStaff" type="button" class="btn btn-sm btn-outline-success">Add Staff</button>
+						<button id="btnAddStaff" type="button" class="btn btn-sm btn-outline-primary">Add Staff</button>
 					</div>
 				</form>
 			</div>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.sakila.mapper.InventoryMapper;
+import com.example.sakila.vo.Inventory;
 
 @Service
 @Transactional
@@ -31,5 +32,13 @@ public class InventoryService {
 		
 		return inventoryMapper.selectInventoryListByStore(paramMap);
 	}
-
+	
+	public Integer addInventory(Inventory inventory) {
+		return inventoryMapper.insertInventory(inventory);
+	}
+	
+	public Integer removeInventoryByKey(Integer inventoryId) {
+		return inventoryMapper.deleteInventoryByKey(inventoryId);
+	}
+	
 }

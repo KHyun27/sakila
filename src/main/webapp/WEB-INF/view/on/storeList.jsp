@@ -51,18 +51,19 @@
 		<div class="col-sm-10 bg-light">
 			<div class="main">
 				<!-- main -->
-				<table class="table table-success text-center" style="width:1300px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+				<table class="table table-success text-center" style="width:1400px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 					<tr>
 						<th style="font-size: large;">Store List</th>
 					</tr>
 				</table>
 				
-				<hr style="width: 1300px;">
+				<hr style="width: 1400px;">
 				
-				<table class="table text-center" style="width:1300px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
+				<table class="table text-center" style="width:1400px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 					<thead class=table-success>
 					<tr>
 						<th>Store ID</th>
+						<th>Inventory</th>
 						<th>Inventory</th>
 						<th>Store Address</th>
 						<th>Postal Code</th>
@@ -78,7 +79,10 @@
 						<tr>
 							<td>${s.storeId}</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/on/inventoryList?storeId=${s.storeId}" class="remove-link text-primary">Inventory</a>
+								<a href="${pageContext.request.contextPath}/on/inventoryList?storeId=${s.storeId}" class="remove-link text-success">List</a>
+							</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/on/addInventory?storeId=${s.storeId}" class="remove-link text-primary">Add</a>
 							</td>
 							<td>${s.address}${s.address2}, ${s.district}, ${s.city}, ${s.country}</td>
 							<td>${s.postalCode}</td>
@@ -93,7 +97,7 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<div class="d-flex justify-content-end" style="width: 1300px;">
+				<div class="d-flex justify-content-end" style="width: 1400px;">
 					<a href="${pageContext.request.contextPath}/on/addStore" class="btn btn-sm btn-outline-primary" style="margin-right: 5px;">Add Store</a>
 					<a href="" class="btn btn-sm btn-outline-success">Modify Store</a>
 				</div>
