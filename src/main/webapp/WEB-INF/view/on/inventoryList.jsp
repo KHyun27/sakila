@@ -18,6 +18,17 @@
 			margin-top: 50px;
 			margin-left: 50px;
 		}
+		
+		.table th {
+        text-align: center;
+        vertical-align: middle;
+    	}
+    	.table td {
+        text-align: center;
+        vertical-align: middle;
+        height: 47px;
+    	}
+    	
 		.iv-link {
         	color: black;
         	text-decoration: none;
@@ -112,7 +123,7 @@
 							<td>${iv.rentalDate}</td>
 							<td><!-- 대여중인 상태면 고객ID, 대여 가능이면 addRental링크 -->
 								<c:if test="${iv.customerId != null }">
-									<a href="${pageContext.request.contextPath}/on/customerOne?customerId=${iv.customerId}" class="iv-link">${iv.customerId}</a>
+									<a href="${pageContext.request.contextPath}/on/customerOne?customerId=${iv.customerId}" class="iv-link" style="color: #002266;">${iv.customerId}</a>
 								</c:if>
 								<c:if test="${iv.customerId == null }">
 									<a href="${pageContext.request.contextPath}/on/addRental?inventoryId=${iv.inventoryId}" class="btn btn-sm btn-outline-primary">

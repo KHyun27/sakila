@@ -21,5 +21,11 @@ public interface CustomerMapper {
 	
 	// /on/addRental
 	List<Customer> selectCustomerListByName(String searchName);
+	
+	// /on/customerOne (customer + address + city + country + store join발생)
+	Map<String, Object> selectCustomerOne(Integer customerId);
+	
+	// /on/customerOne (customer + rental + staff + inventory + film join발생)
+	List<Map<String, Object>> selectRentalListByCustomer(Integer customerId);
 
 }

@@ -115,7 +115,7 @@
 						<tr>
 							<td>
 								<!-- 고객 상세 정보(주소 x 렌탈 x payment 조인 발생 -->
-								<a href="" class="customer-link" style="color: #002266;">
+								<a href="${pageContext.request.contextPath}/on/customerOne?customerId=${c.customerId}" class="customer-link" style="color: #002266;">
 									${c.customerId}
 								</a>
 							</td>

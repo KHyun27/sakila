@@ -41,4 +41,7 @@ public class InventoryService {
 		return inventoryMapper.deleteInventoryByKey(inventoryId);
 	}
 	
+	public Map<String, Object> getFilmName(Integer inventoryId) {
+		return inventoryMapper.selectFilmByInventoryId(inventoryId);
+	}
 }

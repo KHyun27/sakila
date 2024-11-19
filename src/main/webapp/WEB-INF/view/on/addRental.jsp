@@ -99,7 +99,7 @@
 									<select name="customerId" id="customerId" size="1">
 										<c:forEach var="c" items="${customerList}">
 											<option value="${c.customerId}">
-												${c.firstName} ${c.lastName} / ${c.email}
+												[${c.firstName} ${c.lastName}] / ${c.email}
 											</option>
 										</c:forEach>
 									</select>
@@ -108,13 +108,21 @@
 						    <tr>
 						    	<th>Inventory ID</th>
 								<td>
-									<input type="text" name="inventoryId" id="inventoryId" value="${inventoryId}" readonly>
+									<input type="hidden" name="inventoryId" id="inventoryId" value="${inventoryId}" readonly>
+									${inventoryId}
 								</td>
+						    </tr>
+						    <tr>
+						    	<th>Film</th>
+						    	<td>
+						    		[${rentalFilm.filmId}] ${rentalFilm.title}
+						    	</td>
 						    </tr>
 						     <tr>
 						    	<th>Staff</th>
 								<td>
-									<input type="text" name="staffId" id="staffId" value="${loginStaff.staffId}" readonly">
+									<input type="hidden" name="staffId" id="staffId" value="${loginStaff.staffId}" readonly">
+									${staffName}
 								</td>
 						    </tr>
 						    <tr>

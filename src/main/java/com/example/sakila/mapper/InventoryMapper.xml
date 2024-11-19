@@ -28,4 +28,9 @@
 	<delete id="deleteInventoryByKey" parameterType="Integer">
 		DELETE FROM inventory WHERE inventory_id = #{inventoryId}
 	</delete>
+	
+	<!-- selectFilmByInventoryId Query : addRental → filmTitle 조회 -->
+	<select id="selectFilmByInventoryId" parameterType="Integer" resultType="Map">
+		SELECT i.film_id filmId, f.title title FROM inventory i INNER JOIN film f ON i.film_id = f.film_id WHERE inventory_id = #{inventoryId}
+	</select>
 </mapper>

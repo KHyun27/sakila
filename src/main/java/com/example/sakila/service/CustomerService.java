@@ -64,5 +64,15 @@ public class CustomerService {
 	public List<Customer> getCustomerListByName(String searchName) {
 		return customerMapper.selectCustomerListByName(searchName);
 	}
+	
+	// /on/customerOne
+	public Map<String, Object> getCustomerOne(Integer customerId) {
+		return customerMapper.selectCustomerOne(customerId);
+	}
+	
+	// /on/customerOne - rentalList
+	public List<Map<String, Object>> getRentalList(Integer customerId) {
+		return customerMapper.selectRentalListByCustomer(customerId);
+	}
 		
 }

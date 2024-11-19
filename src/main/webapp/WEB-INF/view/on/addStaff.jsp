@@ -24,6 +24,7 @@
 				console.log($('#resultAddress').val());
 				if($('#resultAddress').val() == null || $('#resultAddress').val() == '') {
 					alert('주소 선택을 먼저 하세요');
+					return false;
 				} else {
 					$('#addressId').val($('#resultAddress').val());	
 				}
@@ -36,20 +37,31 @@
 				// 입력폼 유효성 검사
 				if($('#firstName').val() == null || $('#firstName').val() == '') {
 					alert('First Name을 입력하세요');
-				} else if($.isNumeric($('#firstName').val())) {
-					alert('First Name은 글자만 입력 가능합니다');
+					return false;
+				} else if(!/^[a-zA-Z가-힣]+$/.test($('#firstName').val())) {  // 문자만 허용하는 정규표현식 사용
+			        alert('First Name은 글자만 입력 가능합니다.');
+			        return false;
 				} else if($('#lastName').val() == null || $('#lastName').val() == '') {
 					alert('Last Name을 입력하세요');
-				} else if($.isNumeric($('#lastName').val())) {
-					alert('Last Name은 글자만 입력 가능합니다');
+					return false;
+				} else if(!/^[a-zA-Z가-힣]+$/.test($('#lastName').val())) {  // 문자만 허용하는 정규표현식 사용
+			        alert('Last Name은 글자만 입력 가능합니다.');
+			        return false;
 				} else if($('#addressId').val() == null || $('#addressId').val() == '') {
 					alert('address ID를 입력하세요');
-				} else if($('#email').val() == null || $('#email').val() == '') {
-					alert('Email을 입력하세요');
+					return false;
+				} else if($('#email').val() == '') {
+			        alert('Email을 입력하세요.');
+			        return false;
+			    } else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($('#email').val())) { // 이메일 정규 표현식 사용
+			        alert('이메일 주소가 유요하지 않습니다.');
+			        return false;
 				} else if($('#storeId').val() == null || $('#storeId').val() == '') {
 					alert('store ID를 입력하세요');
+					return false;
 				} else if($('#username').val() == null || $('#username').val() == '') {
 					alert('Username을 입력하세요');
+					return false;
 				} else {
 					// console.log($('#storeId').val());
 					// console.log('submit...');

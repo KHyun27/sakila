@@ -19,5 +19,10 @@ public class StoreService {
 	public List<Map<String, Object>> getStoreList() {
 		return storeMapper.selectStoreList();
 	}
+	
+	// /on/addRental → store staff name 조회
+	public String getStaffName(Integer inventoryId) {
+		return storeMapper.selectStoreStaff(inventoryId);
+	}
 
 }

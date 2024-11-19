@@ -35,5 +35,20 @@
 		SELECT customer_id customerId, store_id storeId, first_name firstName, last_name lastName, email email FROM customer 
 		WHERE ACTIVE = 1 AND LOWER(CONCAT(first_name, last_name)) LIKE CONCAT('%', LOWER(#{searchName}) , '%')
 	</select>
-
+	
+	<!-- selectCustomerOne Query : 고객 정보 조회 -->
+	<select id="selectCustomerOne" parameterType="Integer" resultType="Map">
+		SELECT cu.customer_id customerId, cu.store_id storeId, sa.storeAddress storeAddress, cu.first_name firstName, cu.last_name lastName,
+			   cu.email email, cu.active active, cu.create_date createDate, cu.last_update lastUpdate, 
+			   a.address address, a.address2 address2, a.district district, ci.city city, a.postal_code postalCode, a.phone phone, co.country country
+		FROM customer cu INNER JOIN address a ON cu.address_id = a.address_id INNER JOIN city ci ON a.city_id = ci.city_id INNER JOIN country co ON ci.country_id = co.country_id INNER JOIN (SELECT s.store_id, a.address storeAddress FROM store s INNER JOIN address a ON s.address_id = a.address_id) sa ON cu.store_id = sa.store_id
+		WHERE cu.customer_id = #{customerId}
+	</select>
+	
+	<!-- selectRentalListByCustomer Query : 고객 별 Rental List 조회 -->
+	<select id="selectRentalListByCustomer" parameterType="Integer" resultType="Map">
+		SELECT r.inventory_id inventoryId, r.rental_date rentalDate, r.return_date returnDate, st.username username, f.film_id filmId, f.title title
+		FROM customer cu INNER JOIN rental r ON cu.customer_id = r.customer_id INNER JOIN staff st ON r.staff_id = st.staff_id INNER JOIN inventory i ON r.inventory_id = i.inventory_id INNER JOIN film f ON i.film_id = f.film_id
+		WHERE cu.customer_id = #{customerId}
+	</select>
 </mapper>

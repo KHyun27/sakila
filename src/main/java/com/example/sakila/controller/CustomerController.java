@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.sakila.service.AddressService;
 import com.example.sakila.service.CustomerService;
 import com.example.sakila.service.StoreService;
+import com.example.sakila.util.TeamColor;
 import com.example.sakila.vo.Address;
 import com.example.sakila.vo.Customer;
 
@@ -77,7 +78,17 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/on/customerOne")
-	public String customerOne(@RequestParam Integer customerId) {
+	public String customerOne(Model model, @RequestParam Integer customerId) {
+		
+		Map<String, Object> customer = customerService.getCustomerOne(customerId);
+		log.debug(TeamColor.B + "customer : " + customer + TeamColor.RESET);
+		
+		List<Map<String, Object>> rentalList = customerService.getRentalList(customerId);
+		log.debug(TeamColor.G + "rentalList : " + rentalList.toString() + TeamColor.RESET);
+		
+		model.addAttribute("rentalList", rentalList);
+		model.addAttribute("customer", customer);
+		
 		return "on/customerOne";
 	}
 	

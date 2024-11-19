@@ -21,4 +21,7 @@ public interface InventoryMapper {
 	
 	// /on/removeInventoryByKey
 	Integer deleteInventoryByKey(Integer inventoryId);
+	
+	// /on/addRental - film title 조회
+	Map<String, Object> selectFilmByInventoryId(Integer inventoryId);
 }
