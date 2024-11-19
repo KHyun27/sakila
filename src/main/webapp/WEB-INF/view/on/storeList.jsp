@@ -9,8 +9,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function() {
+			$('#inventoryListGrantIsNone').click(function(){
+				alert('Inventory List 권한이 없습니다.')
+			})
 			
-			
+			$('#inventoryAddGrantIsNone').click(function(){
+				alert('Inventory Add 권한이 없습니다.')
+			})
 		});
 	</script>
 	<style>
@@ -79,10 +84,20 @@
 						<tr>
 							<td>${s.storeId}</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/on/inventoryList?storeId=${s.storeId}" class="remove-link text-success">List</a>
+								<c:if test="${loginStaff.staffId == s.staffId}">
+									<a href="${pageContext.request.contextPath}/on/inventoryList?storeId=${s.storeId}" class="remove-link text-success">List</a>
+								</c:if>
+								<c:if test="${!(loginStaff.staffId == s.staffId)}">
+									<a href="" class="remove-link text-success" id="inventoryListGrantIsNone">List</a>
+								</c:if>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/on/addInventory?storeId=${s.storeId}" class="remove-link text-primary">Add</a>
+								<c:if test="${loginStaff.staffId == s.staffId}">
+									<a href="${pageContext.request.contextPath}/on/addInventory?storeId=${s.storeId}" class="remove-link text-primary">Add</a>
+								</c:if>
+								<c:if test="${!(loginStaff.staffId == s.staffId)}">
+									<a href="" class="remove-link text-primary" id="inventoryAddGrantIsNone">Add</a>
+								</c:if>
 							</td>
 							<td>${s.address}${s.address2}, ${s.district}, ${s.city}, ${s.country}</td>
 							<td>${s.postalCode}</td>

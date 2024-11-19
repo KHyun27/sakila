@@ -30,13 +30,13 @@ public class LoginController {
 	// Login Staff Action
 	@PostMapping("/off/login")
 	public String login(Model model, HttpSession session,
-						@RequestParam(name ="staffId") int staffId,
+						@RequestParam(name ="username") String username,
 						@RequestParam(name = "password") String password) {
 						// int staffId = Integer.parseInt(request.getParameter("staffId"));
 						// String password = request.getParameter("password");
 		
 		Staff paramStaff = new Staff();
-		paramStaff.setStaffId(staffId);
+		paramStaff.setUsername(username);
 		paramStaff.setPassword(password);
 		
 		Staff loginStaff = staffService.loginStaff(paramStaff);

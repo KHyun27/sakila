@@ -11,22 +11,19 @@
 <script>
 	$(document).ready(function() { // <body> 까지 메모리에 로드 후 진행
 		//btn 버튼 클릭 시 Form값 유효성 검사
-		$('#staffId').focus();
+		$('#username').focus();
 		
 		$('#btn').click(function() {
 			console.log('click');
 			// 숫자가 아니면
-			if($('#staffId').val().trim() === "" || $('#password').val().trim() === "") {
-				if(!($('#staffId').val().trim() === "")) {
-					alert('비밀번호를 입력하세요');
-					$('#password').focus();
-					return;
-				}
-				alert('아이디, 비밀번호를 입력하세요');
-				$('#staffId').focus();
-			} else if(!$.isNumeric($('#staffId').val())) { // $.isNumeric($('#staffId').val()) == false 
-				alert('Staff ID는 숫자만 입력 가능');
-				$('#staffId').focus();
+			if($('#username').val() == null || $('#username').val() == '' ) {
+				alert('Staff ID를 입력하세요');
+				$('#username').focus();
+				return false;
+			} else if(!/^[a-zA-Z가-힣]+$/.test($('#username').val())) {  // 문자만 허용하는 정규표현식 사용 
+				alert('Staff ID는 글자만 입력 가능');
+				$('#username').focus();
+				return false;
 			} else if($('#password').val().length < 4) {
 				alert('Password는 4자리 이상 입력');
 				$('#password').focus();
@@ -54,8 +51,8 @@
 			<div class="mt-3 text-center text-danger">&nbsp;${loginMsg}&nbsp;</div>
 			<form id="loginForm" method="post" action="${pageContext.request.contextPath}/off/login">
 				<div class="mb-4 mt-3">
-					<label for="staffId" class="form-label">Staff ID:</label> 
-					<input id="staffId" type="text" class="form-control" placeholder="Enter staff ID" name="staffId">
+					<label for="username" class="form-label">Staff Username:</label> 
+					<input id="username" type="text" class="form-control" placeholder="Enter Staff ID" name="username">
 				</div>
 				<div class="mb-4">
 					<label for="password" class="form-label">Password:</label> 

@@ -30,6 +30,8 @@
 				}
 			})
 			
+			
+			
 		});
 	</script>
 	<style>
@@ -122,7 +124,7 @@
 						    	<th>Staff</th>
 								<td>
 									<input type="hidden" name="staffId" id="staffId" value="${loginStaff.staffId}" readonly">
-									${staffName}
+									${loginStaff.username}
 								</td>
 						    </tr>
 						    <tr>

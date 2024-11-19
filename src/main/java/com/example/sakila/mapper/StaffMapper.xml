@@ -4,7 +4,7 @@
 	<!-- loginStaff Query -->
 	<select id="loginStaff" parameterType="com.example.sakila.vo.Staff" resultType="com.example.sakila.vo.Staff">
 		SELECT staff_id staffId, store_id storeId, username  
-		FROM staff WHERE active = 1 AND staff_id = #{staffId} AND password = #{password} 
+		FROM staff WHERE active = 1 AND username = #{username} AND password = #{password} 
 	</select>
 	
 	<!-- selectStaffOne Query -->
