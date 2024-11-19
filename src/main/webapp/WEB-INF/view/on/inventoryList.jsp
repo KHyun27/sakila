@@ -93,8 +93,10 @@
 				<table class="table text-center" style="width:1300px; border-radius: 10px; overflow: hidden; border-bottom-style: hidden;">
 					<thead class=table-success>
 						<tr>
-						<th>Inventory Id</th>
+						<th>Inventory ID</th>
 						<th>[ID] Title</th>
+						<th>Rental</th>
+						<th>Customer Rental</th>
 						<th>Last Update</th>
 						<th>Remove</th>
 					</tr>
@@ -106,6 +108,17 @@
 								<a href="${pageContext.request.contextPath}/on/filmOne?filmId=${iv.filmId}" class="iv-link">
 									[${iv.filmId}] ${iv.title}
 								</a>
+							</td>
+							<td>${iv.rentalDate}</td>
+							<td><!-- 대여중인 상태면 고객ID, 대여 가능이면 addRental링크 -->
+								<c:if test="${iv.customerId != null }">
+									<a href="${pageContext.request.contextPath}/on/customerOne?customerId=${iv.customerId}" class="iv-link">${iv.customerId}</a>
+								</c:if>
+								<c:if test="${iv.customerId == null }">
+									<a href="${pageContext.request.contextPath}/on/addRental?inventoryId=${iv.inventoryId}" class="btn btn-sm btn-outline-primary">
+										대여
+									</a>
+								</c:if>
 							</td>
 							<td>${iv.lastUpdate}</td>
 							<td>

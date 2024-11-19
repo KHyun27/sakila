@@ -18,5 +18,8 @@ public interface CustomerMapper {
 	
 	// /on/customerList
 	Integer selectCustomerCount(String searchWord);
+	
+	// /on/addRental
+	List<Customer> selectCustomerListByName(String searchName);
 
 }
