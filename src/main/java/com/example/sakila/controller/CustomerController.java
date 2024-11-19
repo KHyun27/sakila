@@ -73,6 +73,7 @@ public class CustomerController {
 		model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
 		model.addAttribute("customerList", resultMap.get("customerList"));
 		model.addAttribute("lastPage", resultMap.get("lastPage"));
+		model.addAttribute("searchWord", searchWord);
 		
 		return "on/customerList";
 	}

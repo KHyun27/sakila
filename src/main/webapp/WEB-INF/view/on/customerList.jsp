@@ -143,12 +143,17 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<div class="d-flex justify-content-end" style="width: 1300px;">
-					<form id="formSearch" method="get" action="${pageContext.request.contextPath}/on/customerList">
-						<input type="text" name="searchWord" id="searchWord">
-						<button id="btnSearch" type="button" class="btn btn-sm btn-outline-success">Search</button>
-					</form>
-				</div>
+				<form id="formSearch" method="get" action="${pageContext.request.contextPath}/on/customerList">
+					<div class="d-flex justify-content-between" style="width: 1300px;">
+						<div>
+							<span style="color: #008000;">Current SearchWord : ${searchWord}</span>
+						</div>
+						<div>
+							<input type="text" name="searchWord" id="searchWord" value="${searchWord}">
+							<button id="btnSearch" type="button" class="btn btn-sm btn-outline-success">Search</button>
+						</div>
+					</div>
+				</form>
 				<div class="pagination justify-content-center" style="text-align: center; margin-top: 20px; width: 1300px">
 					<!-- Pagination --> <!-- 이전 11 12 13 14 15 16 17 18 19 20 다음 -->
 					<!-- 첫 페이지 -->
@@ -156,7 +161,7 @@
 						<a href="" style="pointer-events: none;">&laquo;</a>
 					</c:if>
 					<c:if test="${currentPage > 1}">
-						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=1">&laquo;</a>
+						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=1&searchWord=${searchWord}">&laquo;</a>
 					</c:if>
 					
 					<!-- 이전 페이지 -->
@@ -164,7 +169,7 @@
 						<a href="" style="pointer-events: none;">Previous</a>
 					</c:if>
 					<c:if test="${currentPage > 10}">
-						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${currentPage - 10}">
+						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${currentPage - 10}&searchWord=${searchWord}">
 							Previous
 						</a>
 					</c:if>
@@ -175,7 +180,7 @@
 							<a class="active">${num}</a>
 						</c:if>
 						<c:if test= "${num != currentPage}">
-							<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${num}">${num}</a>
+							<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${num}&searchWord=${searchWord}">${num}</a>
 						</c:if>
 					</c:forEach>
 					
@@ -185,7 +190,7 @@
 					</c:if>
 					
 					<c:if test="${currentPage < lastPage}">
-						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${currentPage + 10}">
+						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${currentPage + 10}&searchWord=${searchWord}">
 							Next
 						</a>
 					</c:if>
@@ -195,7 +200,7 @@
 						<a href="" style="pointer-events: none;">&raquo;</a>
 					</c:if>
 					<c:if test="${currentPage < lastPage}">
-						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${lastPage}">&raquo;</a>
+						<a href="${pageContext.request.contextPath}/on/customerList?currentPage=${lastPage}&searchWord=${searchWord}">&raquo;</a>
 					</c:if>
 				</div>
 			</div>
