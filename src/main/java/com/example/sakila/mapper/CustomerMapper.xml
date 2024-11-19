@@ -13,8 +13,7 @@
 		FROM customer
 		<where>
 	        <if test="searchWord != null and searchWord != ''">
-	            AND (first_name LIKE CONCAT('%', UPPER(#{searchWord}), '%')
-	            OR last_name LIKE CONCAT('%', UPPER(#{searchWord}), '%'))
+	            first_name LIKE CONCAT('%', #{searchWord}, '%') OR last_name LIKE CONCAT('%', #{searchWord}, '%')
 	        </if>
 	    </where>
 		ORDER BY customer_id DESC
@@ -26,9 +25,15 @@
 		SELECT COUNT(*) FROM customer
 		<where>
 			<if test="searchWord != null">
-				first_name LIKE CONCAT('%', #{searchWord), '%') OR last_name LIKE CONCAT('%', #{searchWord}, '%')
+				LOWER(CONCAT(first_name, last_name)) LIKE CONCAT('%', LOWER(#{searchName}) , '%')
 			</if>
 		</where>		
+	</select>
+
+	<!-- selectCustomerListByName Query : /on/addRental -->
+	<select id="selectCustomerListByName" parameterType="String" resultType="com.example.sakila.vo.Customer">
+		SELECT customer_id customerId, store_id storeId, first_name firstName, last_name lastName, email email FROM customer 
+		WHERE ACTIVE = 1 AND LOWER(CONCAT(first_name, last_name)) LIKE CONCAT('%', LOWER(#{searchName}) , '%')
 	</select>
 
 </mapper>

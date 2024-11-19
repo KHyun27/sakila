@@ -89,10 +89,10 @@
 								<th style="vertical-align: middle;">Film ID</th>
 								<td align="right">
 									<c:if test="${empty searchTitle}">
-										<span class="text-danger">Title을 검색하세요</span>
+										<span class="text-danger" style="padding-right: 20px;">Film을 검색하세요</span>
 									</c:if>
 									<c:if test="${not empty searchTitle}">
-										<select size="5" name="filmId" id="filmId" style="margin-right: 20px;">
+										<select size="1" name="filmId" id="filmId" style="margin-right: 20px;">
 											<c:forEach var="f" items="${filmList}">
 												<option value="${f.filmId}">[${f.filmId}] ${f.title}</option>
 											</c:forEach>

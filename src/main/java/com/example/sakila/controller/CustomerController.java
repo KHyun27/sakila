@@ -76,6 +76,10 @@ public class CustomerController {
 		return "on/customerList";
 	}
 	
+	@GetMapping("/on/customerOne")
+	public String customerOne(@RequestParam Integer customerId) {
+		return "on/customerOne";
+	}
 	
 	
 
